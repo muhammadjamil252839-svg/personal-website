@@ -310,3 +310,104 @@ textarea:focus{
 }
 
 }
+/* ==========================================
+   PART 9.3 - HERO BUTTONS
+========================================== */
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.hero-buttons .btn{
+    min-width:190px;
+    padding:16px 32px;
+    border-radius:50px;
+    font-size:17px;
+    font-weight:600;
+    transition:all .3s ease;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.hero-buttons .btn:first-child{
+    background:#ffffff;
+    color:#198754;
+}
+
+.hero-buttons .btn:last-child{
+    background:#ffc107;
+    color:#222;
+}
+
+.hero-buttons .btn:hover{
+    transform:translateY(-5px) scale(1.03);
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+/* ==========================================
+   PART 9.4 - HERO ANIMATION
+========================================== */
+
+/* Floating Animation */
+@keyframes floating{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* Hero Title */
+.hero h1{
+    font-size:64px;
+    font-weight:800;
+    letter-spacing:1px;
+    animation:floating 4s ease-in-out infinite;
+}
+
+/* Hero Subtitle */
+.hero h2{
+    font-size:32px;
+    margin-top:15px;
+    margin-bottom:20px;
+    color:#FFD54F;
+}
+
+/* Hero Description */
+.hero p{
+    max-width:700px;
+    margin:0 auto;
+    font-size:20px;
+    line-height:1.9;
+    opacity:.95;
+}
+
+/* Button Space */
+.hero-buttons{
+    margin-top:45px;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+.hero h1{
+    font-size:42px;
+}
+
+.hero h2{
+    font-size:24px;
+}
+
+.hero p{
+    font-size:17px;
+    padding:0 15px;
+}
+
+}
