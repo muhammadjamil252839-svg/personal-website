@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Muhammad Jamil Uddin | Official Website</title>
-
-<meta name="description" content="Official Website of Muhammad Jamil Uddin">
-<meta name="keywords" content="Muhammad Jamil Uddin, IIUC, Hafiz, Islamic Studies">
-<meta name="author" content="Muhammad Jamil Uddin">
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-</head>
-
-<body>
+<!-- =========================
+PART 8.1 - NEW HEADER
+========================= -->
 
 <header class="header">
 
@@ -30,247 +10,216 @@
 Muhammad Jamil Uddin
 </div>
 
-<nav>
+<button class="menu-btn" id="menuBtn">
+☰
+</button>
+
+<nav id="navMenu">
+
 <ul>
+
 <li><a href="#home">Home</a></li>
-<li><a href="#welcome">Welcome</a></li>
+
 <li><a href="#about">About</a></li>
+
 <li><a href="#education">Education</a></li>
+
 <li><a href="#skills">Skills</a></li>
+
 <li><a href="#gallery">Gallery</a></li>
-<li><a href="#certificates">Certificates</a></li>
+
 <li><a href="#contact">Contact</a></li>
+
 </ul>
+
 </nav>
 
 </div>
 
 </header>
 
+<!-- HERO -->
+
 <section id="home" class="hero">
 
 <div class="container">
 
-<h1>Assalamu Alaikum</h1>
+<h1>Welcome</h1>
 
-<h2>I'm Muhammad Jamil Uddin</h2>
+<h2>Muhammad Jamil Uddin</h2>
 
-<p>
-Hafiz • Student • Qur'anic Sciences & Islamic Studies
+<p class="update-text">
+🚧 This website is currently under development.<br>
+New features and information will be added soon.
 </p>
 
-<a href="#" class="btn">
-Download CV
-</a>
+<div class="hero-buttons">
 
-</div>
+<a href="#" class="btn">📄 Download CV</a>
 
-</section>
-
-<section>
-
-<h2>
-
-Welcome
-
-</h2>
-
-<p>
-
-Welcome to my official personal website.
-
-This website is currently under development.
-
-More professional sections will be added in the next parts.
-
-</p>
-
-</section>
-
-<script src="script.js"></script>
-
-</body>
-
-  </html>
-<!-- ABOUT SECTION -->
-
-<section id="about" class="about">
-
-<div class="container">
-
-<h2>About Me</h2>
-
-<p>
-
-Assalamu Alaikum.
-
-I am <strong>Muhammad Jamil Uddin</strong>, a student of Qur'anic Sciences & Islamic Studies at the International Islamic University Chittagong (IIUC). I am passionate about Islamic knowledge, education, leadership, and serving society. I always strive to develop myself through learning, discipline, and good character.
-
-</p>
-
-<div class="about-info">
-
-<div class="info-box">
-<h3>Full Name</h3>
-<p>Muhammad Jamil Uddin</p>
-</div>
-
-<div class="info-box">
-<h3>Nationality</h3>
-<p>Bangladeshi</p>
-</div>
-
-<div class="info-box">
-<h3>Religion</h3>
-<p>Islam</p>
-</div>
-
-<div class="info-box">
-<h3>Profession</h3>
-<p>Student</p>
-</div>
+<a href="#contact" class="btn">📞 Contact Me</a>
 
 </div>
 
 </div>
 
 </section>
+/* ==========================================
+   PART 8.2 - MODERN HEADER & HERO
+========================================== */
+
+/* Header */
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#ffffff;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+    z-index:999;
+}
+
+.header .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 25px;
+}
+
+.logo{
+    color:#198754;
+    font-size:26px;
+    font-weight:700;
+}
+
+/* Menu */
+.menu-btn{
+    display:none;
+    font-size:30px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    color:#198754;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav ul li a{
+    color:#222;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav ul li a:hover{
+    color:#198754;
+}
+
+/* Hero */
+.hero{
+    padding-top:160px;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:60px;
+    color:#ffffff;
+    margin-bottom:15px;
+}
+
+.hero h2{
+    color:#ffffff;
+    margin-bottom:20px;
+}
+
+.update-text{
+    max-width:700px;
+    margin:0 auto 30px;
+    color:#ffffff;
+    font-size:20px;
+    line-height:1.8;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+.menu-btn{
+    display:block;
+}
+
+nav{
+    display:none;
+    position:absolute;
+    top:75px;
+    right:20px;
+    background:#fff;
+    width:220px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
 
-<!-- EDUCATION SECTION -->
+nav.active{
+    display:block;
+}
 
-<section id="education" class="education">
+nav ul{
+    flex-direction:column;
+    padding:20px;
+    gap:18px;
+}
 
-<div class="container">
+.hero h1{
+    font-size:42px;
+}
 
-<h2>Education</h2>
+.hero h2{
+    font-size:26px;
+}
 
-<div class="edu-card">
+.update-text{
+    font-size:17px;
+}
 
-<h3>International Islamic University Chittagong (IIUC)</h3>
+}
+/* ==========================================
+   PART 8.3 - MOBILE MENU
+========================================== */
 
-<p>
+const menuBtn = document.getElementById("menuBtn");
+const navMenu = document.getElementById("navMenu");
 
-Department of Qur'anic Sciences & Islamic Studies
+if (menuBtn && navMenu) {
 
-</p>
+    menuBtn.addEventListener("click", () => {
 
-</div>
+        navMenu.classList.toggle("active");
 
-<div class="edu-card">
+        if (menuBtn.innerHTML === "☰") {
+            menuBtn.innerHTML = "✕";
+        } else {
+            menuBtn.innerHTML = "☰";
+        }
 
-<h3>Alim/HSC</h3>
+    });
 
-<p>Completed Successfully</p>
+    // Menu link এ ক্লিক করলে Menu বন্ধ হবে
+    document.querySelectorAll("#navMenu a").forEach(link => {
 
-</div>
+        link.addEventListener("click", () => {
 
-<div class="edu-card">
+            navMenu.classList.remove("active");
+            menuBtn.innerHTML = "☰";
 
-<h3>Dakhil/SSC</h3>
+        });
 
-<p>Completed Successfully</p>
+    });
 
-</div>
-
-</div>
-
-</section>
-<!-- SKILLS SECTION -->
-
-<section id="skills" class="skills">
-
-<div class="container">
-
-<h2>My Skills</h2>
-
-<div class="skill-card">
-
-<p>Holy Quran Recitation</p>
-
-<progress value="100" max="100"></progress>
-
-<p>Islamic Studies</p>
-
-<progress value="90" max="100"></progress>
-
-<p>Leadership</p>
-
-<progress value="88" max="100"></progress>
-
-<p>Public Speaking</p>
-
-<progress value="85" max="100"></progress>
-
-<p>Computer & Internet</p>
-
-<progress value="80" max="100"></progress>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- GALLERY SECTION -->
-
-<section id="gallery">
-
-<div class="container">
-
-<h2>Gallery</h2>
-
-<p>
-My personal photographs and memorable moments will be available here.
-</p>
-
-<div class="gallery">
-
-<img src="assets/images/profile.jpg" alt="Muhammad Jamil Uddin">
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CONTACT SECTION -->
-
-<section id="contact">
-
-<div class="container">
-
-<h2>Contact Me</h2>
-
-<p><strong>Phone:</strong> +8801826-067398</p>
-
-<p><strong>WhatsApp:</strong> +8801619-085444</p>
-
-<p><strong>Email:</strong> muhammadjamil252839@gmail.com</p>
-
-<p><strong>Address:</strong> Mawlana Kamal’s House, Dwip College Road, Ward no: 3, Pourosova: Hatiya, Noakhali, Bangladesh.</p>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-<div class="container">
-
-<p>
-
-© 2026 Muhammad Jamil Uddin. All Rights Reserved.
-
-</p>
-
-</div>
-
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
+}
