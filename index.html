@@ -1,7 +1,10 @@
-<!-- =========================
-     HEADER v3.0
-     PART 4.1
-========================= -->
+<!-- =====================================================
+     VERSION 5.0
+     PART 1.1
+     HEADER + MOBILE MENU
+====================================================== -->
+
+<body>
 
 <header class="header">
 
@@ -10,7 +13,9 @@
         <!-- Logo -->
 
         <a href="#home" class="logo">
+
             Muhammad Jamil Uddin
+
         </a>
 
         <!-- Mobile Menu Button -->
@@ -35,9 +40,9 @@
 
                 <li><a href="#education">🎓 Education</a></li>
 
-                <li><a href="#skills">💼 Skills</a></li>
-
                 <li><a href="#gallery">🖼 Gallery</a></li>
+
+                <li><a href="#skills">💼 Skills</a></li>
 
                 <li><a href="#certificates">📜 Certificates</a></li>
 
@@ -51,13 +56,13 @@
 
 </header>
 
-<!-- Overlay -->
+<!-- Menu Overlay -->
 
-<div id="menuOverlay"></div>
-<!-- =========================
-     HERO SECTION v3.0
-     PART 4.2
-========================= -->
+<div id="overlay"></div>
+<!-- ==========================================
+     HERO SECTION
+     Version 5.0 | Part 1.2
+========================================== -->
 
 <section id="home" class="hero">
 
@@ -67,21 +72,21 @@
 
         <div class="hero-content">
 
-            <span class="welcome-text">
-                👋 Welcome to My Official Website
+            <span class="welcome">
+                Assalamu Alaikum 👋
             </span>
 
             <h1>
-                Assalamu Alaikum
+                Muhammad Jamil Uddin
             </h1>
 
             <h2>
-                I'm Muhammad Jamil Uddin
+                Bachelor (Honours) Student
             </h2>
 
             <p>
 
-                Student of
+                Department of
                 <strong>
                     Qur'anic Sciences & Islamic Studies
                 </strong>
@@ -92,24 +97,28 @@
 
             </p>
 
-            <p class="update-text">
+            <p>
 
-                👑 Website Version 3.0
+                🕌 Fazil (Running)
 
                 <br>
 
-                New Features Coming Soon...
+                Char Kailash Hadiya Fazil Madrasa
 
             </p>
 
             <div class="hero-buttons">
 
                 <a href="#about" class="btn">
-                    Learn More
+
+                    About Me
+
                 </a>
 
                 <a href="#contact" class="btn btn-outline">
+
                     Contact Me
+
                 </a>
 
             </div>
@@ -124,9 +133,7 @@
 
                 <img
                     src="images/profile.jpg"
-                    alt="Muhammad Jamil Uddin"
-                    id="profilePhoto"
-                >
+                    alt="Muhammad Jamil Uddin">
 
             </div>
 
@@ -135,10 +142,10 @@
     </div>
 
 </section>
-<!-- =========================
-     GALLERY SECTION v3.0
-     PART 4.3
-========================= -->
+<!-- ==========================================
+     GALLERY SLIDER
+     Version 5.0 | Part 1.3
+========================================== -->
 
 <section id="gallery" class="gallery">
 
@@ -149,72 +156,88 @@
             <h2>My Gallery</h2>
 
             <p>
-                Some memorable moments of my life.
+
+                Some memorable moments of my life
+
             </p>
 
         </div>
 
-        <div class="gallery-slider">
-
-            <div class="gallery-track">
-
-                <img src="images/gallery1.jpg" alt="Gallery Photo 1">
-
-                <img src="images/gallery2.jpg" alt="Gallery Photo 2">
-
-                <img src="images/gallery3.jpg" alt="Gallery Photo 3">
-
-                <img src="images/gallery4.jpg" alt="Gallery Photo 4">
-
-                <img src="images/gallery5.jpg" alt="Gallery Photo 5">
-
-                <img src="images/gallery6.jpg" alt="Gallery Photo 6">
-
-            </div>
+        <div class="slider-container">
 
             <!-- Previous Button -->
 
-            <button class="gallery-prev">
+            <button class="prev-btn">
 
-                ❮
+                &#10094;
 
             </button>
+
+            <!-- Images -->
+
+            <div class="slider">
+
+                <img src="images/gallery1.jpg"
+                     class="slide active"
+                     alt="Photo 1">
+
+                <img src="images/gallery2.jpg"
+                     class="slide"
+                     alt="Photo 2">
+
+                <img src="images/gallery3.jpg"
+                     class="slide"
+                     alt="Photo 3">
+
+                <img src="images/gallery4.jpg"
+                     class="slide"
+                     alt="Photo 4">
+
+                <img src="images/gallery5.jpg"
+                     class="slide"
+                     alt="Photo 5">
+
+                <img src="images/gallery6.jpg"
+                     class="slide"
+                     alt="Photo 6">
+
+            </div>
 
             <!-- Next Button -->
 
-            <button class="gallery-next">
+            <button class="next-btn">
 
-                ❯
+                &#10095;
 
             </button>
 
-            <!-- Dots -->
+        </div>
 
-            <div class="gallery-dots">
+        <!-- Dots -->
 
-                <span class="dot active"></span>
+        <div class="slider-dots">
 
-                <span class="dot"></span>
+            <span class="dot active"></span>
 
-                <span class="dot"></span>
+            <span class="dot"></span>
 
-                <span class="dot"></span>
+            <span class="dot"></span>
 
-                <span class="dot"></span>
+            <span class="dot"></span>
 
-                <span class="dot"></span>
+            <span class="dot"></span>
 
-            </div>
+            <span class="dot"></span>
 
         </div>
 
     </div>
 
 </section>
-<!-- =========================
-     EDUCATION SECTION v3.0
-     PART 4.4
-========================= -->
+<!-- ==========================================
+     EDUCATION SECTION
+     Version 5.0 | Part 1.4
+========================================== -->
 
 <section id="education" class="education">
 
@@ -232,17 +255,15 @@
 
         </div>
 
-        <div class="education-wrapper">
+        <div class="education-grid">
 
             <!-- IIUC -->
 
             <div class="education-card">
 
-                <img
-                    src="images/iiuc-logo.png"
-                    alt="IIUC Logo"
-                    class="education-logo"
-                >
+                <img src="images/iiuc-logo.png"
+                     alt="IIUC Logo"
+                     class="edu-logo">
 
                 <h3>
 
@@ -256,24 +277,18 @@
 
                 </h4>
 
-                <h5>
-
-                    Department of Qur'anic Sciences & Islamic Studies
-
-                </h5>
-
-                <span>
-
-                    2026 – Present
-
-                </span>
-
                 <p>
 
-                    Currently studying Bachelor (Honours) in
-                    Qur'anic Sciences & Islamic Studies.
+                    Department of Qur'anic Sciences &
+                    Islamic Studies
 
                 </p>
+
+                <span class="edu-status">
+
+                    📖 Running (2026 - Present)
+
+                </span>
 
             </div>
 
@@ -281,11 +296,9 @@
 
             <div class="education-card">
 
-                <img
-                    src="images/madrasa-logo.png"
-                    alt="Madrasa Logo"
-                    class="education-logo"
-                >
+                <img src="images/char-kailash-logo.png"
+                     alt="Char Kailash Hadiya Fazil Madrasa"
+                     class="edu-logo">
 
                 <h3>
 
@@ -299,17 +312,11 @@
 
                 </h4>
 
-                <span>
+                <span class="edu-status">
 
-                    Running
+                    🕌 Running
 
                 </span>
-
-                <p>
-
-                    Currently continuing Fazil education.
-
-                </p>
 
             </div>
 
@@ -317,11 +324,9 @@
 
             <div class="education-card">
 
-                <img
-                    src="images/madrasa-logo.png"
-                    alt="Madrasa Logo"
-                    class="education-logo"
-                >
+                <img src="images/batia-logo.png"
+                     alt="Batia Hadiya Fazil Madrasa"
+                     class="edu-logo">
 
                 <h3>
 
@@ -335,9 +340,9 @@
 
                 </h4>
 
-                <span>
+                <span class="edu-status">
 
-                    Completed - 2024
+                    ✅ Completed - 2024
 
                 </span>
 
@@ -347,11 +352,9 @@
 
             <div class="education-card">
 
-                <img
-                    src="images/madrasa-logo.png"
-                    alt="Madrasa Logo"
-                    class="education-logo"
-                >
+                <img src="images/batia-logo.png"
+                     alt="Batia Hadiya Fazil Madrasa"
+                     class="edu-logo">
 
                 <h3>
 
@@ -365,9 +368,9 @@
 
                 </h4>
 
-                <span>
+                <span class="edu-status">
 
-                    Completed - 2022
+                    ✅ Completed - 2022
 
                 </span>
 
@@ -379,284 +382,158 @@
 
 </section>
 <!-- ==========================================
-     ABOUT SECTION v3.0
-     PART 4.5
+     SKILLS SECTION
+     Version 5.0 | Part 1.5
 ========================================== -->
 
-<section id="about" class="about">
+<section id="skills" class="skills">
 
     <div class="container">
 
         <div class="section-title">
 
-            <h2>About Me</h2>
+            <h2>Skills & Expertise</h2>
 
             <p>
-                Know more about my education, vision and journey.
+
+                My Professional Skills & Knowledge
+
             </p>
 
         </div>
 
-        <div class="about-container">
+        <div class="skills-grid">
 
-            <!-- Left Side -->
+            <!-- Islamic Studies -->
 
-            <div class="about-image">
+            <div class="skill-card">
 
-                <img src="images/profile.jpg"
-                     alt="Muhammad Jamil Uddin">
+                <div class="skill-icon">
 
-            </div>
+                    🕌
 
-            <!-- Right Side -->
-
-            <div class="about-content">
+                </div>
 
                 <h3>
-                    Assalamu Alaikum
+
+                    Islamic Studies
+
                 </h3>
 
-                <h2>
-                    I'm Muhammad Jamil Uddin
-                </h2>
-
                 <p>
 
-                    I am currently studying
-                    <strong>Bachelor (Honours)</strong>
-                    in
-                    <strong>Qur'anic Sciences & Islamic Studies</strong>
-                    at
-                    <strong>International Islamic University Chittagong (IIUC)</strong>.
+                    Qur'anic Sciences,
+                    Tafsir,
+                    Hadith,
+                    Fiqh &
+                    Islamic Research.
 
                 </p>
 
-                <p>
+            </div>
 
-                    Alongside my university studies,
-                    I am also continuing my
-                    <strong>Fazil</strong> education at
+            <!-- Web Development -->
 
-                    <strong>
-                        Char Kailash Hadiya Fazil Madrasa
-                    </strong>.
+            <div class="skill-card">
 
-                </p>
+                <div class="skill-icon">
 
-                <p>
-
-                    I successfully completed
-
-                    <strong>Dakhil (2022)</strong>
-
-                    and
-
-                    <strong>Alim (2024)</strong>
-
-                    from
-
-                    <strong>
-                        Batia Hadiya Fazil Madrasa
-                    </strong>.
-
-                </p>
-
-                <div class="about-info">
-
-                    <div>
-
-                        <strong>🎓 Degree</strong>
-
-                        <span>
-                            Bachelor (Honours)
-                        </span>
-
-                    </div>
-
-                    <div>
-
-                        <strong>🏫 University</strong>
-
-                        <span>
-                            IIUC
-                        </span>
-
-                    </div>
-
-                    <div>
-
-                        <strong>📖 Department</strong>
-
-                        <span>
-                            Qur'anic Sciences & Islamic Studies
-                        </span>
-
-                    </div>
-
-                    <div>
-
-                        <strong>🕌 Fazil</strong>
-
-                        <span>
-                            Running
-                        </span>
-
-                    </div>
-
-                    <div>
-
-                        <strong>📍 Address</strong>
-
-                        <span>
-                            Hatiya, Noakhali, Bangladesh
-                        </span>
-
-                    </div>
-
-                    <div>
-
-                        <strong>🌐 Languages</strong>
-
-                        <span>
-                            Bangla, English & Arabic
-                        </span>
-
-                    </div>
+                    💻
 
                 </div>
 
-                <div class="about-buttons">
+                <h3>
 
-                    <a href="#contact" class="btn">
+                    Web Development
 
-                        Contact Me
+                </h3>
 
-                    </a>
+                <p>
 
-                    <a href="#gallery" class="btn btn-outline">
+                    HTML5,
+                    CSS3,
+                    JavaScript,
+                    Responsive Website Design.
 
-                        View Gallery
+                </p>
 
-                    </a>
+            </div>
+
+            <!-- Graphic Design -->
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+
+                    🎨
 
                 </div>
+
+                <h3>
+
+                    Graphic Design
+
+                </h3>
+
+                <p>
+
+                    Poster Design,
+                    Certificate Design,
+                    Social Media Banner,
+                    Logo Editing.
+
+                </p>
+
+            </div>
+
+            <!-- Leadership -->
+
+            <div class="skill-card">
+
+                <div class="skill-icon">
+
+                    🤝
+
+                </div>
+
+                <h3>
+
+                    Leadership
+
+                </h3>
+
+                <p>
+
+                    Team Management,
+                    Event Planning,
+                    Public Speaking &
+                    Community Service.
+
+                </p>
 
             </div>
 
         </div>
 
-    </div>
+        <!-- Language Skills -->
 
-</section>
-<!-- ==========================================
-     TOP INFORMATION BAR
-     Version 3.0 | Part 4.6
-========================================== -->
+        <div class="language-section">
 
-<div class="top-bar">
+            <h3>
 
-    <div class="top-left">
+                🌍 Language Skills
 
-        <span id="liveClock">
-            🕒 00:00:00
-        </span>
+            </h3>
 
-        <span id="liveDate">
-            📅 Loading Date...
-        </span>
+            <ul>
 
-        <span id="hijriDate">
-            🌙 Loading Hijri...
-        </span>
+                <li>🇧🇩 Bangla — Native</li>
 
-    </div>
+                <li>🇬🇧 English — Intermediate</li>
 
-    <div class="top-right">
+                <li>🇸🇦 Arabic — Reading & Writing</li>
 
-        <span class="website-status">
-
-            🟢 Website Online
-
-        </span>
-
-    </div>
-
-</div>
-
-<!-- ==========================================
-     UPDATE NOTICE
-========================================== -->
-
-<div class="notice-bar">
-
-    <marquee
-        behavior="scroll"
-        direction="left"
-        scrollamount="5">
-
-        🌟 Welcome to Muhammad Jamil Uddin Official Website |
-        📚 Bachelor (Honours), Qur'anic Sciences & Islamic Studies, IIUC |
-        🕌 Fazil (Running) - Char Kailash Hadiya Fazil Madrasa |
-        📢 Website Version 3.0 |
-        🚀 New Features Are Being Added Regularly.
-
-    </marquee>
-
-</div>
-<!-- ==========================================
-     QUICK INFO SECTION
-     Version 3.0 | Part 4.7
-========================================== -->
-
-<section class="quick-info">
-
-    <div class="container">
-
-        <div class="info-card">
-
-            <span class="info-icon">🎓</span>
-
-            <h3>Bachelor (Honours)</h3>
-
-            <p>
-                International Islamic University Chittagong (IIUC)
-            </p>
-
-        </div>
-
-        <div class="info-card">
-
-            <span class="info-icon">📖</span>
-
-            <h3>Department</h3>
-
-            <p>
-                Qur'anic Sciences & Islamic Studies
-            </p>
-
-        </div>
-
-        <div class="info-card">
-
-            <span class="info-icon">🕌</span>
-
-            <h3>Fazil (Running)</h3>
-
-            <p>
-                Char Kailash Hadiya Fazil Madrasa
-            </p>
-
-        </div>
-
-        <div class="info-card">
-
-            <span class="info-icon">📍</span>
-
-            <h3>Location</h3>
-
-            <p>
-                Hatiya, Noakhali, Bangladesh
-            </p>
+            </ul>
 
         </div>
 
@@ -664,144 +541,157 @@
 
 </section>
 <!-- ==========================================
-     FLOATING BUTTONS
-     Version 3.0 | Part 4.8
+     CERTIFICATES SECTION
+     Version 5.0 | Part 1.6
 ========================================== -->
 
-<div class="floating-buttons">
-
-    <!-- WhatsApp -->
-
-    <a href="https://wa.me/8801XXXXXXXXX"
-       class="float-btn whatsapp"
-       target="_blank"
-       title="WhatsApp">
-
-        💬
-
-    </a>
-
-    <!-- Call -->
-
-    <a href="tel:+8801XXXXXXXXX"
-       class="float-btn call"
-       title="Call">
-
-        📞
-
-    </a>
-
-    <!-- Email -->
-
-    <a href="mailto:youremail@example.com"
-       class="float-btn email"
-       title="Email">
-
-        📧
-
-    </a>
-
-    <!-- Scroll To Top -->
-
-    <button
-        id="scrollTopBtn"
-        class="float-btn top"
-        title="Back to Top">
-
-        ⬆
-
-    </button>
-
-</div>
-<!-- ==========================================
-     ACHIEVEMENTS & GOALS
-     Version 3.0 | Part 4.9
-========================================== -->
-
-<section id="achievements" class="achievements">
+<section id="certificates" class="certificates">
 
     <div class="container">
 
         <div class="section-title">
 
-            <h2>Achievements & Goals</h2>
+            <h2>Certificates & Achievements</h2>
 
             <p>
-                My educational journey, achievements and future goals.
+
+                My Certificates, Academic Achievements &
+                Training Programs
+
             </p>
 
         </div>
 
-        <div class="achievement-grid">
+        <div class="certificate-grid">
 
-            <div class="achievement-card">
+            <!-- Certificate 1 -->
 
-                <span class="achievement-icon">🎓</span>
+            <div class="certificate-card">
 
-                <h3>Education</h3>
+                <img src="images/certificate1.jpg"
+                     alt="Certificate 1">
 
-                <p>
+                <h3>
 
-                    Bachelor (Honours)<br>
+                    Certificate Title
 
-                    Qur'anic Sciences & Islamic Studies<br>
-
-                    International Islamic University Chittagong (IIUC)
-
-                </p>
-
-            </div>
-
-            <div class="achievement-card">
-
-                <span class="achievement-icon">🕌</span>
-
-                <h3>Islamic Education</h3>
+                </h3>
 
                 <p>
 
-                    Dakhil (2022)<br>
-
-                    Alim (2024)<br>
-
-                    Fazil (Running)
+                    Organization Name
 
                 </p>
 
+                <a href="documents/certificate1.pdf"
+                   target="_blank"
+                   class="btn">
+
+                    View Certificate
+
+                </a>
+
             </div>
 
-            <div class="achievement-card">
+            <!-- Certificate 2 -->
 
-                <span class="achievement-icon">💻</span>
+            <div class="certificate-card">
 
-                <h3>Skills</h3>
+                <img src="images/certificate2.jpg"
+                     alt="Certificate 2">
+
+                <h3>
+
+                    Certificate Title
+
+                </h3>
 
                 <p>
 
-                    HTML<br>
-                    CSS<br>
-                    JavaScript<br>
-                    GitHub Pages
+                    Organization Name
 
                 </p>
 
+                <a href="documents/certificate2.pdf"
+                   target="_blank"
+                   class="btn">
+
+                    View Certificate
+
+                </a>
+
             </div>
 
-            <div class="achievement-card">
+            <!-- Certificate 3 -->
 
-                <span class="achievement-icon">🎯</span>
+            <div class="certificate-card">
 
-                <h3>Future Goal</h3>
+                <img src="images/certificate3.jpg"
+                     alt="Certificate 3">
+
+                <h3>
+
+                    Certificate Title
+
+                </h3>
 
                 <p>
 
-                    To become an Islamic scholar,
-                    researcher and skilled web developer,
-                    serving people through knowledge and technology.
+                    Organization Name
 
                 </p>
 
+                <a href="documents/certificate3.pdf"
+                   target="_blank"
+                   class="btn">
+
+                    View Certificate
+
+                </a>
+
             </div>
+
+        </div>
+
+        <!-- Achievement -->
+
+        <div class="achievement-box">
+
+            <h3>
+
+                🏆 My Goals & Achievements
+
+            </h3>
+
+            <p>
+
+                ✔ Dakhil Completed (2022)
+
+            </p>
+
+            <p>
+
+                ✔ Alim Completed (2024)
+
+            </p>
+
+            <p>
+
+                ✔ Bachelor (Honours) Student at IIUC
+
+            </p>
+
+            <p>
+
+                ✔ Fazil (Running)
+
+            </p>
+
+            <p>
+
+                ✔ Learning Professional Web Development
+
+            </p>
 
         </div>
 
@@ -809,47 +699,98 @@
 
 </section>
 <!-- ==========================================
-     SOCIAL LINKS & FOOTER INFO
-     Version 3.0 | Part 4.10
+     CONTACT SECTION
+     Version 5.0 | Part 1.7
 ========================================== -->
 
-<section class="social-section">
+<section id="contact" class="contact">
 
     <div class="container">
 
         <div class="section-title">
 
-            <h2>Connect With Me</h2>
+            <h2>Contact Me</h2>
 
             <p>
 
-                Follow me on social media and stay connected.
+                Feel free to contact me anytime.
 
             </p>
 
         </div>
 
-        <div class="social-links">
+        <div class="contact-container">
 
-            <a href="#" target="_blank">
-                Facebook
-            </a>
+            <!-- Contact Information -->
 
-            <a href="#" target="_blank">
-                YouTube
-            </a>
+            <div class="contact-info">
 
-            <a href="#" target="_blank">
-                GitHub
-            </a>
+                <div class="contact-card">
 
-            <a href="#" target="_blank">
-                LinkedIn
-            </a>
+                    <span>📞</span>
 
-            <a href="mailto:youremail@example.com">
-                Email
-            </a>
+                    <h3>Phone</h3>
+
+                    <p>+8801XXXXXXXXX</p>
+
+                </div>
+
+                <div class="contact-card">
+
+                    <span>📧</span>
+
+                    <h3>Email</h3>
+
+                    <p>yourname@gmail.com</p>
+
+                </div>
+
+                <div class="contact-card">
+
+                    <span>📍</span>
+
+                    <h3>Address</h3>
+
+                    <p>Hatiya, Noakhali, Bangladesh</p>
+
+                </div>
+
+            </div>
+
+            <!-- Contact Form -->
+
+            <div class="contact-form">
+
+                <form>
+
+                    <input type="text"
+                           placeholder="Your Name"
+                           required>
+
+                    <input type="email"
+                           placeholder="Your Email"
+                           required>
+
+                    <input type="text"
+                           placeholder="Subject">
+
+                    <textarea
+                        rows="6"
+                        placeholder="Write Your Message"
+                        required>
+                    </textarea>
+
+                    <button
+                        type="submit"
+                        class="btn">
+
+                        Send Message
+
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
 
@@ -858,24 +799,22 @@
 </section>
 
 <!-- ==========================================
-     WEBSITE FOOTER
+     FOOTER
 ========================================== -->
 
 <footer class="footer">
 
     <div class="container">
 
-        <img
-            src="images/profile.jpg"
-            alt="Muhammad Jamil Uddin"
-            class="footer-profile"
-        >
+        <img src="images/profile.jpg"
+             alt="Muhammad Jamil Uddin"
+             class="footer-profile">
 
-        <h3>
+        <h2>
 
             Muhammad Jamil Uddin
 
-        </h3>
+        </h2>
 
         <p>
 
@@ -883,40 +822,417 @@
 
             <br>
 
-            Department of Qur'anic Sciences & Islamic Studies
+            Department of Qur'anic Sciences &
+            Islamic Studies
 
             <br>
 
-            International Islamic University Chittagong (IIUC)
+            International Islamic University
+            Chittagong (IIUC)
+
+        </p>
+
+        <div class="footer-social">
+
+            <a href="#" title="Facebook">
+
+                Facebook
+
+            </a>
+
+            <a href="#" title="YouTube">
+
+                YouTube
+
+            </a>
+
+            <a href="#" title="GitHub">
+
+                GitHub
+
+            </a>
+
+            <a href="#" title="WhatsApp">
+
+                WhatsApp
+
+            </a>
+
+        </div>
+
+        <hr>
+
+        <p>
+
+            © 2026 Muhammad Jamil Uddin
 
         </p>
 
         <p>
-
-            Fazil (Running)
-
-            <br>
-
-            Char Kailash Hadiya Fazil Madrasa
-
-        </p>
-
-        <p>
-
-            © <span id="year"></span>
 
             All Rights Reserved.
-
-        </p>
-
-        <p>
-
-            Developed by
-
-            Muhammad Jamil Uddin
 
         </p>
 
     </div>
 
 </footer>
+
+</body>
+
+</html>
+<!-- ==========================================
+     STATISTICS SECTION
+     Version 5.0 | Part 1.8
+========================================== -->
+
+<section id="statistics" class="statistics">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Website Statistics</h2>
+
+            <p>
+
+                My Journey in Numbers
+
+            </p>
+
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <h3 id="visitorCount">
+
+                    0000
+
+                </h3>
+
+                <p>
+
+                    👥 Visitors
+
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>
+
+                    2026
+
+                </h3>
+
+                <p>
+
+                    🎓 University Session
+
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>
+
+                    3
+
+                </h3>
+
+                <p>
+
+                    📚 Academic Programs
+
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>
+
+                    24/7
+
+                </h3>
+
+                <p>
+
+                    🌐 Website Online
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     QUOTE OF THE DAY
+========================================== -->
+
+<section class="quote-section">
+
+    <div class="container">
+
+        <blockquote id="dailyQuote">
+
+            "Indeed, Allah is with those who are patient."
+
+        </blockquote>
+
+        <span>
+
+            — Qur'an (Placeholder)
+
+        </span>
+
+    </div>
+
+</section>
+<!-- ==========================================
+     VERSION 5.0
+     PART 1.9
+     LOADER + PROGRESS BAR + SCROLL TOP
+========================================== -->
+
+<!-- Loading Screen -->
+
+<div id="loader">
+
+    <div class="loader-content">
+
+        <img src="images/profile.jpg"
+             alt="Loading"
+             class="loader-image">
+
+        <h2>
+
+            Muhammad Jamil Uddin
+
+        </h2>
+
+        <p>
+
+            Loading Website...
+
+        </p>
+
+        <div class="loader-spinner"></div>
+
+    </div>
+
+</div>
+
+<!-- Scroll Progress -->
+
+<div id="progressBar"></div>
+
+<!-- Scroll To Top -->
+
+<button id="scrollTopBtn"
+        title="Back to Top">
+
+    ↑
+
+</button>
+
+<!-- Floating Buttons -->
+
+<div class="floating-buttons">
+
+    <a href="https://wa.me/8801XXXXXXXXX"
+       class="whatsapp-btn"
+       target="_blank"
+       title="WhatsApp">
+
+        💬
+
+    </a>
+
+    <a href="tel:+8801XXXXXXXXX"
+       class="call-btn"
+       title="Call">
+
+        📞
+
+    </a>
+
+    <a href="mailto:yourmail@gmail.com"
+       class="email-btn"
+       title="Email">
+
+        📧
+
+    </a>
+
+</div>
+
+<!-- Theme Button -->
+
+<button id="themeToggle"
+        title="Dark / Light Mode">
+
+    🌙
+
+</button>
+
+<!-- Background Music -->
+
+<audio id="backgroundMusic"
+       loop>
+
+    <source src="audio/background.mp3"
+            type="audio/mpeg">
+
+</audio>
+
+<!-- Music Button -->
+
+<button id="musicBtn">
+
+    🎵
+
+</button>
+<!-- ==========================================
+     VERSION 5.0
+     PART 1.10
+     HEAD & FINAL CONFIGURATION
+========================================== -->
+
+<!-- ===== HEAD SECTION ===== -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Official Portfolio Website of Muhammad Jamil Uddin">
+
+<meta name="keywords"
+      content="Muhammad Jamil Uddin, IIUC, Qur'anic Sciences, Portfolio, Bangladesh">
+
+<meta name="author"
+      content="Muhammad Jamil Uddin">
+
+<meta name="theme-color"
+      content="#0f766e">
+
+<link rel="icon"
+      href="images/favicon.png"
+      type="image/png">
+
+<!-- Google Fonts -->
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<!-- CSS -->
+
+<link rel="stylesheet"
+      href="style.css">
+
+<!-- ===== BODY END ===== -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+<!-- ==========================================
+     CONTACT INFORMATION
+     Version 5.0 | Part 1.11
+========================================== -->
+
+<div class="contact-details">
+
+    <div class="contact-item">
+
+        <i class="fas fa-phone"></i>
+
+        <h3>Phone</h3>
+
+        <a href="tel:+8801826067398">
+
+            +880 1826-067398
+
+        </a>
+
+    </div>
+
+    <div class="contact-item">
+
+        <i class="fas fa-envelope"></i>
+
+        <h3>Email</h3>
+
+        <a href="mailto:youremail@gmail.com">
+
+            youremail@gmail.com
+
+        </a>
+
+    </div>
+
+    <div class="contact-item">
+
+        <i class="fas fa-location-dot"></i>
+
+        <h3>Address</h3>
+
+        <p>
+
+            Hatiya, Noakhali, Bangladesh
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     SOCIAL MEDIA
+========================================== -->
+
+<div class="social-media">
+
+    <a href="#" target="_blank">
+
+        Facebook
+
+    </a>
+
+    <a href="#" target="_blank">
+
+        YouTube
+
+    </a>
+
+    <a href="#" target="_blank">
+
+        GitHub
+
+    </a>
+
+    <a href="#" target="_blank">
+
+        LinkedIn
+
+    </a>
+
+                     </div>
