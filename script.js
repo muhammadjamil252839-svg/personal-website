@@ -1,118 +1,51 @@
 /* ==========================================
-   VERSION 5.0
+   MUHAMMAD JAMIL UDDIN
+   OFFICIAL PORTFOLIO WEBSITE
+   VERSION 6.0
    PART 3.1
-   LOADER + MENU
 ========================================== */
 
-// ================================
-// Loader
-// ================================
+"use strict";
 
-window.addEventListener("load", function () {
+/* ==========================
+   MOBILE MENU
+========================== */
 
-    const loader = document.getElementById("loader");
+const menuBtn = document.getElementById("menu-btn");
+const navLinks = document.getElementById("nav-links");
 
-    if (loader) {
-
-        loader.style.opacity = "0";
-
-        setTimeout(() => {
-
-            loader.style.display = "none";
-
-        }, 600);
-
-    }
-
-});
-
-// ================================
-// Mobile Menu
-// ================================
-
-const menuBtn = document.getElementById("menuBtn");
-const navMenu = document.getElementById("navMenu");
-const overlay = document.getElementById("overlay");
-
-if (menuBtn && navMenu) {
+if (menuBtn && navLinks) {
 
     menuBtn.addEventListener("click", () => {
 
-        navMenu.classList.toggle("active");
-
-        if (overlay) {
-
-            overlay.classList.toggle("active");
-
-        }
+        navLinks.classList.toggle("active");
 
     });
 
 }
 
-// ================================
-// Overlay Close
-// ================================
+/* ==========================
+   CLOSE MENU AFTER CLICK
+========================== */
 
-if (overlay) {
+const menuItems = document.querySelectorAll("#nav-links a");
 
-    overlay.addEventListener("click", () => {
+menuItems.forEach(item => {
 
-        navMenu.classList.remove("active");
+    item.addEventListener("click", () => {
 
-        overlay.classList.remove("active");
-
-    });
-
-}
-
-// ================================
-// Menu Close After Click
-// ================================
-
-document.querySelectorAll("#navMenu a").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        navMenu.classList.remove("active");
-
-        if (overlay) {
-
-            overlay.classList.remove("active");
-
-        }
+        navLinks.classList.remove("active");
 
     });
 
 });
 
-// ================================
-// Smooth Scroll
-// ================================
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-    anchor.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute("href"));
-
-        if (target) {
-
-            target.scrollIntoView({
-
-                behavior: "smooth"
-
-            });
-
-        }
-
-    });
-
-});
+/* ==========================
+   ACTIVE MENU ON SCROLL
+(Next Part)
+========================== */
 /* ==========================================
-   VERSION 5.0
+   VERSION 6.0
    PART 3.2
    AUTO IMAGE SLIDER
 ========================================== */
@@ -125,61 +58,65 @@ const nextBtn = document.querySelector(".next-btn");
 let currentSlide = 0;
 let autoSlide;
 
-// Show Slide
+/* ===== Show Slide ===== */
 
 function showSlide(index){
 
-    slides.forEach((slide)=>{
+    if(!slides.length) return;
+
+    if(index >= slides.length){
+
+        currentSlide = 0;
+
+    }else if(index < 0){
+
+        currentSlide = slides.length - 1;
+
+    }else{
+
+        currentSlide = index;
+
+    }
+
+    slides.forEach(slide =>{
 
         slide.classList.remove("active");
 
     });
 
-    dots.forEach((dot)=>{
+    dots.forEach(dot =>{
 
         dot.classList.remove("active");
 
     });
 
-    slides[index].classList.add("active");
+    slides[currentSlide].classList.add("active");
 
-    dots[index].classList.add("active");
+    if(dots[currentSlide]){
+
+        dots[currentSlide].classList.add("active");
+
+    }
 
 }
 
-// Next Slide
+/* ===== Next ===== */
 
 function nextSlide(){
 
-    currentSlide++;
-
-    if(currentSlide >= slides.length){
-
-        currentSlide = 0;
-
-    }
-
-    showSlide(currentSlide);
+    showSlide(currentSlide + 1);
 
 }
 
-// Previous Slide
+/* ===== Previous ===== */
 
 function previousSlide(){
 
-    currentSlide--;
-
-    if(currentSlide < 0){
-
-        currentSlide = slides.length - 1;
-
-    }
-
-    showSlide(currentSlide);
+    showSlide(currentSlide - 1);
 
 }
 
-// Auto Slider
+/* ===== Auto Slide ===== */
 
 function startSlider(){
 
@@ -187,23 +124,21 @@ function startSlider(){
 
 }
 
-// Stop Slider
-
 function stopSlider(){
 
     clearInterval(autoSlide);
 
 }
 
-// Buttons
+/* ===== Button ===== */
 
 if(nextBtn){
 
     nextBtn.addEventListener("click",()=>{
 
-        nextSlide();
-
         stopSlider();
+
+        nextSlide();
 
         startSlider();
 
@@ -215,9 +150,9 @@ if(prevBtn){
 
     prevBtn.addEventListener("click",()=>{
 
-        previousSlide();
-
         stopSlider();
+
+        previousSlide();
 
         startSlider();
 
@@ -225,17 +160,15 @@ if(prevBtn){
 
 }
 
-// Dots
+/* ===== Dot Click ===== */
 
 dots.forEach((dot,index)=>{
 
     dot.addEventListener("click",()=>{
 
-        currentSlide=index;
-
-        showSlide(currentSlide);
-
         stopSlider();
+
+        showSlide(index);
 
         startSlider();
 
@@ -243,376 +176,22 @@ dots.forEach((dot,index)=>{
 
 });
 
-// Start
+/* ===== Initialize ===== */
 
-if(slides.length>0){
+if(slides.length){
 
-    showSlide(currentSlide);
+    showSlide(0);
 
     startSlider();
 
 }
 /* ==========================================
-   VERSION 5.0
+   VERSION 6.0
    PART 3.3
-   SLIDER TOUCH + PAUSE + KEYBOARD
-========================================== */
-
-// ================================
-// Pause on Hover
-// ================================
-
-const sliderContainer = document.querySelector(".slider-container");
-
-if (sliderContainer) {
-
-    sliderContainer.addEventListener("mouseenter", () => {
-
-        stopSlider();
-
-    });
-
-    sliderContainer.addEventListener("mouseleave", () => {
-
-        startSlider();
-
-    });
-
-}
-
-// ================================
-// Mobile Swipe Support
-// ================================
-
-let touchStartX = 0;
-let touchEndX = 0;
-
-if (sliderContainer) {
-
-    sliderContainer.addEventListener("touchstart", (e) => {
-
-        touchStartX = e.changedTouches[0].screenX;
-
-        stopSlider();
-
-    });
-
-    sliderContainer.addEventListener("touchend", (e) => {
-
-        touchEndX = e.changedTouches[0].screenX;
-
-        handleSwipe();
-
-        startSlider();
-
-    });
-
-}
-
-function handleSwipe() {
-
-    if (touchStartX - touchEndX > 50) {
-
-        nextSlide();
-
-    }
-
-    if (touchEndX - touchStartX > 50) {
-
-        previousSlide();
-
-    }
-
-}
-
-// ================================
-// Keyboard Support
-// ================================
-
-document.addEventListener("keydown", (e) => {
-
-    if (e.key === "ArrowRight") {
-
-        nextSlide();
-
-    }
-
-    if (e.key === "ArrowLeft") {
-
-        previousSlide();
-
-    }
-
-});
-
-// ================================
-// Visibility API
-// ================================
-
-document.addEventListener("visibilitychange", () => {
-
-    if (document.hidden) {
-
-        stopSlider();
-
-    } else {
-
-        startSlider();
-
-    }
-
-});
-
-// ================================
-// Image Click Animation
-// ================================
-
-slides.forEach((slide) => {
-
-    slide.addEventListener("click", () => {
-
-        slide.style.transform = "scale(1.03)";
-
-        setTimeout(() => {
-
-            slide.style.transform = "scale(1)";
-
-        }, 300);
-
-    });
-
-});
-/* ==========================================
-   VERSION 5.0
-   PART 3.4
-   LIVE TIME + DATE
-========================================== */
-
-// ================================
-// Live Bangladesh Time
-// ================================
-
-const timeElement = document.getElementById("liveTime");
-const dateElement = document.getElementById("liveDate");
-const dayElement = document.getElementById("liveDay");
-
-function updateClock(){
-
-    const now = new Date();
-
-    const options = {
-
-        timeZone: "Asia/Dhaka"
-
-    };
-
-    const time = now.toLocaleTimeString("en-GB",{
-
-        ...options,
-
-        hour:"2-digit",
-
-        minute:"2-digit",
-
-        second:"2-digit"
-
-    });
-
-    const date = now.toLocaleDateString("en-GB",{
-
-        ...options,
-
-        day:"2-digit",
-
-        month:"long",
-
-        year:"numeric"
-
-    });
-
-    const day = now.toLocaleDateString("en-GB",{
-
-        ...options,
-
-        weekday:"long"
-
-    });
-
-    if(timeElement){
-
-        timeElement.textContent = "🕒 " + time;
-
-    }
-
-    if(dateElement){
-
-        dateElement.textContent = "📅 " + date;
-
-    }
-
-    if(dayElement){
-
-        dayElement.textContent = "📆 " + day;
-
-    }
-
-}
-
-updateClock();
-
-setInterval(updateClock,1000);
-
-// ================================
-// Greeting Message
-// ================================
-
-const greeting = document.getElementById("greeting");
-
-function updateGreeting(){
-
-    const hour = new Date().getHours();
-
-    let message = "";
-
-    if(hour < 12){
-
-        message = "🌅 Good Morning";
-
-    }
-
-    else if(hour < 17){
-
-        message = "☀️ Good Afternoon";
-
-    }
-
-    else if(hour < 20){
-
-        message = "🌇 Good Evening";
-
-    }
-
-    else{
-
-        message = "🌙 Good Night";
-
-    }
-
-    if(greeting){
-
-        greeting.textContent = message;
-
-    }
-
-}
-
-updateGreeting();
-/* ==========================================
-   VERSION 5.0
-   PART 3.5
-   DARK MODE
-========================================== */
-
-// ================================
-// Theme Toggle
-// ================================
-
-const themeButton = document.getElementById("themeToggle");
-
-// Load Saved Theme
-
-const savedTheme = localStorage.getItem("website-theme");
-
-if(savedTheme==="dark"){
-
-    document.body.classList.add("dark-mode");
-
-    if(themeButton){
-
-        themeButton.textContent="☀️";
-
-    }
-
-}
-
-// Toggle Theme
-
-if(themeButton){
-
-    themeButton.addEventListener("click",()=>{
-
-        document.body.classList.toggle("dark-mode");
-
-        if(document.body.classList.contains("dark-mode")){
-
-            localStorage.setItem("website-theme","dark");
-
-            themeButton.textContent="☀️";
-
-        }
-
-        else{
-
-            localStorage.setItem("website-theme","light");
-
-            themeButton.textContent="🌙";
-
-        }
-
-    });
-
-}
-
-// ================================
-// Auto Theme (Optional)
-// ================================
-
-const currentHour = new Date().getHours();
-
-if(!savedTheme){
-
-    if(currentHour>=18 || currentHour<=6){
-
-        document.body.classList.add("dark-mode");
-
-        if(themeButton){
-
-            themeButton.textContent="☀️";
-
-        }
-
-    }
-
-}
-
-// ================================
-// Theme Animation
-// ================================
-
-if(themeButton){
-
-    themeButton.addEventListener("click",()=>{
-
-        themeButton.style.transform="rotate(360deg)";
-
-        setTimeout(()=>{
-
-            themeButton.style.transform="rotate(0deg)";
-
-        },500);
-
-    });
-
-}
-/* ==========================================
-   VERSION 5.0
-   PART 3.6
    SCROLL EFFECTS
 ========================================== */
 
-// ================================
-// Scroll To Top Button
-// ================================
+/* ===== Scroll To Top Button ===== */
 
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 
@@ -620,7 +199,7 @@ window.addEventListener("scroll", () => {
 
     if (window.scrollY > 300) {
 
-        scrollTopBtn.style.display = "block";
+        scrollTopBtn.style.display = "flex";
 
     } else {
 
@@ -646,9 +225,7 @@ if (scrollTopBtn) {
 
 }
 
-// ================================
-// Scroll Progress Bar
-// ================================
+/* ===== Progress Bar ===== */
 
 const progressBar = document.getElementById("progressBar");
 
@@ -656,9 +233,9 @@ window.addEventListener("scroll", () => {
 
     const scrollTop = document.documentElement.scrollTop;
 
-    const scrollHeight = document.documentElement.scrollHeight -
-
-                         document.documentElement.clientHeight;
+    const scrollHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
 
     const progress = (scrollTop / scrollHeight) * 100;
 
@@ -670,198 +247,74 @@ window.addEventListener("scroll", () => {
 
 });
 
-// ================================
-// Fade In Animation
-// ================================
+/* ===== Fade In Animation ===== */
 
 const fadeElements = document.querySelectorAll(".fade-in");
 
-function revealElements() {
+const observer = new IntersectionObserver((entries) => {
 
-    fadeElements.forEach((element) => {
+    entries.forEach(entry => {
 
-        const elementTop = element.getBoundingClientRect().top;
+        if (entry.isIntersecting) {
 
-        const windowHeight = window.innerHeight;
-
-        if (elementTop < windowHeight - 100) {
-
-            element.classList.add("show");
+            entry.target.classList.add("show");
 
         }
 
     });
 
-}
+}, {
 
-window.addEventListener("scroll", revealElements);
-
-window.addEventListener("load", revealElements);
-
-// ================================
-// Navbar Shadow
-// ================================
-
-const header = document.querySelector("header");
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 50) {
-
-        header.style.boxShadow = "0 8px 25px rgba(0,0,0,.18)";
-
-    } else {
-
-        header.style.boxShadow = "0 4px 15px rgba(0,0,0,.10)";
-
-    }
+    threshold: 0.15
 
 });
 
-// ================================
-// Active Menu
-// ================================
+fadeElements.forEach(element => {
 
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("#navMenu a");
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach((section) => {
-
-        const sectionTop = section.offsetTop - 120;
-
-        if (window.scrollY >= sectionTop) {
-
-            current = section.getAttribute("id");
-
-        }
-
-    });
-
-    navLinks.forEach((link) => {
-
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") === "#" + current) {
-
-            link.classList.add("active");
-
-        }
-
-    });
+    observer.observe(element);
 
 });
 /* ==========================================
-   VERSION 5.0
-   PART 3.7
-   HIJRI DATE + VISITOR COUNTER
+   VERSION 6.0
+   PART 3.4
+   DARK MODE & MUSIC
 ========================================== */
 
-// ================================
-// Hijri Date
-// ================================
+/* ===== Dark Mode ===== */
 
-const hijriElement = document.getElementById("hijriDate");
+const themeToggle = document.getElementById("themeToggle");
 
-function updateHijriDate() {
+if (themeToggle) {
 
-    const today = new Date();
+    // Load saved theme
+    if (localStorage.getItem("theme") === "dark") {
 
-    const hijri = new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
-
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-
-    }).format(today);
-
-    if (hijriElement) {
-
-        hijriElement.textContent = "🌙 " + hijri;
+        document.body.classList.add("dark-mode");
+        themeToggle.textContent = "☀️";
 
     }
 
-}
+    themeToggle.addEventListener("click", () => {
 
-updateHijriDate();
+        document.body.classList.toggle("dark-mode");
 
-// ================================
-// Visitor Counter
-// ================================
+        if (document.body.classList.contains("dark-mode")) {
 
-const visitorElement = document.getElementById("visitorCount");
+            localStorage.setItem("theme", "dark");
+            themeToggle.textContent = "☀️";
 
-let visitors = localStorage.getItem("visitorCount");
+        } else {
 
-if (visitors === null) {
+            localStorage.setItem("theme", "light");
+            themeToggle.textContent = "🌙";
 
-    visitors = 1;
+        }
 
-} else {
-
-    visitors = Number(visitors) + 1;
+    });
 
 }
 
-localStorage.setItem("visitorCount", visitors);
-
-if (visitorElement) {
-
-    visitorElement.textContent = visitors;
-
-}
-
-// ================================
-// Current Year
-// ================================
-
-const yearElement = document.getElementById("currentYear");
-
-if (yearElement) {
-
-    yearElement.textContent = new Date().getFullYear();
-
-}
-
-// ================================
-// Online / Offline Status
-// ================================
-
-const statusElement = document.getElementById("networkStatus");
-
-function updateNetworkStatus() {
-
-    if (!statusElement) return;
-
-    if (navigator.onLine) {
-
-        statusElement.textContent = "🟢 Online";
-
-    } else {
-
-        statusElement.textContent = "🔴 Offline";
-
-    }
-
-}
-
-window.addEventListener("online", updateNetworkStatus);
-
-window.addEventListener("offline", updateNetworkStatus);
-
-updateNetworkStatus();
-/* ==========================================
-   VERSION 5.0
-   PART 3.8
-   MUSIC + DAILY QUOTE
-========================================== */
-
-// ================================
-// Background Music
-// ================================
+/* ===== Background Music ===== */
 
 const music = document.getElementById("backgroundMusic");
 const musicBtn = document.getElementById("musicBtn");
@@ -875,408 +328,576 @@ if (musicBtn && music) {
         if (isPlaying) {
 
             music.pause();
-
             musicBtn.textContent = "🎵";
-
-            isPlaying = false;
 
         } else {
 
-            music.play();
-
-            musicBtn.textContent = "⏸️";
-
-            isPlaying = true;
-
-        }
-
-    });
-
-}
-
-// ================================
-// Save Music Status
-// ================================
-
-if (music) {
-
-    music.addEventListener("play", () => {
-
-        localStorage.setItem("musicStatus", "playing");
-
-    });
-
-    music.addEventListener("pause", () => {
-
-        localStorage.setItem("musicStatus", "paused");
-
-    });
-
-}
-
-window.addEventListener("load", () => {
-
-    if (
-
-        localStorage.getItem("musicStatus") === "playing"
-
-        && music
-
-    ) {
-
-        music.play().catch(() => {});
-
-        if (musicBtn) {
+            music.play().catch(() => {
+                console.log("Music playback requires user interaction.");
+            });
 
             musicBtn.textContent = "⏸️";
 
         }
 
-        isPlaying = true;
+        isPlaying = !isPlaying;
 
-    }
-
-});
-
-// ================================
-// Daily Quotes
-// ================================
-
-const quotes = [
-
-"Indeed, Allah is with the patient. (Qur'an 2:153)",
-
-"And whoever relies upon Allah - then He is sufficient for him. (Qur'an 65:3)",
-
-"The best among you are those who learn the Qur'an and teach it.",
-
-"Seek knowledge from the cradle to the grave.",
-
-"Success comes through patience, effort and trust in Allah.",
-
-"Never lose hope in the mercy of Allah."
-
-];
-
-const quoteElement = document.getElementById("dailyQuote");
-
-if (quoteElement) {
-
-    const today = new Date().getDate();
-
-    quoteElement.textContent = quotes[today % quotes.length];
+    });
 
 }
 
-// ================================
-// Welcome Message
-// ================================
+/* ===== Restore Music Icon ===== */
 
-window.addEventListener("load", () => {
+music.addEventListener("ended", () => {
 
-    console.log(
-
-        "Welcome to Muhammad Jamil Uddin's Portfolio Website"
-
-    );
+    isPlaying = false;
+    musicBtn.textContent = "🎵";
 
 });
 /* ==========================================
-   VERSION 5.0
-   PART 3.9
-   WEATHER + DIGITAL CLOCK
+   VERSION 6.0
+   PART 3.5
+   CLOCK, STATUS & VISITOR COUNTER
 ========================================== */
 
-// ================================
-// Weather Information
-// ================================
+/* ===== Live Digital Clock ===== */
 
-const weatherCity = document.getElementById("weatherCity");
-const weatherTemp = document.getElementById("weatherTemp");
-const weatherDesc = document.getElementById("weatherDesc");
+const digitalClock = document.getElementById("digitalClock");
 
-// Open-Meteo API
-// https://open-meteo.com/
+function updateClock() {
 
-async function loadWeather() {
+    const now = new Date();
 
-    try {
+    const options = {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    };
 
-        const response = await fetch(
-
-        "https://api.open-meteo.com/v1/forecast?latitude=22.33&longitude=91.83&current=temperature_2m,relative_humidity_2m,wind_speed_10m"
-
-        );
-
-        const data = await response.json();
-
-        if(weatherCity){
-
-            weatherCity.textContent="📍 Chattogram, Bangladesh";
-
-        }
-
-        if(weatherTemp){
-
-            weatherTemp.textContent=
-
-            "🌡️ "+data.current.temperature_2m+"°C";
-
-        }
-
-        if(weatherDesc){
-
-            weatherDesc.textContent=
-
-            "💨 Wind : "+data.current.wind_speed_10m+" km/h";
-
-        }
-
-    }
-
-    catch(error){
-
-        console.log("Weather Error :",error);
-
+    if (digitalClock) {
+        digitalClock.textContent = now.toLocaleTimeString("en-GB", options);
     }
 
 }
 
-loadWeather();
+updateClock();
 
-setInterval(loadWeather,600000);
+setInterval(updateClock, 1000);
 
-// ================================
-// Digital Clock
-// ================================
+/* ===== Current Year ===== */
 
-const digitalClock=document.getElementById("digitalClock");
+const currentYear = document.getElementById("currentYear");
 
-function updateDigitalClock(){
+if (currentYear) {
 
-    const now=new Date();
-
-    digitalClock.innerHTML=
-
-    now.toLocaleTimeString("en-GB",{
-
-        hour:"2-digit",
-
-        minute:"2-digit",
-
-        second:"2-digit"
-
-    });
+    currentYear.textContent = new Date().getFullYear();
 
 }
 
-if(digitalClock){
+/* ===== Network Status ===== */
 
-    updateDigitalClock();
+const networkStatus = document.getElementById("networkStatus");
 
-    setInterval(updateDigitalClock,1000);
+function updateNetworkStatus() {
+
+    if (!networkStatus) return;
+
+    networkStatus.textContent = navigator.onLine
+        ? "🟢 Online"
+        : "🔴 Offline";
 
 }
 
-// ================================
-// Typing Effect
-// ================================
+updateNetworkStatus();
 
-const typingText=document.getElementById("typingText");
+window.addEventListener("online", updateNetworkStatus);
 
-const words=[
+window.addEventListener("offline", updateNetworkStatus);
 
-"Web Developer",
+/* ===== Visitor Counter ===== */
+
+const visitorCount = document.getElementById("visitorCount");
+
+let visits = localStorage.getItem("portfolioVisitor");
+
+if (!visits) {
+
+    visits = 1;
+
+} else {
+
+    visits = Number(visits) + 1;
+
+}
+
+localStorage.setItem("portfolioVisitor", visits);
+
+if (visitorCount) {
+
+    visitorCount.textContent = visits;
+
+}
+/* ==========================================
+   VERSION 6.0
+   PART 3.6
+   HIJRI DATE, QUOTE & TYPING
+========================================== */
+
+/* ===== Hijri Date ===== */
+
+const hijriDate = document.getElementById("hijriDate");
+
+function updateHijriDate() {
+
+    if (!hijriDate) return;
+
+    const today = new Date();
+
+    const hijri = new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
+
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+
+    }).format(today);
+
+    hijriDate.textContent = hijri;
+
+}
+
+updateHijriDate();
+
+/* ===== Daily Islamic Quotes ===== */
+
+const quotes = [
+
+"Indeed, Allah is with those who are patient. (Qur'an 2:153)",
+
+"And whoever puts their trust in Allah, then He alone is sufficient for them. (Qur'an 65:3)",
+
+"The best among you are those who learn the Qur'an and teach it. (Sahih al-Bukhari)",
+
+"My success is only through Allah. (Qur'an 11:88)",
+
+"So remember Me; I will remember you. (Qur'an 2:152)",
+
+"Indeed, prayer keeps one away from immorality and wrongdoing. (Qur'an 29:45)"
+
+];
+
+const dailyQuote = document.getElementById("dailyQuote");
+
+if (dailyQuote) {
+
+    const day = new Date().getDate();
+
+    dailyQuote.textContent = quotes[day % quotes.length];
+
+}
+
+/* ===== Typing Animation ===== */
+
+const typingText = document.getElementById("typingText");
+
+const words = [
+
+"Hafiz of the Holy Qur'an",
 
 "IIUC Student",
 
 "Qur'anic Sciences Student",
 
-"Bangladeshi",
+"Islamic Researcher",
 
-"Dreamer",
+"Web Developer",
 
-"Learner"
+"Public Speaker",
+
+"Future Scholar"
 
 ];
 
-let wordIndex=0;
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-let charIndex=0;
+function typingEffect() {
 
-let deleting=false;
+    if (!typingText) return;
 
-function typingEffect(){
+    const currentWord = words[wordIndex];
 
-    if(!typingText) return;
+    if (!deleting) {
 
-    const currentWord=words[wordIndex];
+        typingText.textContent = currentWord.substring(0, charIndex++);
 
-    if(!deleting){
+        if (charIndex > currentWord.length) {
 
-        typingText.textContent=
+            deleting = true;
 
-        currentWord.substring(0,charIndex++);
-
-        if(charIndex>currentWord.length){
-
-            deleting=true;
-
-            setTimeout(typingEffect,1200);
+            setTimeout(typingEffect, 1500);
 
             return;
 
         }
 
-    }
+    } else {
 
-    else{
+        typingText.textContent = currentWord.substring(0, charIndex--);
 
-        typingText.textContent=
+        if (charIndex < 0) {
 
-        currentWord.substring(0,charIndex--);
+            deleting = false;
 
-        if(charIndex<0){
+            wordIndex++;
 
-            deleting=false;
+            if (wordIndex >= words.length) {
 
-            wordIndex=(wordIndex+1)%words.length;
+                wordIndex = 0;
+
+            }
 
         }
 
     }
 
-    setTimeout(typingEffect,120);
+    setTimeout(typingEffect, deleting ? 50 : 100);
 
 }
 
 typingEffect();
 /* ==========================================
-   VERSION 5.0
-   PART 3.10
-   FINAL FUNCTIONS
+   VERSION 6.0
+   PART 3.7
+   WEATHER & USER LOCATION
 ========================================== */
 
-// ================================
-// Statistics Counter Animation
-// ================================
+/* ===== Weather ===== */
 
-const counters = document.querySelectorAll(".stat-card h3");
+const weatherCity = document.getElementById("weatherCity");
+const weatherTemp = document.getElementById("weatherTemp");
+const weatherDesc = document.getElementById("weatherDesc");
 
-function animateCounters() {
+function showWeather(city){
 
-    counters.forEach(counter => {
+    if(!weatherCity || !weatherTemp || !weatherDesc) return;
 
-        const target = parseInt(counter.innerText);
-
-        if (isNaN(target)) return;
-
-        let count = 0;
-
-        const speed = Math.max(10, Math.floor(target / 100));
-
-        const update = () => {
-
-            count += speed;
-
-            if (count >= target) {
-
-                counter.innerText = target;
-
-            } else {
-
-                counter.innerText = count;
-
-                requestAnimationFrame(update);
-
-            }
-
-        };
-
-        update();
-
-    });
+    weatherCity.textContent = city;
+    weatherTemp.textContent = "Temperature: --°C";
+    weatherDesc.textContent = "Weather information is unavailable (API not connected).";
 
 }
 
-window.addEventListener("load", animateCounters);
+/* ===== User Location ===== */
 
-// ================================
-// Auto Footer Year
-// ================================
+if(navigator.geolocation){
 
-const footerYear = document.getElementById("currentYear");
+    navigator.geolocation.getCurrentPosition(
 
-if (footerYear) {
+        function(position){
 
-    footerYear.textContent = new Date().getFullYear();
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            weatherCity.textContent =
+                "Your Location";
+
+            weatherTemp.textContent =
+                latitude.toFixed(4) + "°, " +
+                longitude.toFixed(4) + "°";
+
+            weatherDesc.textContent =
+                "Location detected successfully.";
+
+        },
+
+        function(){
+
+            showWeather("Location Permission Denied");
+
+        }
+
+    );
+
+}else{
+
+    showWeather("Geolocation Not Supported");
 
 }
 
-// ================================
-// Welcome Message (One Time)
-// ================================
+/* ===== Welcome Message ===== */
 
-if (!localStorage.getItem("welcomeMessage")) {
+window.addEventListener("load",()=>{
 
-    setTimeout(() => {
+    console.log("Welcome to Muhammad Jamil Uddin's Portfolio Website.");
 
-        alert(
-            "Welcome to Muhammad Jamil Uddin's Official Portfolio Website."
-        );
+});
+/* ==========================================
+   VERSION 6.0
+   PART 3.8
+   LOADER & PERFORMANCE
+========================================== */
 
-        localStorage.setItem("welcomeMessage", "true");
+/* ===== Loader ===== */
 
-    }, 1500);
+window.addEventListener("load", () => {
 
-}
-
-// ================================
-// Disable Right Click (Optional)
-// ================================
-
-document.addEventListener("contextmenu", function(e){
-
-    e.preventDefault();
+    document.body.classList.add("loaded");
 
 });
 
-// ================================
-// Disable Some Shortcut Keys
-// ================================
+/* ===== Fade In Animation ===== */
 
-document.addEventListener("keydown", function(e){
+const animatedItems = document.querySelectorAll(
+    ".skill-card, .certificate-card, .experience-card, .education-card, .contact-card"
+);
 
-    if (
-        e.key === "F12" ||
-        (e.ctrlKey && e.shiftKey && e.key === "I") ||
-        (e.ctrlKey && e.shiftKey && e.key === "J") ||
-        (e.ctrlKey && e.key === "U")
-    ) {
+const animationObserver = new IntersectionObserver((entries) => {
 
-        e.preventDefault();
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+
+        }
+
+    });
+
+}, {
+
+    threshold: 0.2
+
+});
+
+animatedItems.forEach(item => {
+
+    item.classList.add("fade-in");
+
+    animationObserver.observe(item);
+
+});
+
+/* ===== Lazy Loading Images ===== */
+
+const allImages = document.querySelectorAll("img");
+
+allImages.forEach(image => {
+
+    image.setAttribute("loading", "lazy");
+
+});
+
+/* ===== Keyboard Shortcut ===== */
+
+document.addEventListener("keydown", (event) => {
+
+    // Press Home key to go top
+
+    if (event.key === "Home") {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
 
     }
 
 });
 
-// ================================
-// Console Message
-// ================================
+/* ===== Console Message ===== */
 
-console.clear();
+console.log("%cWelcome to Muhammad Jamil Uddin's Portfolio",
+"color:#0f766e;font-size:18px;font-weight:bold;");
 
-console.log("%c Muhammad Jamil Uddin",
-"font-size:24px;font-weight:bold;color:#0f766e;");
+console.log("Website Version 6.0 Loaded Successfully.");
+/* ==========================================
+   VERSION 6.0
+   PART 3.9
+   CONTACT FORM & COPY FEATURES
+========================================== */
 
-console.log("%c Official Portfolio Website",
-"font-size:16px;color:#14b8a6;");
+/* ===== Contact Form ===== */
 
-console.log("%c IIUC | Qur'anic Sciences & Islamic Studies",
-"font-size:14px;color:#475569;");
+const contactForm = document.querySelector(".contact-form form");
 
-// ================================
-// Finished
-// ================================
+if (contactForm) {
 
-console.log("Website Loaded Successfully.");
+    contactForm.addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        const name = contactForm.querySelector("input[type='text']");
+        const email = contactForm.querySelector("input[type='email']");
+        const subject = contactForm.querySelectorAll("input")[2];
+        const message = contactForm.querySelector("textarea");
+
+        if (
+            name.value.trim() === "" ||
+            email.value.trim() === "" ||
+            subject.value.trim() === "" ||
+            message.value.trim() === ""
+        ) {
+
+            alert("Please fill in all required fields.");
+
+            return;
+
+        }
+
+        alert("✅ Your message has been submitted successfully.");
+
+        contactForm.reset();
+
+    });
+
+}
+
+/* ===== Copy Email ===== */
+
+function copyEmail() {
+
+    navigator.clipboard.writeText("muhammadjamil252839@gmail.com");
+
+    alert("✅ Email copied successfully.");
+
+}
+
+/* ===== Copy Mobile ===== */
+
+function copyPhone() {
+
+    navigator.clipboard.writeText("+8801826067398");
+
+    alert("✅ Mobile number copied successfully.");
+
+}
+
+/* ===== Double Click to Copy ===== */
+
+document.querySelectorAll(".contact-card").forEach(card => {
+
+    card.addEventListener("dblclick", () => {
+
+        const text = card.innerText;
+
+        navigator.clipboard.writeText(text);
+
+        alert("✅ Information copied.");
+
+    });
+
+});
+
+/* ===== Email Shortcut ===== */
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.ctrlKey && e.key.toLowerCase() === "e") {
+
+        window.location.href =
+            "mailto:muhammadjamil252839@gmail.com";
+
+    }
+
+});
+
+/* ===== Phone Shortcut ===== */
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.ctrlKey && e.key.toLowerCase() === "p") {
+
+        window.location.href =
+            "tel:+8801826067398";
+
+    }
+
+});
+/* ==========================================
+   VERSION 6.0
+   PART 3.10 (FINAL)
+   WEBSITE INITIALIZATION
+========================================== */
+
+/* ===== WEBSITE READY ===== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    console.log("Website initialized successfully.");
+
+});
+
+/* ===== Disable Right Click (Optional) ===== */
+
+document.addEventListener("contextmenu", (event) => {
+
+    event.preventDefault();
+
+});
+
+/* ===== Disable Image Drag ===== */
+
+document.querySelectorAll("img").forEach(image => {
+
+    image.addEventListener("dragstart", (event) => {
+
+        event.preventDefault();
+
+    });
+
+});
+
+/* ===== Keyboard Shortcuts ===== */
+
+document.addEventListener("keydown", (event) => {
+
+    // Ctrl + U
+
+    if (event.ctrlKey && event.key.toLowerCase() === "u") {
+
+        event.preventDefault();
+
+    }
+
+    // F12
+
+    if (event.key === "F12") {
+
+        event.preventDefault();
+
+    }
+
+});
+
+/* ===== Error Handling ===== */
+
+window.addEventListener("error", (event) => {
+
+    console.error("Website Error:", event.message);
+
+});
+
+/* ===== Welcome Message ===== */
+
+console.log("%c=================================",
+"color:#0f766e");
+
+console.log("%cMuhammad Jamil Uddin",
+"color:#0f766e;font-size:20px;font-weight:bold;");
+
+console.log("%cOfficial Portfolio Website",
+"color:#14b8a6;font-size:16px;");
+
+console.log("%cVersion 6.0",
+"color:#0f766e");
+
+console.log("%c=================================",
+"color:#0f766e");
+
+/* ===== Finish ===== */
+
+console.log("All JavaScript modules loaded successfully.");
