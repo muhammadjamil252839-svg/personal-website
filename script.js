@@ -726,31 +726,12 @@ const contactForm = document.querySelector(".contact-form form");
 
 if (contactForm) {
 
-    contactForm.addEventListener("submit", function (e) {
+    contactForm.addEventListener("submit", function () {
 
-        e.preventDefault();
+        alert("Sending your message...");
 
-        const name = contactForm.querySelector("input[type='text']");
-        const email = contactForm.querySelector("input[type='email']");
-        const subject = contactForm.querySelectorAll("input")[2];
-        const message = contactForm.querySelector("textarea");
-
-        if (
-            name.value.trim() === "" ||
-            email.value.trim() === "" ||
-            subject.value.trim() === "" ||
-            message.value.trim() === ""
-        ) {
-
-            alert("Please fill in all required fields.");
-
-            return;
-
-        }
-
-        alert("✅ Your message has been submitted successfully.");
-
-        contactForm.reset();
+        // Formspree নিজেই ফর্ম সাবমিট করবে
+        // এখানে preventDefault() থাকবে না
 
     });
 
