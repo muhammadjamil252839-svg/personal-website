@@ -720,18 +720,49 @@ console.log("Website Version 6.0 Loaded Successfully.");
    CONTACT FORM & COPY FEATURES
 ========================================== */
 
-/* ===== Contact Form ===== */
+/* ===== AJAX Contact Form ===== */
 
-const contactForm = document.querySelector(".contact-form form");
+const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
 
-    contactForm.addEventListener("submit", function () {
+    contactForm.addEventListener("submit", async function (e) {
 
-        alert("Sending your message...");
+        e.preventDefault();
 
-        // Formspree নিজেই ফর্ম সাবমিট করবে
-        // এখানে preventDefault() থাকবে না
+        const formData = new FormData(contactForm);
+
+        try {
+
+            const response = await fetch(contactForm.action, {
+
+                method: "POST",
+
+                body: formData,
+
+                headers: {
+                    "Accept": "application/json"
+                }
+
+            });
+
+            if (response.ok) {
+
+                alert("✅ Your message has been sent successfully.");
+
+                contactForm.reset();
+
+            } else {
+
+                alert("❌ Failed to send message. Please try again.");
+
+            }
+
+        } catch (error) {
+
+            alert("❌ Network error. Please try again.");
+
+        }
 
     });
 
