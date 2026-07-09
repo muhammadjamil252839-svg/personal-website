@@ -1,18 +1,19 @@
-/* ==========================================
-   MUHAMMAD JAMIL UDDIN
-   OFFICIAL PORTFOLIO WEBSITE
-   VERSION 6.0
-   PART 3.1
-========================================== */
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.1
+   SECTION : MOBILE MENU SYSTEM
+========================================================== */
 
 "use strict";
 
-/* ==========================
-   MOBILE MENU
-========================== */
+/* ===== Elements ===== */
 
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
+const menuIcon = document.getElementById("menu-icon");
+
+/* ===== Toggle Mobile Menu ===== */
 
 if (menuBtn && navLinks) {
 
@@ -20,35 +21,124 @@ if (menuBtn && navLinks) {
 
         navLinks.classList.toggle("active");
 
+        menuBtn.classList.toggle("active");
+
+        if (menuIcon) {
+
+            if (navLinks.classList.contains("active")) {
+
+                menuIcon.classList.remove("fa-bars");
+                menuIcon.classList.add("fa-xmark");
+
+            } else {
+
+                menuIcon.classList.remove("fa-xmark");
+                menuIcon.classList.add("fa-bars");
+
+            }
+
+        }
+
     });
 
 }
 
-/* ==========================
-   CLOSE MENU AFTER CLICK
-========================== */
+/* ===== Close Menu After Clicking Link ===== */
 
-const menuItems = document.querySelectorAll("#nav-links a");
+document.querySelectorAll("#nav-links a").forEach(link => {
 
-menuItems.forEach(item => {
+    link.addEventListener("click", () => {
 
-    item.addEventListener("click", () => {
+        if (navLinks) {
 
-        navLinks.classList.remove("active");
+            navLinks.classList.remove("active");
+
+        }
+
+        if (menuBtn) {
+
+            menuBtn.classList.remove("active");
+
+        }
+
+        if (menuIcon) {
+
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
+
+        }
 
     });
 
 });
 
-/* ==========================
-   ACTIVE MENU ON SCROLL
-(Next Part)
-========================== */
-/* ==========================================
-   VERSION 6.0
-   PART 3.2
-   AUTO IMAGE SLIDER
-========================================== */
+/* ===== Close Menu When Clicking Outside ===== */
+
+document.addEventListener("click", (event) => {
+
+    if (!menuBtn || !navLinks) return;
+
+    if (
+
+        !menuBtn.contains(event.target) &&
+
+        !navLinks.contains(event.target)
+
+    ) {
+
+        navLinks.classList.remove("active");
+
+        menuBtn.classList.remove("active");
+
+        if (menuIcon) {
+
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
+
+        }
+
+    }
+
+});
+
+/* ===== ESC Key Closes Menu ===== */
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+        if (navLinks) {
+
+            navLinks.classList.remove("active");
+
+        }
+
+        if (menuBtn) {
+
+            menuBtn.classList.remove("active");
+
+        }
+
+        if (menuIcon) {
+
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
+
+        }
+
+    }
+
+});
+
+console.log("✅ Version 7.0 | Part 3.1 Loaded Successfully");
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.2
+   SECTION : PROFESSIONAL IMAGE SLIDER
+========================================================== */
+
+/* ===== Elements ===== */
 
 const slides = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
@@ -56,158 +146,237 @@ const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
 
 let currentSlide = 0;
-let autoSlide;
+let autoSlide = null;
 
-/* ===== Show Slide ===== */
+if (slides.length > 0) {
 
-function showSlide(index){
+    /* ===== Show Slide ===== */
 
-    if(!slides.length) return;
+    function showSlide(index) {
 
-    if(index >= slides.length){
+        if (index >= slides.length) {
 
-        currentSlide = 0;
+            currentSlide = 0;
 
-    }else if(index < 0){
+        } else if (index < 0) {
 
-        currentSlide = slides.length - 1;
+            currentSlide = slides.length - 1;
 
-    }else{
+        } else {
 
-        currentSlide = index;
+            currentSlide = index;
+
+        }
+
+        slides.forEach((slide, i) => {
+
+            slide.classList.toggle(
+                "active",
+                i === currentSlide
+            );
+
+        });
+
+        dots.forEach((dot, i) => {
+
+            dot.classList.toggle(
+                "active",
+                i === currentSlide
+            );
+
+        });
 
     }
 
-    slides.forEach(slide =>{
+    /* ===== Next ===== */
 
-        slide.classList.remove("active");
+    function nextSlide() {
 
-    });
-
-    dots.forEach(dot =>{
-
-        dot.classList.remove("active");
-
-    });
-
-    slides[currentSlide].classList.add("active");
-
-    if(dots[currentSlide]){
-
-        dots[currentSlide].classList.add("active");
+        showSlide(currentSlide + 1);
 
     }
 
-}
+    /* ===== Previous ===== */
 
-/* ===== Next ===== */
+    function previousSlide() {
 
-function nextSlide(){
+        showSlide(currentSlide - 1);
 
-    showSlide(currentSlide + 1);
+    }
 
-}
+    /* ===== Auto Play ===== */
 
-/* ===== Previous ===== */
-
-function previousSlide(){
-
-    showSlide(currentSlide - 1);
-
-}
-
-/* ===== Auto Slide ===== */
-
-function startSlider(){
-
-    autoSlide = setInterval(nextSlide,3000);
-
-}
-
-function stopSlider(){
-
-    clearInterval(autoSlide);
-
-}
-
-/* ===== Button ===== */
-
-if(nextBtn){
-
-    nextBtn.addEventListener("click",()=>{
+    function startSlider() {
 
         stopSlider();
 
-        nextSlide();
+        autoSlide = setInterval(nextSlide, 4000);
 
-        startSlider();
+    }
+
+    /* ===== Stop ===== */
+
+    function stopSlider() {
+
+        if (autoSlide) {
+
+            clearInterval(autoSlide);
+
+        }
+
+    }
+
+    /* ===== Next Button ===== */
+
+    if (nextBtn) {
+
+        nextBtn.addEventListener("click", () => {
+
+            nextSlide();
+
+            startSlider();
+
+        });
+
+    }
+
+    /* ===== Previous Button ===== */
+
+    if (prevBtn) {
+
+        prevBtn.addEventListener("click", () => {
+
+            previousSlide();
+
+            startSlider();
+
+        });
+
+    }
+
+    /* ===== Dot Navigation ===== */
+
+    dots.forEach((dot, index) => {
+
+        dot.addEventListener("click", () => {
+
+            showSlide(index);
+
+            startSlider();
+
+        });
 
     });
 
-}
+    /* ===== Pause On Hover ===== */
 
-if(prevBtn){
+    slides.forEach((slide) => {
 
-    prevBtn.addEventListener("click",()=>{
+        slide.addEventListener("mouseenter", stopSlider);
 
-        stopSlider();
-
-        previousSlide();
-
-        startSlider();
+        slide.addEventListener("mouseleave", startSlider);
 
     });
 
-}
+    /* ===== Swipe Support (Mobile) ===== */
 
-/* ===== Dot Click ===== */
+    let startX = 0;
 
-dots.forEach((dot,index)=>{
+    document.addEventListener("touchstart", (e) => {
 
-    dot.addEventListener("click",()=>{
-
-        stopSlider();
-
-        showSlide(index);
-
-        startSlider();
+        startX = e.touches[0].clientX;
 
     });
 
-});
+    document.addEventListener("touchend", (e) => {
 
-/* ===== Initialize ===== */
+        const endX = e.changedTouches[0].clientX;
 
-if(slides.length){
+        if (startX - endX > 50) {
+
+            nextSlide();
+
+        }
+
+        if (endX - startX > 50) {
+
+            previousSlide();
+
+        }
+
+    });
+
+    /* ===== Start ===== */
 
     showSlide(0);
 
     startSlider();
 
 }
-/* ==========================================
-   VERSION 6.0
-   PART 3.3
-   SCROLL EFFECTS
-========================================== */
 
-/* ===== Scroll To Top Button ===== */
+console.log("✅ Version 7.0 | Part 3.2 Loaded Successfully");
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.3
+   SECTION : PROFESSIONAL SCROLL EFFECTS
+========================================================== */
+
+/* ===== Elements ===== */
 
 const scrollTopBtn = document.getElementById("scrollTopBtn");
+const progressBar = document.getElementById("progressBar");
 
-window.addEventListener("scroll", () => {
+/* ===== Scroll Function ===== */
 
-    if (window.scrollY > 300) {
+function updateScrollEffects() {
 
-        scrollTopBtn.style.display = "flex";
+    const scrollTop =
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
 
-    } else {
+    const scrollHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
 
-        scrollTopBtn.style.display = "none";
+    /* Progress Bar */
+
+    if (progressBar) {
+
+        const progress =
+            (scrollTop / scrollHeight) * 100;
+
+        progressBar.style.width =
+            progress + "%";
 
     }
 
-});
+    /* Scroll Button */
+
+    if (scrollTopBtn) {
+
+        if (scrollTop > 300) {
+
+            scrollTopBtn.classList.add("show");
+
+        } else {
+
+            scrollTopBtn.classList.remove("show");
+
+        }
+
+    }
+
+}
+
+window.addEventListener(
+    "scroll",
+    updateScrollEffects
+);
+
+updateScrollEffects();
+
+/* ===== Scroll To Top ===== */
 
 if (scrollTopBtn) {
 
@@ -225,74 +394,149 @@ if (scrollTopBtn) {
 
 }
 
-/* ===== Progress Bar ===== */
+/* ===== Fade Animation ===== */
 
-const progressBar = document.getElementById("progressBar");
+const fadeItems = document.querySelectorAll(
 
-window.addEventListener("scroll", () => {
+".fade-in, .skill-card, .education-card, .certificate-card, .experience-card, .contact-card"
 
-    const scrollTop = document.documentElement.scrollTop;
+);
 
-    const scrollHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+const fadeObserver = new IntersectionObserver(
 
-    const progress = (scrollTop / scrollHeight) * 100;
+(entries) => {
 
-    if (progressBar) {
-
-        progressBar.style.width = progress + "%";
-
-    }
-
-});
-
-/* ===== Fade In Animation ===== */
-
-const fadeElements = document.querySelectorAll(".fade-in");
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
 
         if (entry.isIntersecting) {
 
             entry.target.classList.add("show");
 
+            fadeObserver.unobserve(entry.target);
+
         }
 
     });
 
-}, {
+},
 
-    threshold: 0.15
+{
+
+    threshold: 0.15,
+
+    rootMargin: "0px 0px -50px 0px"
+
+}
+
+);
+
+fadeItems.forEach((item) => {
+
+    item.classList.add("fade-in");
+
+    fadeObserver.observe(item);
 
 });
 
-fadeElements.forEach(element => {
+/* ===== Active Navigation ===== */
 
-    observer.observe(element);
+const sections =
+document.querySelectorAll("section[id]");
+
+const navItems =
+document.querySelectorAll("#nav-links a");
+
+window.addEventListener("scroll", () => {
+
+    let currentSection = "";
+
+    sections.forEach((section) => {
+
+        const sectionTop =
+            section.offsetTop - 120;
+
+        if (window.scrollY >= sectionTop) {
+
+            currentSection =
+                section.getAttribute("id");
+
+        }
+
+    });
+
+    navItems.forEach((link) => {
+
+        link.classList.remove("active");
+
+        const href = link.getAttribute("href");
+
+        if (href === "#" + currentSection) {
+
+            link.classList.add("active");
+
+        }
+
+    });
 
 });
-/* ==========================================
-   VERSION 6.0
-   PART 3.4
-   DARK MODE & MUSIC
-========================================== */
 
-/* ===== Dark Mode ===== */
+/* ===== Console ===== */
+
+console.log(
+"✅ Version 7.0 | Part 3.3 Loaded Successfully"
+);
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.4
+   SECTION : PROFESSIONAL DARK MODE & MUSIC
+========================================================== */
+
+/* ===== Elements ===== */
 
 const themeToggle = document.getElementById("themeToggle");
+const music = document.getElementById("backgroundMusic");
+const musicBtn = document.getElementById("musicBtn");
 
-if (themeToggle) {
+/* ==========================================================
+   DARK MODE
+========================================================== */
 
-    // Load saved theme
-    if (localStorage.getItem("theme") === "dark") {
+function loadTheme() {
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
 
         document.body.classList.add("dark-mode");
-        themeToggle.textContent = "☀️";
+
+        if (themeToggle) {
+
+            themeToggle.innerHTML = "☀️";
+
+            themeToggle.title = "Light Mode";
+
+        }
+
+    } else {
+
+        document.body.classList.remove("dark-mode");
+
+        if (themeToggle) {
+
+            themeToggle.innerHTML = "🌙";
+
+            themeToggle.title = "Dark Mode";
+
+        }
 
     }
+
+}
+
+loadTheme();
+
+if (themeToggle) {
 
     themeToggle.addEventListener("click", () => {
 
@@ -301,12 +545,18 @@ if (themeToggle) {
         if (document.body.classList.contains("dark-mode")) {
 
             localStorage.setItem("theme", "dark");
-            themeToggle.textContent = "☀️";
+
+            themeToggle.innerHTML = "☀️";
+
+            themeToggle.title = "Light Mode";
 
         } else {
 
             localStorage.setItem("theme", "light");
-            themeToggle.textContent = "🌙";
+
+            themeToggle.innerHTML = "🌙";
+
+            themeToggle.title = "Dark Mode";
 
         }
 
@@ -314,81 +564,122 @@ if (themeToggle) {
 
 }
 
-/* ===== Background Music ===== */
-
-const music = document.getElementById("backgroundMusic");
-const musicBtn = document.getElementById("musicBtn");
+/* ==========================================================
+   BACKGROUND MUSIC
+========================================================== */
 
 let isPlaying = false;
 
-if (musicBtn && music) {
+if (music && musicBtn) {
 
-    musicBtn.addEventListener("click", () => {
+    music.volume = 0.40;
 
-        if (isPlaying) {
+    musicBtn.innerHTML = "🎵";
 
-            music.pause();
-            musicBtn.textContent = "🎵";
+    musicBtn.title = "Play Music";
 
-        } else {
+    musicBtn.addEventListener("click", async () => {
 
-            music.play().catch(() => {
-                console.log("Music playback requires user interaction.");
-            });
+        try {
 
-            musicBtn.textContent = "⏸️";
+            if (!isPlaying) {
+
+                await music.play();
+
+                isPlaying = true;
+
+                musicBtn.innerHTML = "⏸️";
+
+                musicBtn.title = "Pause Music";
+
+            } else {
+
+                music.pause();
+
+                isPlaying = false;
+
+                musicBtn.innerHTML = "🎵";
+
+                musicBtn.title = "Play Music";
+
+            }
+
+        } catch (error) {
+
+            console.log("Music playback blocked by browser.");
 
         }
 
-        isPlaying = !isPlaying;
+    });
+
+    music.addEventListener("ended", () => {
+
+        isPlaying = false;
+
+        musicBtn.innerHTML = "🎵";
+
+        musicBtn.title = "Play Music";
 
     });
 
 }
 
-/* ===== Restore Music Icon ===== */
+/* ==========================================================
+   SHORTCUT KEYS
+========================================================== */
 
-music.addEventListener("ended", () => {
+document.addEventListener("keydown", (event) => {
 
-    isPlaying = false;
-    musicBtn.textContent = "🎵";
+    /* Ctrl + D = Dark Mode */
+
+    if (event.ctrlKey && event.key.toLowerCase() === "d") {
+
+        event.preventDefault();
+
+        if (themeToggle) {
+
+            themeToggle.click();
+
+        }
+
+    }
+
+    /* Ctrl + M = Music */
+
+    if (event.ctrlKey && event.key.toLowerCase() === "m") {
+
+        event.preventDefault();
+
+        if (musicBtn) {
+
+            musicBtn.click();
+
+        }
+
+    }
 
 });
+
+console.log("✅ Version 7.0 | Part 3.4 Loaded Successfully");
 /* ==========================================================
    PROJECT : Personal Portfolio Website
    VERSION : 7.0
-   PART    : 3.5.1
-   SECTION : ADVANCED LIVE CLOCK
-
-   FEATURES
-   ----------------------------------------
-   ✅ Bangladesh Time (Asia/Dhaka)
-   ✅ 12-Hour Format (AM / PM)
-   ✅ Live Seconds
-   ✅ Auto Refresh Every Second
-   ✅ International Time Ready
-   ✅ Footer Clock System
-   ✅ Performance Optimized
-
-   AUTHOR  : Muhammad Jamil Uddin
-   UPDATED : Version 7.0
-========================================================== */
-/* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.5.2
-   SECTION : ADVANCED LIVE CLOCK
+   PART    : 3.5
+   SECTION : PROFESSIONAL LIVE CLOCK SYSTEM
 ========================================================== */
 
-/* ===== Clock Elements ===== */
+/* ===== Elements ===== */
 
 const bdClock = document.getElementById("bdClock");
 const utcClock = document.getElementById("utcClock");
+const greeting = document.getElementById("greeting");
 const currentYear = document.getElementById("currentYear");
 const networkStatus = document.getElementById("networkStatus");
 const visitorCount = document.getElementById("visitorCount");
 
-/* ===== Live Clock ===== */
+/* ==========================================================
+   LIVE CLOCK
+========================================================== */
 
 function updateClock() {
 
@@ -399,40 +690,40 @@ function updateClock() {
     if (bdClock) {
 
         bdClock.textContent =
-            now.toLocaleTimeString("en-US", {
+        now.toLocaleTimeString("en-US", {
 
-                timeZone: "Asia/Dhaka",
+            timeZone: "Asia/Dhaka",
 
-                hour: "numeric",
+            hour: "numeric",
 
-                minute: "2-digit",
+            minute: "2-digit",
 
-                second: "2-digit",
+            second: "2-digit",
 
-                hour12: true
+            hour12: true
 
-            });
+        });
 
     }
 
-    /* International UTC Time */
+    /* International (UTC) */
 
     if (utcClock) {
 
         utcClock.textContent =
-            now.toLocaleTimeString("en-GB", {
+        now.toLocaleTimeString("en-GB", {
 
-                timeZone: "UTC",
+            timeZone: "UTC",
 
-                hour: "2-digit",
+            hour: "2-digit",
 
-                minute: "2-digit",
+            minute: "2-digit",
 
-                second: "2-digit",
+            second: "2-digit",
 
-                hour12: false
+            hour12: false
 
-            }) + " UTC";
+        }) + " UTC";
 
     }
 
@@ -440,218 +731,215 @@ function updateClock() {
 
 updateClock();
 
-setInterval(updateClock, 1000);
+setInterval(updateClock,1000);
 
-/* ===== Current Year ===== */
-
-if (currentYear) {
-
-    currentYear.textContent = new Date().getFullYear();
-
-}
-
-/* ===== Network Status ===== */
-
-function updateNetworkStatus() {
-
-    if (!networkStatus) return;
-
-    networkStatus.innerHTML =
-        navigator.onLine
-            ? "🟢 Online"
-            : "🔴 Offline";
-
-}
-
-updateNetworkStatus();
-
-window.addEventListener("online", updateNetworkStatus);
-
-window.addEventListener("offline", updateNetworkStatus);
-
-/* ===== Visitor Counter ===== */
-
-let visits = Number(localStorage.getItem("portfolioVisitor") || 0);
-
-visits++;
-
-localStorage.setItem("portfolioVisitor", visits);
-
-if (visitorCount) {
-
-    visitorCount.textContent = visits.toLocaleString();
-
-}
 /* ==========================================================
-   VERSION : 7.0
-   PART    : 3.5.3
-   SECTION : GREETING & MULTILINGUAL TIME
+   GREETING
 ========================================================== */
 
-/* ===== Greeting ===== */
+function updateGreeting(){
 
-const greeting = document.getElementById("greeting");
-
-function updateGreeting() {
-
-    if (!greeting) return;
+    if(!greeting) return;
 
     const hour = Number(
-        new Date().toLocaleString("en-US", {
-            timeZone: "Asia/Dhaka",
-            hour: "numeric",
-            hour12: false
+
+        new Date().toLocaleString("en-US",{
+
+            timeZone:"Asia/Dhaka",
+
+            hour:"numeric",
+
+            hour12:false
+
         })
+
     );
 
-    let message = "";
+    if(hour>=5 && hour<12){
 
-    if (hour >= 5 && hour < 12) {
-
-        message = "🌅 Good Morning";
-
-    } else if (hour >= 12 && hour < 17) {
-
-        message = "☀️ Good Afternoon";
-
-    } else if (hour >= 17 && hour < 20) {
-
-        message = "🌇 Good Evening";
-
-    } else {
-
-        message = "🌙 Good Night";
+        greeting.innerHTML="🌅 Good Morning";
 
     }
 
-    greeting.textContent = message;
+    else if(hour>=12 && hour<17){
+
+        greeting.innerHTML="☀️ Good Afternoon";
+
+    }
+
+    else if(hour>=17 && hour<20){
+
+        greeting.innerHTML="🌇 Good Evening";
+
+    }
+
+    else{
+
+        greeting.innerHTML="🌙 Good Night";
+
+    }
 
 }
 
 updateGreeting();
 
-setInterval(updateGreeting, 60000);
-/* ===== Visitor Counter ===== */
+setInterval(updateGreeting,60000);
 
-const visitorCount =
-document.getElementById("visitorCount");
+/* ==========================================================
+   CURRENT YEAR
+========================================================== */
 
-let visits =
-localStorage.getItem("portfolioVisitor");
+if(currentYear){
 
-if (!visits) {
-
-    visits = 1;
-
-} else {
-
-    visits = Number(visits) + 1;
+    currentYear.textContent=new Date().getFullYear();
 
 }
 
-localStorage.setItem(
-"portfolioVisitor",
-visits
-);
+/* ==========================================================
+   NETWORK STATUS
+========================================================== */
 
-if (visitorCount) {
+function updateNetwork(){
 
-    visitorCount.textContent =
+    if(!networkStatus) return;
+
+    networkStatus.innerHTML=
+
+    navigator.onLine
+
+    ? "🟢 Online"
+
+    : "🔴 Offline";
+
+}
+
+updateNetwork();
+
+window.addEventListener("online",updateNetwork);
+
+window.addEventListener("offline",updateNetwork);
+
+/* ==========================================================
+   VISITOR COUNTER
+========================================================== */
+
+if(visitorCount){
+
+    let visits=Number(
+
+        localStorage.getItem("portfolioVisitor")||0
+
+    );
+
+    visits++;
+
+    localStorage.setItem(
+
+        "portfolioVisitor",
+
+        visits
+
+    );
+
+    visitorCount.textContent=
+
     visits.toLocaleString();
 
 }
-/* =========================================
-   VERSION 7.0
-   PART 3.6.1
-   SMART DATE & HIJRI DATE
-========================================= */
 
+/* ==========================================================
+   DIGITAL STATUS
+========================================================== */
+
+console.log(
+
+"✅ Version 7.0 | Part 3.5 Loaded Successfully"
+
+);
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.6
+   SECTION : SMART DATE + DAILY QUOTE + TYPING
+========================================================== */
+
+/* ===== Elements ===== */
+
+const englishDate = document.getElementById("englishDate");
+const banglaDate = document.getElementById("banglaDate");
+const arabicDate = document.getElementById("arabicDate");
 const hijriDate = document.getElementById("hijriDate");
 
-/* ===== English Date ===== */
-const englishDate = document.getElementById("englishDate");
+const dailyQuote = document.getElementById("dailyQuote");
 
-/* ===== Bangla Date ===== */
-const banglaDate = document.getElementById("banglaDate");
+const typingText = document.getElementById("typingText");
 
-/* ===== Arabic Date ===== */
-const arabicDate = document.getElementById("arabicDate");
+/* ==========================================================
+   LIVE DATE
+========================================================== */
 
-function updateDates() {
+function updateDates(){
 
     const today = new Date();
 
-    /* English Date */
-
-    if (englishDate) {
+    if(englishDate){
 
         englishDate.textContent =
-            today.toLocaleDateString("en-GB", {
+        today.toLocaleDateString("en-GB",{
 
-                weekday: "long",
+            weekday:"long",
+            day:"2-digit",
+            month:"long",
+            year:"numeric"
 
-                day: "2-digit",
-
-                month: "long",
-
-                year: "numeric"
-
-            });
+        });
 
     }
 
-    /* Bangla Date */
-
-    if (banglaDate) {
+    if(banglaDate){
 
         banglaDate.textContent =
-            today.toLocaleDateString("bn-BD", {
+        today.toLocaleDateString("bn-BD",{
 
-                weekday: "long",
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
 
-                day: "numeric",
-
-                month: "long",
-
-                year: "numeric"
-
-            });
+        });
 
     }
 
-    /* Arabic Date */
-
-    if (arabicDate) {
+    if(arabicDate){
 
         arabicDate.textContent =
-            today.toLocaleDateString("ar-SA", {
+        today.toLocaleDateString("ar-SA",{
 
-                weekday: "long",
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
 
-                day: "numeric",
-
-                month: "long",
-
-                year: "numeric"
-
-            });
+        });
 
     }
 
-    /* Hijri Date */
-
-    if (hijriDate) {
+    if(hijriDate){
 
         hijriDate.textContent =
-            new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
+        new Intl.DateTimeFormat(
 
-                day: "numeric",
+            "en-TN-u-ca-islamic",
 
-                month: "long",
+            {
 
-                year: "numeric"
+                day:"numeric",
+                month:"long",
+                year:"numeric"
 
-            }).format(today);
+            }
+
+        ).format(today);
 
     }
 
@@ -659,143 +947,135 @@ function updateDates() {
 
 updateDates();
 
-/* প্রতি ১ মিনিট পর Date Refresh হবে */
+setInterval(updateDates,60000);
 
-setInterval(updateDates, 60000);
-/* =========================================
-   VERSION 7.0
-   PART 3.6.2
-   PROFESSIONAL DAILY QUOTES
-========================================= */
+/* ==========================================================
+   DAILY QUOTES
+========================================================== */
 
-const quotes = [
+const quotes=[
 
 "Indeed, Allah is with the patient. (Qur'an 2:153)",
 
 "So remember Me; I will remember you. (Qur'an 2:152)",
 
-"And whoever relies upon Allah - then He is sufficient for him. (Qur'an 65:3)",
-
-"The best among you are those who learn the Qur'an and teach it. (Sahih al-Bukhari)",
-
 "Allah does not burden a soul beyond that it can bear. (Qur'an 2:286)",
 
 "Verily, with hardship comes ease. (Qur'an 94:6)",
 
-"The most beloved deeds to Allah are the consistent ones, even if they are small. (Bukhari & Muslim)",
+"The best among you are those who learn the Qur'an and teach it.",
 
-"Seek knowledge from the cradle to the grave.",
+"And whoever relies upon Allah, He is sufficient for him.",
+
+"Prayer is the key to success.",
 
 "Success belongs to those who trust Allah.",
 
-"Every new day is another chance to worship Allah sincerely.",
+"Knowledge is light.",
 
-"Your character is your greatest beauty.",
-
-"Prayer is the key to success."
+"Never stop learning."
 
 ];
 
-const dailyQuote = document.getElementById("dailyQuote");
-
-function updateDailyQuote(){
+function updateQuote(){
 
     if(!dailyQuote) return;
 
-    const today = new Date();
+    const index=
 
-    const index = today.getDate() % quotes.length;
+    new Date().getDate()%quotes.length;
 
-    dailyQuote.style.opacity = "0";
+    dailyQuote.style.opacity="0";
 
     setTimeout(()=>{
 
-        dailyQuote.textContent = quotes[index];
+        dailyQuote.textContent=quotes[index];
 
-        dailyQuote.style.opacity = "1";
+        dailyQuote.style.opacity="1";
 
     },300);
 
 }
 
-updateDailyQuote();
-/* =========================================
-   VERSION 7.0
-   PART 3.6.3
-   PROFESSIONAL TYPING ANIMATION
-========================================= */
+updateQuote();
 
-const typingText = document.getElementById("typingText");
+/* ==========================================================
+   PROFESSIONAL TYPING
+========================================================== */
 
-const words = [
+const typingWords=[
 
-    "Hafiz of the Holy Qur'an",
+"Hafiz of the Holy Qur'an",
 
-    "Qur'anic Sciences Student",
+"Qur'anic Sciences Student",
 
-    "International Islamic University Chittagong",
+"International Islamic University Chittagong",
 
-    "Islamic Researcher",
+"Future International Scholar",
 
-    "Future International Scholar",
+"Islamic Researcher",
 
-    "Web Developer",
+"Web Developer",
 
-    "Graphic Designer",
+"Graphic Designer",
 
-    "Public Speaker",
+"Public Speaker",
 
-    "Volunteer",
+"Volunteer",
 
-    "Content Creator",
+"Content Creator",
 
-    "Lifelong Learner"
+"Lifelong Learner"
 
 ];
 
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+let wordIndex=0;
 
-function typingEffect() {
+let charIndex=0;
 
-    if (!typingText) return;
+let deleting=false;
 
-    const currentWord = words[wordIndex];
+function typingEffect(){
 
-    if (!isDeleting) {
+    if(!typingText) return;
 
-        typingText.textContent =
-        currentWord.substring(0, charIndex + 1);
+    const word=typingWords[wordIndex];
+
+    if(!deleting){
+
+        typingText.textContent=
+
+        word.substring(0,charIndex+1);
 
         charIndex++;
 
-        if (charIndex === currentWord.length) {
+        if(charIndex===word.length){
 
-            isDeleting = true;
+            deleting=true;
 
-            setTimeout(typingEffect, 1800);
+            setTimeout(typingEffect,1800);
 
             return;
 
         }
 
-    } else {
+    }else{
 
-        typingText.textContent =
-        currentWord.substring(0, charIndex - 1);
+        typingText.textContent=
+
+        word.substring(0,charIndex-1);
 
         charIndex--;
 
-        if (charIndex === 0) {
+        if(charIndex===0){
 
-            isDeleting = false;
+            deleting=false;
 
             wordIndex++;
 
-            if (wordIndex >= words.length) {
+            if(wordIndex>=typingWords.length){
 
-                wordIndex = 0;
+                wordIndex=0;
 
             }
 
@@ -807,7 +1087,7 @@ function typingEffect() {
 
         typingEffect,
 
-        isDeleting ? 45 : 90
+        deleting?45:90
 
     );
 
@@ -815,40 +1095,141 @@ function typingEffect() {
 
 typingEffect();
 
-/* ===== Cursor Blink ===== */
+/* ===== Cursor ===== */
 
-setInterval(() => {
+setInterval(()=>{
 
-    if (!typingText) return;
+    if(!typingText) return;
 
-    typingText.style.borderRight =
-        typingText.style.borderRight ===
-        "3px solid #0d6efd"
+    typingText.style.borderRight=
 
-        ? "3px solid transparent"
+    typingText.style.borderRight===
 
-        : "3px solid #0d6efd";
+    "3px solid #0d6efd"
 
-}, 500);
-/* ==========================================
-   VERSION 6.0
-   PART 3.7
-   WEATHER & USER LOCATION
-========================================== */
+    ?
 
-/* ===== Weather ===== */
+    "3px solid transparent"
+
+    :
+
+    "3px solid #0d6efd";
+
+},500);
+
+console.log("✅ Version 7.0 | Part 3.6 Loaded Successfully");
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.7
+   SECTION : REAL WEATHER API
+========================================================== */
 
 const weatherCity = document.getElementById("weatherCity");
 const weatherTemp = document.getElementById("weatherTemp");
 const weatherDesc = document.getElementById("weatherDesc");
 
-function showWeather(city){
+/* ===== Weather Code ===== */
 
-    if(!weatherCity || !weatherTemp || !weatherDesc) return;
+function getWeatherText(code){
 
-    weatherCity.textContent = city;
-    weatherTemp.textContent = "Temperature: --°C";
-    weatherDesc.textContent = "Weather information is unavailable (API not connected).";
+    const weatherCodes={
+
+        0:"☀️ Clear Sky",
+
+        1:"🌤 Mainly Clear",
+
+        2:"⛅ Partly Cloudy",
+
+        3:"☁️ Cloudy",
+
+        45:"🌫 Fog",
+
+        48:"🌫 Dense Fog",
+
+        51:"🌦 Light Drizzle",
+
+        53:"🌦 Moderate Drizzle",
+
+        55:"🌧 Heavy Drizzle",
+
+        61:"🌦 Light Rain",
+
+        63:"🌧 Moderate Rain",
+
+        65:"🌧 Heavy Rain",
+
+        71:"❄️ Light Snow",
+
+        73:"❄️ Snow",
+
+        75:"❄️ Heavy Snow",
+
+        80:"🌦 Rain Shower",
+
+        81:"🌧 Heavy Shower",
+
+        95:"⛈ Thunderstorm"
+
+    };
+
+    return weatherCodes[code] || "🌍 Weather Information";
+
+}
+
+/* ===== Get Weather ===== */
+
+async function loadWeather(latitude,longitude){
+
+    try{
+
+        const response=await fetch(
+
+`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code`
+
+        );
+
+        const data=await response.json();
+
+        if(weatherTemp){
+
+            weatherTemp.textContent=
+
+            data.current.temperature_2m+"°C";
+
+        }
+
+        if(weatherDesc){
+
+            weatherDesc.textContent=
+
+            getWeatherText(
+
+                data.current.weather_code
+
+            );
+
+        }
+
+    }
+
+    catch(error){
+
+        if(weatherTemp){
+
+            weatherTemp.textContent="--°C";
+
+        }
+
+        if(weatherDesc){
+
+            weatherDesc.textContent=
+
+            "Unable to load weather.";
+
+        }
+
+    }
 
 }
 
@@ -860,24 +1241,43 @@ if(navigator.geolocation){
 
         function(position){
 
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
+            const lat=
 
-            weatherCity.textContent =
-                "Your Location";
+            position.coords.latitude;
 
-            weatherTemp.textContent =
-                latitude.toFixed(4) + "°, " +
-                longitude.toFixed(4) + "°";
+            const lon=
 
-            weatherDesc.textContent =
-                "Location detected successfully.";
+            position.coords.longitude;
+
+            if(weatherCity){
+
+                weatherCity.textContent=
+
+                "📍 Your Current Location";
+
+            }
+
+            loadWeather(lat,lon);
 
         },
 
         function(){
 
-            showWeather("Location Permission Denied");
+            if(weatherCity){
+
+                weatherCity.textContent=
+
+                "📍 Dhaka, Bangladesh";
+
+            }
+
+            loadWeather(
+
+                23.8103,
+
+                90.4125
+
+            );
 
         }
 
@@ -885,106 +1285,129 @@ if(navigator.geolocation){
 
 }else{
 
-    showWeather("Geolocation Not Supported");
+    if(weatherCity){
+
+        weatherCity.textContent=
+
+        "📍 Dhaka, Bangladesh";
+
+    }
+
+    loadWeather(
+
+        23.8103,
+
+        90.4125
+
+    );
 
 }
 
-/* ===== Welcome Message ===== */
+console.log(
 
-window.addEventListener("load",()=>{
+"✅ Version 7.0 | Part 3.7 Loaded Successfully"
 
-    console.log("Welcome to Muhammad Jamil Uddin's Portfolio Website.");
+);
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.8
+   SECTION : LOADER & PERFORMANCE
+========================================================== */
 
-});
-/* ==========================================
-   VERSION 6.0
-   PART 3.8
-   LOADER & PERFORMANCE
-========================================== */
-
-/* ===== Loader ===== */
+/* ==========================================================
+   WEBSITE LOADED
+========================================================== */
 
 window.addEventListener("load", () => {
 
     document.body.classList.add("loaded");
 
-});
-
-/* ===== Fade In Animation ===== */
-
-const animatedItems = document.querySelectorAll(
-    ".skill-card, .certificate-card, .experience-card, .education-card, .contact-card"
-);
-
-const animationObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-}, {
-
-    threshold: 0.2
-
-});
-
-animatedItems.forEach(item => {
-
-    item.classList.add("fade-in");
-
-    animationObserver.observe(item);
-
-});
-
-/* ===== Lazy Loading Images ===== */
-
-const allImages = document.querySelectorAll("img");
-
-allImages.forEach(image => {
-
-    image.setAttribute("loading", "lazy");
-
-});
-
-
-/* =========================================
-   VERSION : 7.0
-   PART    : 1.1
-   AUTO HIDE LOADER
-========================================= */
-
-window.addEventListener("load", function () {
-
     const loader = document.getElementById("loader");
 
     if (loader) {
 
-        setTimeout(function () {
+        setTimeout(() => {
 
             loader.classList.add("hide");
 
-            setTimeout(function () {
-
-                loader.remove();
-
-            }, 600);
-
         }, 1500);
+
+        setTimeout(() => {
+
+            loader.style.display = "none";
+
+        }, 2100);
 
     }
 
 });
-/* ===== Keyboard Shortcut ===== */
+
+/* ==========================================================
+   FADE IN ANIMATION
+========================================================== */
+
+const animatedItems = document.querySelectorAll(
+
+".skill-card, .certificate-card, .experience-card, .education-card, .contact-card, .project-card, .service-card"
+
+);
+
+if (animatedItems.length) {
+
+    const animationObserver = new IntersectionObserver(
+
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+
+            threshold: 0.15,
+
+            rootMargin: "0px 0px -50px 0px"
+
+        }
+
+    );
+
+    animatedItems.forEach(item => {
+
+        item.classList.add("fade-in");
+
+        animationObserver.observe(item);
+
+    });
+
+}
+
+/* ==========================================================
+   LAZY LOADING
+========================================================== */
+
+document.querySelectorAll("img").forEach(image => {
+
+    image.loading = "lazy";
+
+});
+
+/* ==========================================================
+   KEYBOARD SHORTCUT
+========================================================== */
 
 document.addEventListener("keydown", (event) => {
-
-    // Press Home key to go top
 
     if (event.key === "Home") {
 
@@ -1000,29 +1423,65 @@ document.addEventListener("keydown", (event) => {
 
 });
 
-/* ===== Console Message ===== */
+/* ==========================================================
+   CONSOLE MESSAGE
+========================================================== */
 
-console.log("%cWelcome to Muhammad Jamil Uddin's Portfolio",
-"color:#0f766e;font-size:18px;font-weight:bold;");
+console.log("%c==========================================",
 
-console.log("Website Version 6.0 Loaded Successfully.");
-/* ==========================================
-   VERSION 6.0
-   PART 3.9
-   CONTACT FORM & COPY FEATURES
-========================================== */
+"color:#2563eb;font-size:14px;font-weight:bold;");
 
-/* ===== AJAX Contact Form ===== */
+console.log("%cMuhammad Jamil Uddin",
+
+"color:#2563eb;font-size:22px;font-weight:bold;");
+
+console.log("%cOfficial Portfolio Website",
+
+"color:#0ea5e9;font-size:16px;");
+
+console.log("%cVersion 7.0",
+
+"color:#16a34a;font-size:16px;font-weight:bold;");
+
+console.log("%cLoader & Performance Ready",
+
+"color:#f59e0b;font-size:14px;");
+
+console.log("%c==========================================",
+
+"color:#2563eb;font-size:14px;font-weight:bold;");
+
+console.log("✅ Version 7.0 | Part 3.8 Loaded Successfully");
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.9
+   SECTION : PROFESSIONAL CONTACT FORM
+========================================================== */
+
+/* ===== Contact Form ===== */
 
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
 
-    contactForm.addEventListener("submit", async function (e) {
+    contactForm.addEventListener("submit", async (event) => {
 
-        e.preventDefault();
+        event.preventDefault();
 
-        const formData = new FormData(contactForm);
+        const submitButton =
+        contactForm.querySelector("button[type='submit']");
+
+        const originalButtonText =
+        submitButton ? submitButton.innerHTML : "";
+
+        if (submitButton) {
+
+            submitButton.disabled = true;
+
+            submitButton.innerHTML = "Sending...";
+
+        }
 
         try {
 
@@ -1030,10 +1489,12 @@ if (contactForm) {
 
                 method: "POST",
 
-                body: formData,
+                body: new FormData(contactForm),
 
                 headers: {
+
                     "Accept": "application/json"
+
                 }
 
             });
@@ -1046,13 +1507,21 @@ if (contactForm) {
 
             } else {
 
-                alert("❌ Failed to send message. Please try again.");
+                alert("❌ Failed to send the message.");
 
             }
 
         } catch (error) {
 
-            alert("❌ Network error. Please try again.");
+            alert("❌ Network Error. Please try again.");
+
+        }
+
+        if (submitButton) {
+
+            submitButton.disabled = false;
+
+            submitButton.innerHTML = originalButtonText;
 
         }
 
@@ -1060,35 +1529,55 @@ if (contactForm) {
 
 }
 
-/* ===== Copy Email ===== */
+/* ==========================================================
+   COPY EMAIL
+========================================================== */
 
 function copyEmail() {
 
-    navigator.clipboard.writeText("muhammadjamil252839@gmail.com");
+    navigator.clipboard.writeText(
 
-    alert("✅ Email copied successfully.");
+        "muhammadjamil252839@gmail.com"
+
+    ).then(() => {
+
+        alert("✅ Email copied successfully.");
+
+    });
 
 }
 
-/* ===== Copy Mobile ===== */
+/* ==========================================================
+   COPY PHONE
+========================================================== */
 
 function copyPhone() {
 
-    navigator.clipboard.writeText("+8801826067398");
+    navigator.clipboard.writeText(
 
-    alert("✅ Mobile number copied successfully.");
+        "+8801826067398"
+
+    ).then(() => {
+
+        alert("✅ Mobile number copied successfully.");
+
+    });
 
 }
 
-/* ===== Double Click to Copy ===== */
+/* ==========================================================
+   DOUBLE CLICK COPY
+========================================================== */
 
 document.querySelectorAll(".contact-card").forEach(card => {
 
     card.addEventListener("dblclick", () => {
 
-        const text = card.innerText;
+        navigator.clipboard.writeText(
 
-        navigator.clipboard.writeText(text);
+            card.innerText
+
+        );
 
         alert("✅ Information copied.");
 
@@ -1096,56 +1585,80 @@ document.querySelectorAll(".contact-card").forEach(card => {
 
 });
 
-/* ===== Email Shortcut ===== */
+/* ==========================================================
+   SHORTCUT KEYS
+========================================================== */
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (event) => {
 
-    if (e.ctrlKey && e.key.toLowerCase() === "e") {
+    if (
+
+        event.ctrlKey &&
+
+        event.key.toLowerCase() === "e"
+
+    ) {
+
+        event.preventDefault();
 
         window.location.href =
-            "mailto:muhammadjamil252839@gmail.com";
+
+        "mailto:muhammadjamil252839@gmail.com";
+
+    }
+
+    if (
+
+        event.ctrlKey &&
+
+        event.key.toLowerCase() === "p"
+
+    ) {
+
+        event.preventDefault();
+
+        window.location.href =
+
+        "tel:+8801826067398";
 
     }
 
 });
 
-/* ===== Phone Shortcut ===== */
+/* ==========================================================
+   CONSOLE
+========================================================== */
 
-document.addEventListener("keydown", (e) => {
+console.log(
 
-    if (e.ctrlKey && e.key.toLowerCase() === "p") {
+"✅ Version 7.0 | Part 3.9 Loaded Successfully"
 
-        window.location.href =
-            "tel:+8801826067398";
+);
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.10
+   SECTION : FINAL INITIALIZATION
+========================================================== */
 
-    }
-
-});
-/* ==========================================
-   VERSION 6.0
-   PART 3.10 (FINAL)
-   WEBSITE INITIALIZATION
-========================================== */
-
-/* ===== WEBSITE READY ===== */
+/* ==========================================================
+   WEBSITE READY
+========================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    console.log("Website initialized successfully.");
+    console.log("🚀 Website Initialized Successfully.");
 
 });
 
-/* ===== Disable Right Click (Optional) ===== */
 
-document.addEventListener("contextmenu", (event) => {
+/* ==========================================================
+   DISABLE IMAGE DRAG
+========================================================== */
 
-    event.preventDefault();
+document.querySelectorAll("img").forEach((image) => {
 
-});
-
-/* ===== Disable Image Drag ===== */
-
-document.querySelectorAll("img").forEach(image => {
+    image.setAttribute("draggable", "false");
 
     image.addEventListener("dragstart", (event) => {
 
@@ -1155,53 +1668,145 @@ document.querySelectorAll("img").forEach(image => {
 
 });
 
-/* ===== Keyboard Shortcuts ===== */
 
-document.addEventListener("keydown", (event) => {
+/* ==========================================================
+   SMOOTH PAGE ANCHOR SCROLL
+========================================================== */
 
-    // Ctrl + U
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
-    if (event.ctrlKey && event.key.toLowerCase() === "u") {
+    anchor.addEventListener("click", function (event) {
+
+        const target = document.querySelector(
+
+            this.getAttribute("href")
+
+        );
+
+        if (!target) return;
 
         event.preventDefault();
 
-    }
+        target.scrollIntoView({
 
-    // F12
+            behavior: "smooth",
 
-    if (event.key === "F12") {
+            block: "start"
 
-        event.preventDefault();
+        });
+
+    });
+
+});
+
+
+/* ==========================================================
+   AUTO EXTERNAL LINK
+========================================================== */
+
+document.querySelectorAll("a").forEach((link) => {
+
+    if (
+
+        link.hostname &&
+
+        link.hostname !== location.hostname
+
+    ) {
+
+        link.target = "_blank";
+
+        link.rel = "noopener noreferrer";
 
     }
 
 });
 
-/* ===== Error Handling ===== */
+
+/* ==========================================================
+   ONLINE / OFFLINE MESSAGE
+========================================================== */
+
+window.addEventListener("online", () => {
+
+    console.log("🟢 Internet Connected");
+
+});
+
+window.addEventListener("offline", () => {
+
+    console.log("🔴 Internet Disconnected");
+
+});
+
+
+/* ==========================================================
+   ERROR HANDLER
+========================================================== */
 
 window.addEventListener("error", (event) => {
 
-    console.error("Website Error:", event.message);
+    console.error(
+
+        "Website Error :",
+
+        event.message
+
+    );
 
 });
 
-/* ===== Welcome Message ===== */
 
-console.log("%c=================================",
-"color:#0f766e");
+/* ==========================================================
+   COPYRIGHT YEAR
+========================================================== */
 
-console.log("%cMuhammad Jamil Uddin",
-"color:#0f766e;font-size:20px;font-weight:bold;");
+const footerYear = document.getElementById("footerYear");
 
-console.log("%cOfficial Portfolio Website",
-"color:#14b8a6;font-size:16px;");
+if (footerYear) {
 
-console.log("%cVersion 6.0",
-"color:#0f766e");
+    footerYear.textContent =
 
-console.log("%c=================================",
-"color:#0f766e");
+    new Date().getFullYear();
 
-/* ===== Finish ===== */
+}
 
-console.log("All JavaScript modules loaded successfully.");
+
+/* ==========================================================
+   FINAL CONSOLE
+========================================================== */
+
+console.log(
+"%c==============================================",
+"color:#2563eb;font-size:14px;font-weight:bold;"
+);
+
+console.log(
+"%cMuhammad Jamil Uddin",
+"color:#2563eb;font-size:22px;font-weight:bold;"
+);
+
+console.log(
+"%cOfficial Portfolio Website",
+"color:#0ea5e9;font-size:16px;"
+);
+
+console.log(
+"%cVersion 7.0 Final",
+"color:#16a34a;font-size:18px;font-weight:bold;"
+);
+
+console.log(
+"%cGitHub Pages Ready",
+"color:#f59e0b;font-size:14px;"
+);
+
+console.log(
+"%cAll JavaScript Modules Loaded Successfully",
+"color:#9333ea;font-size:14px;"
+);
+
+console.log(
+"%c==============================================",
+"color:#2563eb;font-size:14px;font-weight:bold;"
+);
