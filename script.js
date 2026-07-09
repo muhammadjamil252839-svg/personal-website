@@ -469,89 +469,202 @@ if (visitorCount) {
     visits.toLocaleString();
 
 }
-/* ==========================================
-   VERSION 6.0
-   PART 3.6
-   HIJRI DATE, QUOTE & TYPING
-========================================== */
-
-/* ===== Hijri Date ===== */
+/* =========================================
+   VERSION 7.0
+   PART 3.6.1
+   SMART DATE & HIJRI DATE
+========================================= */
 
 const hijriDate = document.getElementById("hijriDate");
 
-function updateHijriDate() {
+/* ===== English Date ===== */
+const englishDate = document.getElementById("englishDate");
 
-    if (!hijriDate) return;
+/* ===== Bangla Date ===== */
+const banglaDate = document.getElementById("banglaDate");
+
+/* ===== Arabic Date ===== */
+const arabicDate = document.getElementById("arabicDate");
+
+function updateDates() {
 
     const today = new Date();
 
-    const hijri = new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
+    /* English Date */
 
-        day: "numeric",
-        month: "long",
-        year: "numeric"
+    if (englishDate) {
 
-    }).format(today);
+        englishDate.textContent =
+            today.toLocaleDateString("en-GB", {
 
-    hijriDate.textContent = hijri;
+                weekday: "long",
+
+                day: "2-digit",
+
+                month: "long",
+
+                year: "numeric"
+
+            });
+
+    }
+
+    /* Bangla Date */
+
+    if (banglaDate) {
+
+        banglaDate.textContent =
+            today.toLocaleDateString("bn-BD", {
+
+                weekday: "long",
+
+                day: "numeric",
+
+                month: "long",
+
+                year: "numeric"
+
+            });
+
+    }
+
+    /* Arabic Date */
+
+    if (arabicDate) {
+
+        arabicDate.textContent =
+            today.toLocaleDateString("ar-SA", {
+
+                weekday: "long",
+
+                day: "numeric",
+
+                month: "long",
+
+                year: "numeric"
+
+            });
+
+    }
+
+    /* Hijri Date */
+
+    if (hijriDate) {
+
+        hijriDate.textContent =
+            new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
+
+                day: "numeric",
+
+                month: "long",
+
+                year: "numeric"
+
+            }).format(today);
+
+    }
 
 }
 
-updateHijriDate();
+updateDates();
 
-/* ===== Daily Islamic Quotes ===== */
+/* প্রতি ১ মিনিট পর Date Refresh হবে */
+
+setInterval(updateDates, 60000);
+/* =========================================
+   VERSION 7.0
+   PART 3.6.2
+   PROFESSIONAL DAILY QUOTES
+========================================= */
 
 const quotes = [
 
-"Indeed, Allah is with those who are patient. (Qur'an 2:153)",
-
-"And whoever puts their trust in Allah, then He alone is sufficient for them. (Qur'an 65:3)",
-
-"The best among you are those who learn the Qur'an and teach it. (Sahih al-Bukhari)",
-
-"My success is only through Allah. (Qur'an 11:88)",
+"Indeed, Allah is with the patient. (Qur'an 2:153)",
 
 "So remember Me; I will remember you. (Qur'an 2:152)",
 
-"Indeed, prayer keeps one away from immorality and wrongdoing. (Qur'an 29:45)"
+"And whoever relies upon Allah - then He is sufficient for him. (Qur'an 65:3)",
+
+"The best among you are those who learn the Qur'an and teach it. (Sahih al-Bukhari)",
+
+"Allah does not burden a soul beyond that it can bear. (Qur'an 2:286)",
+
+"Verily, with hardship comes ease. (Qur'an 94:6)",
+
+"The most beloved deeds to Allah are the consistent ones, even if they are small. (Bukhari & Muslim)",
+
+"Seek knowledge from the cradle to the grave.",
+
+"Success belongs to those who trust Allah.",
+
+"Every new day is another chance to worship Allah sincerely.",
+
+"Your character is your greatest beauty.",
+
+"Prayer is the key to success."
 
 ];
 
 const dailyQuote = document.getElementById("dailyQuote");
 
-if (dailyQuote) {
+function updateDailyQuote(){
 
-    const day = new Date().getDate();
+    if(!dailyQuote) return;
 
-    dailyQuote.textContent = quotes[day % quotes.length];
+    const today = new Date();
+
+    const index = today.getDate() % quotes.length;
+
+    dailyQuote.style.opacity = "0";
+
+    setTimeout(()=>{
+
+        dailyQuote.textContent = quotes[index];
+
+        dailyQuote.style.opacity = "1";
+
+    },300);
 
 }
 
-/* ===== Typing Animation ===== */
+updateDailyQuote();
+/* =========================================
+   VERSION 7.0
+   PART 3.6.3
+   PROFESSIONAL TYPING ANIMATION
+========================================= */
 
 const typingText = document.getElementById("typingText");
 
 const words = [
 
-"Hafiz of the Holy Qur'an",
+    "Hafiz of the Holy Qur'an",
 
-"IIUC Student",
+    "Qur'anic Sciences Student",
 
-"Qur'anic Sciences Student",
+    "International Islamic University Chittagong",
 
-"Islamic Researcher",
+    "Islamic Researcher",
 
-"Web Developer",
+    "Future International Scholar",
 
-"Public Speaker",
+    "Web Developer",
 
-"Future Scholar"
+    "Graphic Designer",
+
+    "Public Speaker",
+
+    "Volunteer",
+
+    "Content Creator",
+
+    "Lifelong Learner"
 
 ];
 
 let wordIndex = 0;
 let charIndex = 0;
-let deleting = false;
+let isDeleting = false;
 
 function typingEffect() {
 
@@ -559,15 +672,18 @@ function typingEffect() {
 
     const currentWord = words[wordIndex];
 
-    if (!deleting) {
+    if (!isDeleting) {
 
-        typingText.textContent = currentWord.substring(0, charIndex++);
+        typingText.textContent =
+        currentWord.substring(0, charIndex + 1);
 
-        if (charIndex > currentWord.length) {
+        charIndex++;
 
-            deleting = true;
+        if (charIndex === currentWord.length) {
 
-            setTimeout(typingEffect, 1500);
+            isDeleting = true;
+
+            setTimeout(typingEffect, 1800);
 
             return;
 
@@ -575,11 +691,14 @@ function typingEffect() {
 
     } else {
 
-        typingText.textContent = currentWord.substring(0, charIndex--);
+        typingText.textContent =
+        currentWord.substring(0, charIndex - 1);
 
-        if (charIndex < 0) {
+        charIndex--;
 
-            deleting = false;
+        if (charIndex === 0) {
+
+            isDeleting = false;
 
             wordIndex++;
 
@@ -593,11 +712,33 @@ function typingEffect() {
 
     }
 
-    setTimeout(typingEffect, deleting ? 50 : 100);
+    setTimeout(
+
+        typingEffect,
+
+        isDeleting ? 45 : 90
+
+    );
 
 }
 
 typingEffect();
+
+/* ===== Cursor Blink ===== */
+
+setInterval(() => {
+
+    if (!typingText) return;
+
+    typingText.style.borderRight =
+        typingText.style.borderRight ===
+        "3px solid #0d6efd"
+
+        ? "3px solid transparent"
+
+        : "3px solid #0d6efd";
+
+}, 500);
 /* ==========================================
    VERSION 6.0
    PART 3.7
