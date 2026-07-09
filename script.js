@@ -354,29 +354,32 @@ music.addEventListener("ended", () => {
     musicBtn.textContent = "🎵";
 
 });
-/* ==========================================
-   VERSION 6.0
+/* =========================================
+   VERSION 7.0
    PART 3.5
-   CLOCK, STATUS & VISITOR COUNTER
-========================================== */
+   LIVE CLOCK + STATUS + VISITOR COUNTER
+========================================= */
 
-/* ===== Live Digital Clock ===== */
+/* ===== Bangladesh Digital Clock ===== */
 
 const digitalClock = document.getElementById("digitalClock");
 
 function updateClock() {
 
+    if (!digitalClock) return;
+
     const now = new Date();
 
     const options = {
-        hour: "2-digit",
+        timeZone: "Asia/Dhaka",
+        hour: "numeric",
         minute: "2-digit",
-        second: "2-digit"
+        second: "2-digit",
+        hour12: true
     };
 
-    if (digitalClock) {
-        digitalClock.textContent = now.toLocaleTimeString("en-GB", options);
-    }
+    digitalClock.textContent =
+        now.toLocaleTimeString("en-US", options);
 
 }
 
@@ -384,41 +387,66 @@ updateClock();
 
 setInterval(updateClock, 1000);
 
+
+
 /* ===== Current Year ===== */
 
-const currentYear = document.getElementById("currentYear");
+const currentYear =
+document.getElementById("currentYear");
 
 if (currentYear) {
 
-    currentYear.textContent = new Date().getFullYear();
+    currentYear.textContent =
+    new Date().getFullYear();
 
 }
 
+
+
 /* ===== Network Status ===== */
 
-const networkStatus = document.getElementById("networkStatus");
+const networkStatus =
+document.getElementById("networkStatus");
 
 function updateNetworkStatus() {
 
     if (!networkStatus) return;
 
-    networkStatus.textContent = navigator.onLine
-        ? "🟢 Online"
-        : "🔴 Offline";
+    if (navigator.onLine) {
+
+        networkStatus.innerHTML =
+        "🟢 Online";
+
+    } else {
+
+        networkStatus.innerHTML =
+        "🔴 Offline";
+
+    }
 
 }
 
 updateNetworkStatus();
 
-window.addEventListener("online", updateNetworkStatus);
+window.addEventListener(
+"online",
+updateNetworkStatus
+);
 
-window.addEventListener("offline", updateNetworkStatus);
+window.addEventListener(
+"offline",
+updateNetworkStatus
+);
+
+
 
 /* ===== Visitor Counter ===== */
 
-const visitorCount = document.getElementById("visitorCount");
+const visitorCount =
+document.getElementById("visitorCount");
 
-let visits = localStorage.getItem("portfolioVisitor");
+let visits =
+localStorage.getItem("portfolioVisitor");
 
 if (!visits) {
 
@@ -430,11 +458,15 @@ if (!visits) {
 
 }
 
-localStorage.setItem("portfolioVisitor", visits);
+localStorage.setItem(
+"portfolioVisitor",
+visits
+);
 
 if (visitorCount) {
 
-    visitorCount.textContent = visits;
+    visitorCount.textContent =
+    visits.toLocaleString();
 
 }
 /* ==========================================
