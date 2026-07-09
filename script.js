@@ -952,6 +952,34 @@ allImages.forEach(image => {
 
 });
 
+
+/* =========================================
+   VERSION : 7.0
+   PART    : 1.1
+   AUTO HIDE LOADER
+========================================= */
+
+window.addEventListener("load", function () {
+
+    const loader = document.getElementById("loader");
+
+    if (loader) {
+
+        setTimeout(function () {
+
+            loader.classList.add("hide");
+
+            setTimeout(function () {
+
+                loader.remove();
+
+            }, 600);
+
+        }, 1500);
+
+    }
+
+});
 /* ===== Keyboard Shortcut ===== */
 
 document.addEventListener("keydown", (event) => {
