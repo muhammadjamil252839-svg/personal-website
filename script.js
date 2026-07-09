@@ -354,32 +354,87 @@ music.addEventListener("ended", () => {
     musicBtn.textContent = "🎵";
 
 });
-/* =========================================
-   VERSION 7.0
-   PART 3.5
-   LIVE CLOCK + STATUS + VISITOR COUNTER
-========================================= */
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.5.1
+   SECTION : ADVANCED LIVE CLOCK
 
-/* ===== Bangladesh Digital Clock ===== */
+   FEATURES
+   ----------------------------------------
+   ✅ Bangladesh Time (Asia/Dhaka)
+   ✅ 12-Hour Format (AM / PM)
+   ✅ Live Seconds
+   ✅ Auto Refresh Every Second
+   ✅ International Time Ready
+   ✅ Footer Clock System
+   ✅ Performance Optimized
 
-const digitalClock = document.getElementById("digitalClock");
+   AUTHOR  : Muhammad Jamil Uddin
+   UPDATED : Version 7.0
+========================================================== */
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.0
+   PART    : 3.5.2
+   SECTION : ADVANCED LIVE CLOCK
+========================================================== */
+
+/* ===== Clock Elements ===== */
+
+const bdClock = document.getElementById("bdClock");
+const utcClock = document.getElementById("utcClock");
+const currentYear = document.getElementById("currentYear");
+const networkStatus = document.getElementById("networkStatus");
+const visitorCount = document.getElementById("visitorCount");
+
+/* ===== Live Clock ===== */
 
 function updateClock() {
 
-    if (!digitalClock) return;
-
     const now = new Date();
 
-    const options = {
-        timeZone: "Asia/Dhaka",
-        hour: "numeric",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true
-    };
+    /* Bangladesh Time */
 
-    digitalClock.textContent =
-        now.toLocaleTimeString("en-US", options);
+    if (bdClock) {
+
+        bdClock.textContent =
+            now.toLocaleTimeString("en-US", {
+
+                timeZone: "Asia/Dhaka",
+
+                hour: "numeric",
+
+                minute: "2-digit",
+
+                second: "2-digit",
+
+                hour12: true
+
+            });
+
+    }
+
+    /* International UTC Time */
+
+    if (utcClock) {
+
+        utcClock.textContent =
+            now.toLocaleTimeString("en-GB", {
+
+                timeZone: "UTC",
+
+                hour: "2-digit",
+
+                minute: "2-digit",
+
+                second: "2-digit",
+
+                hour12: false
+
+            }) + " UTC";
+
+    }
 
 }
 
@@ -387,59 +442,95 @@ updateClock();
 
 setInterval(updateClock, 1000);
 
-
-
 /* ===== Current Year ===== */
-
-const currentYear =
-document.getElementById("currentYear");
 
 if (currentYear) {
 
-    currentYear.textContent =
-    new Date().getFullYear();
+    currentYear.textContent = new Date().getFullYear();
 
 }
 
-
-
 /* ===== Network Status ===== */
-
-const networkStatus =
-document.getElementById("networkStatus");
 
 function updateNetworkStatus() {
 
     if (!networkStatus) return;
 
-    if (navigator.onLine) {
-
-        networkStatus.innerHTML =
-        "🟢 Online";
-
-    } else {
-
-        networkStatus.innerHTML =
-        "🔴 Offline";
-
-    }
+    networkStatus.innerHTML =
+        navigator.onLine
+            ? "🟢 Online"
+            : "🔴 Offline";
 
 }
 
 updateNetworkStatus();
 
-window.addEventListener(
-"online",
-updateNetworkStatus
-);
+window.addEventListener("online", updateNetworkStatus);
 
-window.addEventListener(
-"offline",
-updateNetworkStatus
-);
+window.addEventListener("offline", updateNetworkStatus);
 
+/* ===== Visitor Counter ===== */
 
+let visits = Number(localStorage.getItem("portfolioVisitor") || 0);
 
+visits++;
+
+localStorage.setItem("portfolioVisitor", visits);
+
+if (visitorCount) {
+
+    visitorCount.textContent = visits.toLocaleString();
+
+}
+/* ==========================================================
+   VERSION : 7.0
+   PART    : 3.5.3
+   SECTION : GREETING & MULTILINGUAL TIME
+========================================================== */
+
+/* ===== Greeting ===== */
+
+const greeting = document.getElementById("greeting");
+
+function updateGreeting() {
+
+    if (!greeting) return;
+
+    const hour = Number(
+        new Date().toLocaleString("en-US", {
+            timeZone: "Asia/Dhaka",
+            hour: "numeric",
+            hour12: false
+        })
+    );
+
+    let message = "";
+
+    if (hour >= 5 && hour < 12) {
+
+        message = "🌅 Good Morning";
+
+    } else if (hour >= 12 && hour < 17) {
+
+        message = "☀️ Good Afternoon";
+
+    } else if (hour >= 17 && hour < 20) {
+
+        message = "🌇 Good Evening";
+
+    } else {
+
+        message = "🌙 Good Night";
+
+    }
+
+    greeting.textContent = message;
+
+}
+
+updateGreeting();
+
+setInterval(updateGreeting, 60000);
 /* ===== Visitor Counter ===== */
 
 const visitorCount =
