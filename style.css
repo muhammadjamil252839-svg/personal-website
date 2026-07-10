@@ -1845,8 +1845,112 @@ z-index:2000;
 
     border-radius:50px;
 
+/* ==========================================
+   PREMIUM WELCOME SCREEN
+   VERSION 8.0
+========================================== */
+
+#loader{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#eef5ff,#dcecff,#ffffff);
+
+    z-index:999999;
+
+    transition:.8s ease;
+}
+
+#loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-content{
+
+    width:100%;
+    max-width:420px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:20px;
+    margin:auto;
+}
+
+.loader-photo{
+
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+    object-fit:cover;
+
+    border:5px solid #1d6df2;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+    display:block;
+
+    margin:0 auto 25px;
+
+    animation:loaderImage 2s ease-in-out infinite alternate;
+}
+
+.loader-title{
+
+    font-size:56px;
+    font-weight:800;
+
+    color:#1565ff;
+
+    margin:0 0 10px;
+}
+
+.loader-name{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:#222;
+
+    margin-bottom:10px;
+}
+
+.loader-text{
+
+    font-size:18px;
+
+    color:#666;
+
+    margin-bottom:30px;
+}
+
+.loader-progress{
+
+    width:100%;
+    max-width:320px;
+
+    height:8px;
+
+    background:#dbeafe;
+
+    border-radius:50px;
+
     overflow:hidden;
 
+    margin:0 auto;
 }
 
 .loader-progress-bar{
@@ -1855,42 +1959,62 @@ z-index:2000;
 
     height:100%;
 
+    border-radius:50px;
+
     background:linear-gradient(90deg,#2563eb,#06b6d4);
 
-    animation:loadingBar 1.5s linear forwards;
-
+    animation:loadingBar 2s linear forwards;
 }
 
 @keyframes loadingBar{
 
     from{
-
-        width:0;
-
+        width:0%;
     }
 
     to{
-
         width:100%;
-
     }
-
 }
 
 @keyframes loaderImage{
 
     from{
-
         transform:scale(1);
-
     }
 
     to{
+        transform:scale(1.08);
+    }
+}
 
-        transform:scale(1.06);
+@media(max-width:768px){
 
+    .loader-photo{
+
+        width:120px;
+        height:120px;
     }
 
+    .loader-title{
+
+        font-size:44px;
+    }
+
+    .loader-name{
+
+        font-size:26px;
+    }
+
+    .loader-text{
+
+        font-size:16px;
+    }
+
+    .loader-progress{
+
+        max-width:280px;
+    }
 }
 /* ==========================================
    VERSION 6.0
