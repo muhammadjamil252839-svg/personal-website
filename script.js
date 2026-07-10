@@ -1075,7 +1075,451 @@ function typingEffect(){
 
             if(wordIndex>=typingWords.length){
 
-                wordIndex=0;
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.1
+   PART    : 3.6.1
+   SECTION : PROFESSIONAL LIVE DATE SYSTEM
+========================================================== */
+
+/* ==========================================================
+   DATE ELEMENTS
+========================================================== */
+
+const englishDate =
+document.getElementById("englishDate");
+
+const banglaDate =
+document.getElementById("banglaDate");
+
+const banglaYear =
+document.getElementById("banglaYear");
+
+const arabicDate =
+document.getElementById("arabicDate");
+
+const hijriDate =
+document.getElementById("hijriDate");
+
+/* ==========================================================
+   LIVE DATE UPDATE
+========================================================== */
+
+function updateDates(){
+
+    const today = new Date();
+
+    /* ==========================
+       English Date
+    ========================== */
+
+    if(englishDate){
+
+        englishDate.textContent =
+        today.toLocaleDateString(
+
+            "en-GB",
+
+            {
+
+                weekday : "long",
+
+                day : "2-digit",
+
+                month : "long",
+
+                year : "numeric"
+
+            }
+
+        );
+
+    }
+
+    /* ==========================
+       Bangla Date
+    ========================== */
+
+    if(banglaDate){
+
+        banglaDate.textContent =
+        today.toLocaleDateString(
+
+            "bn-BD",
+
+            {
+
+                weekday : "long",
+
+                day : "numeric",
+
+                month : "long",
+
+                year : "numeric"
+
+            }
+
+        );
+
+    }
+
+    /* ==========================
+       Bangla Calendar (Bangabda)
+    ========================== */
+
+    if(banglaYear){
+
+        banglaYear.textContent =
+        today.toLocaleDateString(
+
+            "bn-BD-u-ca-beng",
+
+            {
+
+                weekday : "long",
+
+                day : "numeric",
+
+                month : "long",
+
+                year : "numeric"
+
+            }
+
+        );
+
+    }
+
+    /* ==========================
+       Arabic Date
+    ========================== */
+
+    if(arabicDate){
+
+        arabicDate.textContent =
+        today.toLocaleDateString(
+
+            "ar-SA",
+
+            {
+
+                weekday : "long",
+
+                day : "numeric",
+
+                month : "long",
+
+                year : "numeric"
+
+            }
+
+        );
+
+    }
+
+    /* ==========================
+       Hijri Date
+    ========================== */
+
+    if(hijriDate){
+
+        hijriDate.textContent =
+
+        new Intl.DateTimeFormat(
+
+            "en-TN-u-ca-islamic",
+
+            {
+
+                weekday : "long",
+
+                day : "numeric",
+
+                month : "long",
+
+                year : "numeric"
+
+            }
+
+        ).format(today);
+
+    }
+
+}
+
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+updateDates();
+
+/* প্রতি ১ মিনিটে আপডেট */
+
+setInterval(
+
+    updateDates,
+
+    60000
+
+);
+
+console.log(
+
+"✅ Version 7.1 | Part 3.6.1 Loaded Successfully"
+
+);
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.1
+   PART    : 3.6.2
+   SECTION : PROFESSIONAL DAILY QUOTES
+========================================================== */
+
+/* ==========================================================
+   DAILY QUOTE ELEMENT
+========================================================== */
+
+const dailyQuote =
+document.getElementById("dailyQuote");
+
+/* ==========================================================
+   ISLAMIC DAILY QUOTES
+========================================================== */
+
+const quotes = [
+
+"Indeed, Allah is with the patient. (Qur'an 2:153)",
+
+"So remember Me; I will remember you. (Qur'an 2:152)",
+
+"Allah does not burden a soul beyond that it can bear. (Qur'an 2:286)",
+
+"Verily, with hardship comes ease. (Qur'an 94:6)",
+
+"And whoever relies upon Allah, He is sufficient for him. (Qur'an 65:3)",
+
+"The best among you are those who learn the Qur'an and teach it. (Sahih al-Bukhari)",
+
+"Prayer is the key to success.",
+
+"Knowledge is light.",
+
+"Success belongs to those who trust Allah.",
+
+"Never stop learning.",
+
+"Every new day is another opportunity to worship Allah.",
+
+"Good character is the best wealth.",
+
+"Be truthful, even if it is difficult.",
+
+"Seek knowledge throughout your life.",
+
+"Patience opens every door.",
+
+"The Qur'an is the light of the heart.",
+
+"Always trust Allah's plan.",
+
+"Make today better than yesterday.",
+
+"The strongest believer never loses hope.",
+
+"Gratitude increases blessings."
+
+];
+
+/* ==========================================================
+   UPDATE DAILY QUOTE
+========================================================== */
+
+function updateQuote(){
+
+    if(!dailyQuote) return;
+
+    const today = new Date();
+
+    const quoteIndex =
+
+    today.getDate() % quotes.length;
+
+    dailyQuote.style.opacity = "0";
+
+    dailyQuote.style.transform =
+
+    "translateY(10px)";
+
+    setTimeout(()=>{
+
+        dailyQuote.textContent =
+
+        quotes[quoteIndex];
+
+        dailyQuote.style.opacity = "1";
+
+        dailyQuote.style.transform =
+
+        "translateY(0px)";
+
+    },400);
+
+}
+
+/* ==========================================================
+   INITIALIZE
+========================================================== */
+
+updateQuote();
+
+console.log(
+
+"✅ Version 7.1 | Part 3.6.2 Loaded Successfully"
+
+);
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.1
+   PART    : 3.6.3
+   SECTION : PREMIUM TYPING ANIMATION
+========================================================== */
+
+/* ==========================================================
+   ELEMENT
+========================================================== */
+
+const typingText =
+document.getElementById("typingText");
+
+/* ==========================================================
+   PROFESSIONAL TITLES
+========================================================== */
+
+const typingWords = [
+
+    "Assalamu Alaikum",
+
+    "Welcome To My Official Portfolio",
+
+    "Muhammad Jamil Uddin",
+
+    "Hafiz of the Holy Qur'an",
+
+    "Student of Qur'anic Sciences",
+
+    "International Islamic University Chittagong",
+
+    "Islamic Researcher",
+
+    "Future International Scholar",
+
+    "Web Developer",
+
+    "Graphic Designer",
+
+    "Public Speaker",
+
+    "Volunteer",
+
+    "Content Creator",
+
+    "Leadership Trainer",
+
+    "Digital Learner",
+
+    "Arabic Language Learner",
+
+    "English Language Learner",
+
+    "Lifelong Learner",
+
+    "Dream • Learn • Serve",
+
+    "Thank You For Visiting"
+
+];
+
+/* ==========================================================
+   SETTINGS
+========================================================== */
+
+let wordIndex = 0;
+
+let charIndex = 0;
+
+let isDeleting = false;
+
+const typingSpeed = 80;
+
+const deletingSpeed = 40;
+
+const pauseTime = 1800;
+
+/* ==========================================================
+   TYPING EFFECT
+========================================================== */
+
+function typingEffect(){
+
+    if(!typingText) return;
+
+    const currentWord = typingWords[wordIndex];
+
+    if(!isDeleting){
+
+        typingText.textContent =
+
+        currentWord.substring(
+
+            0,
+
+            charIndex + 1
+
+        );
+
+        charIndex++;
+
+        if(charIndex > currentWord.length){
+
+            isDeleting = true;
+
+            setTimeout(
+
+                typingEffect,
+
+                pauseTime
+
+            );
+
+            return;
+
+        }
+
+    }
+
+    else{
+
+        typingText.textContent =
+
+        currentWord.substring(
+
+            0,
+
+            charIndex - 1
+
+        );
+
+        charIndex--;
+
+        if(charIndex === 0){
+
+            isDeleting = false;
+
+            wordIndex++;
+
+            if(wordIndex >= typingWords.length){
+
+                wordIndex = 0;
 
             }
 
@@ -1087,23 +1531,33 @@ function typingEffect(){
 
         typingEffect,
 
-        deleting?45:90
+        isDeleting
+
+        ? deletingSpeed
+
+        : typingSpeed
 
     );
 
 }
 
+/* ==========================================================
+   START
+========================================================== */
+
 typingEffect();
 
-/* ===== Cursor ===== */
+/* ==========================================================
+   CURSOR BLINK
+========================================================== */
 
 setInterval(()=>{
 
     if(!typingText) return;
 
-    typingText.style.borderRight=
+    typingText.style.borderRight =
 
-    typingText.style.borderRight===
+    typingText.style.borderRight ===
 
     "3px solid #0d6efd"
 
@@ -1117,7 +1571,15 @@ setInterval(()=>{
 
 },500);
 
-console.log("✅ Version 7.0 | Part 3.6 Loaded Successfully");
+/* ==========================================================
+   CONSOLE
+========================================================== */
+
+console.log(
+
+"✅ Version 7.1 | Part 3.6.3 Loaded Successfully"
+
+);
 /* ==========================================================
    PROJECT : Personal Portfolio Website
    VERSION : 7.0
