@@ -1,8 +1,7 @@
 /* ==========================================================
    PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.1
-   SECTION : MOBILE MENU SYSTEM
+   VERSION : 8.0 ULTIMATE EDITION
+   SECTION : COMPLETE JAVASCRIPT MODULE
 ========================================================== */
 
 "use strict";
@@ -11,7 +10,9 @@
 
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
-const menuIcon = document.getElementById("menu-icon");
+const sidebarToggle = document.getElementById("sidebarToggle");
+const sidebar = document.getElementById("sidebar");
+const sidebarClose = document.getElementById("sidebarClose");
 
 /* ===== Toggle Mobile Menu ===== */
 
@@ -22,22 +23,6 @@ if (menuBtn && navLinks) {
         navLinks.classList.toggle("active");
 
         menuBtn.classList.toggle("active");
-
-        if (menuIcon) {
-
-            if (navLinks.classList.contains("active")) {
-
-                menuIcon.classList.remove("fa-bars");
-                menuIcon.classList.add("fa-xmark");
-
-            } else {
-
-                menuIcon.classList.remove("fa-xmark");
-                menuIcon.classList.add("fa-bars");
-
-            }
-
-        }
 
     });
 
@@ -58,13 +43,6 @@ document.querySelectorAll("#nav-links a").forEach(link => {
         if (menuBtn) {
 
             menuBtn.classList.remove("active");
-
-        }
-
-        if (menuIcon) {
-
-            menuIcon.classList.remove("fa-xmark");
-            menuIcon.classList.add("fa-bars");
 
         }
 
@@ -90,13 +68,6 @@ document.addEventListener("click", (event) => {
 
         menuBtn.classList.remove("active");
 
-        if (menuIcon) {
-
-            menuIcon.classList.remove("fa-xmark");
-            menuIcon.classList.add("fa-bars");
-
-        }
-
     }
 
 });
@@ -119,10 +90,44 @@ document.addEventListener("keydown", (event) => {
 
         }
 
-        if (menuIcon) {
+    }
 
-            menuIcon.classList.remove("fa-xmark");
-            menuIcon.classList.add("fa-bars");
+});
+
+console.log("✅ Version 8.0 | Mobile Menu System Loaded");
+
+/* ==========================================================
+   VERSION 8.0
+   SIDEBAR MENU SYSTEM
+========================================================== */
+
+if (sidebarToggle && sidebar) {
+
+    sidebarToggle.addEventListener("click", () => {
+
+        sidebar.classList.add("active");
+
+    });
+
+}
+
+if (sidebarClose && sidebar) {
+
+    sidebarClose.addEventListener("click", () => {
+
+        sidebar.classList.remove("active");
+
+    });
+
+}
+
+document.addEventListener("click", (event) => {
+
+    if (sidebar && sidebarToggle) {
+
+        if (!sidebar.contains(event.target) && !sidebarToggle.contains(event.target)) {
+
+            sidebar.classList.remove("active");
 
         }
 
@@ -130,15 +135,124 @@ document.addEventListener("keydown", (event) => {
 
 });
 
-console.log("✅ Version 7.0 | Part 3.1 Loaded Successfully");
+console.log("✅ Version 8.0 | Sidebar Menu Loaded");
+
 /* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.2
-   SECTION : PROFESSIONAL IMAGE SLIDER
+   VERSION 8.0
+   ACCORDION SYSTEM
 ========================================================== */
 
-/* ===== Elements ===== */
+function toggleAccordion(id) {
+
+    const element = document.getElementById(id);
+
+    if (element) {
+
+        element.classList.toggle("active");
+
+    }
+
+}
+
+window.toggleAccordion = toggleAccordion;
+
+console.log("✅ Version 8.0 | Accordion System Loaded");
+
+/* ==========================================================
+   VERSION 8.0
+   THEME SYSTEM
+========================================================== */
+
+function setTheme(theme) {
+
+    if (theme === 'light') {
+
+        document.body.classList.remove('dark-mode');
+
+        localStorage.setItem('theme', 'light');
+
+    } else if (theme === 'dark') {
+
+        document.body.classList.add('dark-mode');
+
+        localStorage.setItem('theme', 'dark');
+
+    } else if (theme === 'system') {
+
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (prefersDark) {
+
+            document.body.classList.add('dark-mode');
+
+        } else {
+
+            document.body.classList.remove('dark-mode');
+
+        }
+
+        localStorage.setItem('theme', 'system');
+
+    }
+
+}
+
+window.setTheme = setTheme;
+
+function loadTheme() {
+
+    const savedTheme = localStorage.getItem("theme") || "light";
+
+    setTheme(savedTheme);
+
+}
+
+loadTheme();
+
+const themeToggle = document.getElementById("themeToggle");
+
+if (themeToggle) {
+
+    themeToggle.addEventListener("click", () => {
+
+        const isDarkMode = document.body.classList.contains('dark-mode');
+
+        setTheme(isDarkMode ? 'light' : 'dark');
+
+        themeToggle.innerHTML = isDarkMode ? "🌙" : "☀️";
+
+    });
+
+}
+
+console.log("✅ Version 8.0 | Theme System Loaded");
+
+/* ==========================================================
+   VERSION 8.0
+   LANGUAGE SYSTEM
+========================================================== */
+
+function setLanguage(lang) {
+
+    localStorage.setItem('language', lang);
+
+    console.log(`Language changed to: ${lang}`);
+
+}
+
+window.setLanguage = setLanguage;
+
+function getLanguage() {
+
+    return localStorage.getItem('language') || 'en';
+
+}
+
+console.log("✅ Version 8.0 | Language System Loaded");
+
+/* ==========================================================
+   PROFESSIONAL IMAGE SLIDER
+========================================================== */
 
 const slides = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
@@ -149,8 +263,6 @@ let currentSlide = 0;
 let autoSlide = null;
 
 if (slides.length > 0) {
-
-    /* ===== Show Slide ===== */
 
     function showSlide(index) {
 
@@ -171,6 +283,7 @@ if (slides.length > 0) {
         slides.forEach((slide, i) => {
 
             slide.classList.toggle(
+
                 "active",
                 i === currentSlide
             );
@@ -180,6 +293,7 @@ if (slides.length > 0) {
         dots.forEach((dot, i) => {
 
             dot.classList.toggle(
+
                 "active",
                 i === currentSlide
             );
@@ -188,23 +302,17 @@ if (slides.length > 0) {
 
     }
 
-    /* ===== Next ===== */
-
     function nextSlide() {
 
         showSlide(currentSlide + 1);
 
     }
 
-    /* ===== Previous ===== */
-
     function previousSlide() {
 
         showSlide(currentSlide - 1);
 
     }
-
-    /* ===== Auto Play ===== */
 
     function startSlider() {
 
@@ -213,8 +321,6 @@ if (slides.length > 0) {
         autoSlide = setInterval(nextSlide, 4000);
 
     }
-
-    /* ===== Stop ===== */
 
     function stopSlider() {
 
@@ -225,8 +331,6 @@ if (slides.length > 0) {
         }
 
     }
-
-    /* ===== Next Button ===== */
 
     if (nextBtn) {
 
@@ -240,8 +344,6 @@ if (slides.length > 0) {
 
     }
 
-    /* ===== Previous Button ===== */
-
     if (prevBtn) {
 
         prevBtn.addEventListener("click", () => {
@@ -253,8 +355,6 @@ if (slides.length > 0) {
         });
 
     }
-
-    /* ===== Dot Navigation ===== */
 
     dots.forEach((dot, index) => {
 
@@ -268,8 +368,6 @@ if (slides.length > 0) {
 
     });
 
-    /* ===== Pause On Hover ===== */
-
     slides.forEach((slide) => {
 
         slide.addEventListener("mouseenter", stopSlider);
@@ -277,8 +375,6 @@ if (slides.length > 0) {
         slide.addEventListener("mouseleave", startSlider);
 
     });
-
-    /* ===== Swipe Support (Mobile) ===== */
 
     let startX = 0;
 
@@ -306,28 +402,20 @@ if (slides.length > 0) {
 
     });
 
-    /* ===== Start ===== */
-
     showSlide(0);
 
     startSlider();
 
 }
 
-console.log("✅ Version 7.0 | Part 3.2 Loaded Successfully");
-/* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.3
-   SECTION : PROFESSIONAL SCROLL EFFECTS
-========================================================== */
+console.log("✅ Version 8.0 | Image Slider Loaded");
 
-/* ===== Elements ===== */
+/* ==========================================================
+   PROFESSIONAL SCROLL EFFECTS
+========================================================== */
 
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 const progressBar = document.getElementById("progressBar");
-
-/* ===== Scroll Function ===== */
 
 function updateScrollEffects() {
 
@@ -339,8 +427,6 @@ function updateScrollEffects() {
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
 
-    /* Progress Bar */
-
     if (progressBar) {
 
         const progress =
@@ -351,17 +437,17 @@ function updateScrollEffects() {
 
     }
 
-    /* Scroll Button */
-
     if (scrollTopBtn) {
 
         if (scrollTop > 300) {
 
             scrollTopBtn.classList.add("show");
+            scrollTopBtn.style.display = "block";
 
         } else {
 
             scrollTopBtn.classList.remove("show");
+            scrollTopBtn.style.display = "none";
 
         }
 
@@ -375,8 +461,6 @@ window.addEventListener(
 );
 
 updateScrollEffects();
-
-/* ===== Scroll To Top ===== */
 
 if (scrollTopBtn) {
 
@@ -393,8 +477,6 @@ if (scrollTopBtn) {
     });
 
 }
-
-/* ===== Fade Animation ===== */
 
 const fadeItems = document.querySelectorAll(
 
@@ -438,8 +520,6 @@ fadeItems.forEach((item) => {
 
 });
 
-/* ===== Active Navigation ===== */
-
 const sections =
 document.querySelectorAll("section[id]");
 
@@ -480,212 +560,21 @@ window.addEventListener("scroll", () => {
 
 });
 
-/* ===== Console ===== */
-
-console.log(
-"✅ Version 7.0 | Part 3.3 Loaded Successfully"
-);
-/* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.4
-   SECTION : PROFESSIONAL DARK MODE & MUSIC
-========================================================== */
-
-/* ===== Elements ===== */
-
-const themeToggle = document.getElementById("themeToggle");
-const music = document.getElementById("backgroundMusic");
-const musicBtn = document.getElementById("musicBtn");
+console.log("✅ Version 8.0 | Scroll Effects Loaded");
 
 /* ==========================================================
-   DARK MODE
+   PROFESSIONAL LIVE CLOCK SYSTEM
 ========================================================== */
-
-function loadTheme() {
-
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "dark") {
-
-        document.body.classList.add("dark-mode");
-
-        if (themeToggle) {
-
-            themeToggle.innerHTML = "☀️";
-
-            themeToggle.title = "Light Mode";
-
-        }
-
-    } else {
-
-        document.body.classList.remove("dark-mode");
-
-        if (themeToggle) {
-
-            themeToggle.innerHTML = "🌙";
-
-            themeToggle.title = "Dark Mode";
-
-        }
-
-    }
-
-}
-
-loadTheme();
-
-if (themeToggle) {
-
-    themeToggle.addEventListener("click", () => {
-
-        document.body.classList.toggle("dark-mode");
-
-        if (document.body.classList.contains("dark-mode")) {
-
-            localStorage.setItem("theme", "dark");
-
-            themeToggle.innerHTML = "☀️";
-
-            themeToggle.title = "Light Mode";
-
-        } else {
-
-            localStorage.setItem("theme", "light");
-
-            themeToggle.innerHTML = "🌙";
-
-            themeToggle.title = "Dark Mode";
-
-        }
-
-    });
-
-}
-
-/* ==========================================================
-   BACKGROUND MUSIC
-========================================================== */
-
-let isPlaying = false;
-
-if (music && musicBtn) {
-
-    music.volume = 0.40;
-
-    musicBtn.innerHTML = "🎵";
-
-    musicBtn.title = "Play Music";
-
-    musicBtn.addEventListener("click", async () => {
-
-        try {
-
-            if (!isPlaying) {
-
-                await music.play();
-
-                isPlaying = true;
-
-                musicBtn.innerHTML = "⏸️";
-
-                musicBtn.title = "Pause Music";
-
-            } else {
-
-                music.pause();
-
-                isPlaying = false;
-
-                musicBtn.innerHTML = "🎵";
-
-                musicBtn.title = "Play Music";
-
-            }
-
-        } catch (error) {
-
-            console.log("Music playback blocked by browser.");
-
-        }
-
-    });
-
-    music.addEventListener("ended", () => {
-
-        isPlaying = false;
-
-        musicBtn.innerHTML = "🎵";
-
-        musicBtn.title = "Play Music";
-
-    });
-
-}
-
-/* ==========================================================
-   SHORTCUT KEYS
-========================================================== */
-
-document.addEventListener("keydown", (event) => {
-
-    /* Ctrl + D = Dark Mode */
-
-    if (event.ctrlKey && event.key.toLowerCase() === "d") {
-
-        event.preventDefault();
-
-        if (themeToggle) {
-
-            themeToggle.click();
-
-        }
-
-    }
-
-    /* Ctrl + M = Music */
-
-    if (event.ctrlKey && event.key.toLowerCase() === "m") {
-
-        event.preventDefault();
-
-        if (musicBtn) {
-
-            musicBtn.click();
-
-        }
-
-    }
-
-});
-
-console.log("✅ Version 7.0 | Part 3.4 Loaded Successfully");
-/* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.5
-   SECTION : PROFESSIONAL LIVE CLOCK SYSTEM
-========================================================== */
-
-/* ===== Elements ===== */
 
 const bdClock = document.getElementById("bdClock");
 const utcClock = document.getElementById("utcClock");
 const greeting = document.getElementById("greeting");
-const currentYear = document.getElementById("currentYear");
 const networkStatus = document.getElementById("networkStatus");
 const visitorCount = document.getElementById("visitorCount");
-
-/* ==========================================================
-   LIVE CLOCK
-========================================================== */
 
 function updateClock() {
 
     const now = new Date();
-
-    /* Bangladesh Time */
 
     if (bdClock) {
 
@@ -705,8 +594,6 @@ function updateClock() {
         });
 
     }
-
-    /* International (UTC) */
 
     if (utcClock) {
 
@@ -731,11 +618,7 @@ function updateClock() {
 
 updateClock();
 
-setInterval(updateClock,1000);
-
-/* ==========================================================
-   GREETING
-========================================================== */
+setInterval(updateClock, 1000);
 
 function updateGreeting(){
 
@@ -757,7 +640,7 @@ function updateGreeting(){
 
     if(hour>=5 && hour<12){
 
-        greeting.innerHTML="🌅 Good Morning";
+        greeting.innerHTML="🌄 Good Morning";
 
     }
 
@@ -783,21 +666,7 @@ function updateGreeting(){
 
 updateGreeting();
 
-setInterval(updateGreeting,60000);
-
-/* ==========================================================
-   CURRENT YEAR
-========================================================== */
-
-if(currentYear){
-
-    currentYear.textContent=new Date().getFullYear();
-
-}
-
-/* ==========================================================
-   NETWORK STATUS
-========================================================== */
+setInterval(updateGreeting, 60000);
 
 function updateNetwork(){
 
@@ -815,13 +684,9 @@ function updateNetwork(){
 
 updateNetwork();
 
-window.addEventListener("online",updateNetwork);
+window.addEventListener("online", updateNetwork);
 
-window.addEventListener("offline",updateNetwork);
-
-/* ==========================================================
-   VISITOR COUNTER
-========================================================== */
+window.addEventListener("offline", updateNetwork);
 
 if(visitorCount){
 
@@ -847,24 +712,10 @@ if(visitorCount){
 
 }
 
-/* ==========================================================
-   DIGITAL STATUS
-========================================================== */
-
-console.log(
-
-"✅ Version 7.0 | Part 3.5 Loaded Successfully"
-
-);
-/* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.1
-   PART    : 3.6.1
-   SECTION : PROFESSIONAL LIVE DATE SYSTEM
-========================================================== */
+console.log("✅ Version 8.0 | Live Clock System Loaded");
 
 /* ==========================================================
-   DATE ELEMENTS
+   PROFESSIONAL LIVE DATE SYSTEM
 ========================================================== */
 
 const englishDate =
@@ -873,26 +724,18 @@ document.getElementById("englishDate");
 const banglaDate =
 document.getElementById("banglaDate");
 
-const banglaYear =
-document.getElementById("banglaYear");
-
 const arabicDate =
 document.getElementById("arabicDate");
 
 const hijriDate =
 document.getElementById("hijriDate");
 
-/* ==========================================================
-   LIVE DATE UPDATE
-========================================================== */
+const banglaCalendar =
+document.getElementById("banglaCalendar");
 
 function updateDates(){
 
     const today = new Date();
-
-    /* ==========================
-       English Date
-    ========================== */
 
     if(englishDate){
 
@@ -917,10 +760,6 @@ function updateDates(){
 
     }
 
-    /* ==========================
-       Bangla Date
-    ========================== */
-
     if(banglaDate){
 
         banglaDate.textContent =
@@ -944,13 +783,9 @@ function updateDates(){
 
     }
 
-    /* ==========================
-       Bangla Calendar (Bangabda)
-    ========================== */
+    if(banglaCalendar){
 
-    if(banglaYear){
-
-        banglaYear.textContent =
+        banglaCalendar.textContent =
         today.toLocaleDateString(
 
             "bn-BD-u-ca-beng",
@@ -970,10 +805,6 @@ function updateDates(){
         );
 
     }
-
-    /* ==========================
-       Arabic Date
-    ========================== */
 
     if(arabicDate){
 
@@ -997,10 +828,6 @@ function updateDates(){
         );
 
     }
-
-    /* ==========================
-       Hijri Date
-    ========================== */
 
     if(hijriDate){
 
@@ -1028,44 +855,18 @@ function updateDates(){
 
 }
 
-/* ==========================================================
-   INITIALIZE
-========================================================== */
-
 updateDates();
 
-/* প্রতি ১ মিনিটে আপডেট */
+setInterval(updateDates, 60000);
 
-setInterval(
-
-    updateDates,
-
-    60000
-
-);
-
-console.log(
-
-"✅ Version 7.1 | Part 3.6.1 Loaded Successfully"
-
-);
-/* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.1
-   PART    : 3.6.2
-   SECTION : PROFESSIONAL DAILY QUOTES
-========================================================== */
+console.log("✅ Version 8.0 | Live Date System Loaded");
 
 /* ==========================================================
-   DAILY QUOTE ELEMENT
+   PROFESSIONAL DAILY QUOTES
 ========================================================== */
 
 const dailyQuote =
 document.getElementById("dailyQuote");
-
-/* ==========================================================
-   ISLAMIC DAILY QUOTES
-========================================================== */
 
 const quotes = [
 
@@ -1111,10 +912,6 @@ const quotes = [
 
 ];
 
-/* ==========================================================
-   UPDATE DAILY QUOTE
-========================================================== */
-
 function updateQuote(){
 
     if(!dailyQuote) return;
@@ -1147,22 +944,12 @@ function updateQuote(){
 
 }
 
-/* ==========================================================
-   INITIALIZE
-========================================================== */
-
 updateQuote();
 
-console.log(
+console.log("✅ Version 8.0 | Daily Quotes Loaded");
 
-"✅ Version 7.1 | Part 3.6.2 Loaded Successfully"
-
-);
 /* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.1
-   PART    : 3.6.3
-   SECTION : SAFE TYPING ANIMATION
+   SAFE TYPING ANIMATION
 ========================================================== */
 
 const typingText = document.getElementById("typingText");
@@ -1278,19 +1065,15 @@ if (typingText) {
 
 }
 
-console.log("✅ Version 7.1 | Part 3.6.3 Loaded Successfully");
+console.log("✅ Version 8.0 | Typing Animation Loaded");
+
 /* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.7
-   SECTION : REAL WEATHER API
+   REAL WEATHER API
 ========================================================== */
 
 const weatherCity = document.getElementById("weatherCity");
 const weatherTemp = document.getElementById("weatherTemp");
 const weatherDesc = document.getElementById("weatherDesc");
-
-/* ===== Weather Code ===== */
 
 function getWeatherText(code){
 
@@ -1338,9 +1121,7 @@ function getWeatherText(code){
 
 }
 
-/* ===== Get Weather ===== */
-
-async function loadWeather(latitude,longitude){
+async function loadWeather(latitude, longitude){
 
     try{
 
@@ -1394,8 +1175,6 @@ async function loadWeather(latitude,longitude){
 
 }
 
-/* ===== User Location ===== */
-
 if(navigator.geolocation){
 
     navigator.geolocation.getCurrentPosition(
@@ -1418,7 +1197,7 @@ if(navigator.geolocation){
 
             }
 
-            loadWeather(lat,lon);
+            loadWeather(lat, lon);
 
         },
 
@@ -1432,13 +1211,7 @@ if(navigator.geolocation){
 
             }
 
-            loadWeather(
-
-                23.8103,
-
-                90.4125
-
-            );
+            loadWeather(23.8103, 90.4125);
 
         }
 
@@ -1454,30 +1227,14 @@ if(navigator.geolocation){
 
     }
 
-    loadWeather(
-
-        23.8103,
-
-        90.4125
-
-    );
+    loadWeather(23.8103, 90.4125);
 
 }
 
-console.log(
-
-"✅ Version 7.0 | Part 3.7 Loaded Successfully"
-
-);
-/* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.8
-   SECTION : LOADER & PERFORMANCE
-========================================================== */
+console.log("✅ Version 8.0 | Weather API Loaded");
 
 /* ==========================================================
-   WEBSITE LOADED
+   LOADER & PERFORMANCE
 ========================================================== */
 
 window.addEventListener("load", () => {
@@ -1504,123 +1261,11 @@ window.addEventListener("load", () => {
 
 });
 
-/* ==========================================================
-   FADE IN ANIMATION
-========================================================== */
-
-const animatedItems = document.querySelectorAll(
-
-".skill-card, .certificate-card, .experience-card, .education-card, .contact-card, .project-card, .service-card"
-
-);
-
-if (animatedItems.length) {
-
-    const animationObserver = new IntersectionObserver(
-
-        (entries, observer) => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("show");
-
-                    observer.unobserve(entry.target);
-
-                }
-
-            });
-
-        },
-
-        {
-
-            threshold: 0.15,
-
-            rootMargin: "0px 0px -50px 0px"
-
-        }
-
-    );
-
-    animatedItems.forEach(item => {
-
-        item.classList.add("fade-in");
-
-        animationObserver.observe(item);
-
-    });
-
-}
+console.log("✅ Version 8.0 | Loader System Loaded");
 
 /* ==========================================================
-   LAZY LOADING
+   PROFESSIONAL CONTACT FORM
 ========================================================== */
-
-document.querySelectorAll("img").forEach(image => {
-
-    image.loading = "lazy";
-
-});
-
-/* ==========================================================
-   KEYBOARD SHORTCUT
-========================================================== */
-
-document.addEventListener("keydown", (event) => {
-
-    if (event.key === "Home") {
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
-    }
-
-});
-
-/* ==========================================================
-   CONSOLE MESSAGE
-========================================================== */
-
-console.log("%c==========================================",
-
-"color:#2563eb;font-size:14px;font-weight:bold;");
-
-console.log("%cMuhammad Jamil Uddin",
-
-"color:#2563eb;font-size:22px;font-weight:bold;");
-
-console.log("%cOfficial Portfolio Website",
-
-"color:#0ea5e9;font-size:16px;");
-
-console.log("%cVersion 7.0",
-
-"color:#16a34a;font-size:16px;font-weight:bold;");
-
-console.log("%cLoader & Performance Ready",
-
-"color:#f59e0b;font-size:14px;");
-
-console.log("%c==========================================",
-
-"color:#2563eb;font-size:14px;font-weight:bold;");
-
-console.log("✅ Version 7.0 | Part 3.8 Loaded Successfully");
-/* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.9
-   SECTION : PROFESSIONAL CONTACT FORM
-========================================================== */
-
-/* ===== Contact Form ===== */
 
 const contactForm = document.getElementById("contactForm");
 
@@ -1690,8 +1335,10 @@ if (contactForm) {
 
 }
 
+console.log("✅ Version 8.0 | Contact Form Loaded");
+
 /* ==========================================================
-   COPY EMAIL
+   COPY EMAIL & PHONE
 ========================================================== */
 
 function copyEmail() {
@@ -1708,10 +1355,6 @@ function copyEmail() {
 
 }
 
-/* ==========================================================
-   COPY PHONE
-========================================================== */
-
 function copyPhone() {
 
     navigator.clipboard.writeText(
@@ -1726,9 +1369,8 @@ function copyPhone() {
 
 }
 
-/* ==========================================================
-   DOUBLE CLICK COPY
-========================================================== */
+window.copyEmail = copyEmail;
+window.copyPhone = copyPhone;
 
 document.querySelectorAll(".contact-card").forEach(card => {
 
@@ -1746,64 +1388,44 @@ document.querySelectorAll(".contact-card").forEach(card => {
 
 });
 
+console.log("✅ Version 8.0 | Copy Functions Loaded");
+
 /* ==========================================================
-   SHORTCUT KEYS
+   KEYBOARD SHORTCUTS
 ========================================================== */
 
 document.addEventListener("keydown", (event) => {
 
-    if (
-
-        event.ctrlKey &&
-
-        event.key.toLowerCase() === "e"
-
-    ) {
+    if (event.ctrlKey && event.key.toLowerCase() === "d") {
 
         event.preventDefault();
 
-        window.location.href =
+        if (themeToggle) {
 
-        "mailto:muhammadjamil252839@gmail.com";
+            themeToggle.click();
+
+        }
 
     }
 
-    if (
+    if (event.key === "Home") {
 
-        event.ctrlKey &&
+        window.scrollTo({
 
-        event.key.toLowerCase() === "p"
+            top: 0,
 
-    ) {
+            behavior: "smooth"
 
-        event.preventDefault();
-
-        window.location.href =
-
-        "tel:+8801826067398";
+        });
 
     }
 
 });
 
-/* ==========================================================
-   CONSOLE
-========================================================== */
-
-console.log(
-
-"✅ Version 7.0 | Part 3.9 Loaded Successfully"
-
-);
-/* ==========================================================
-   PROJECT : Personal Portfolio Website
-   VERSION : 7.0
-   PART    : 3.10
-   SECTION : FINAL INITIALIZATION
-========================================================== */
+console.log("✅ Version 8.0 | Keyboard Shortcuts Loaded");
 
 /* ==========================================================
-   WEBSITE READY
+   FINAL INITIALIZATION
 ========================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1811,11 +1433,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("🚀 Website Initialized Successfully.");
 
 });
-
-
-/* ==========================================================
-   DISABLE IMAGE DRAG
-========================================================== */
 
 document.querySelectorAll("img").forEach((image) => {
 
@@ -1828,11 +1445,6 @@ document.querySelectorAll("img").forEach((image) => {
     });
 
 });
-
-
-/* ==========================================================
-   SMOOTH PAGE ANCHOR SCROLL
-========================================================== */
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
@@ -1860,11 +1472,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 
 });
 
-
-/* ==========================================================
-   AUTO EXTERNAL LINK
-========================================================== */
-
 document.querySelectorAll("a").forEach((link) => {
 
     if (
@@ -1883,11 +1490,6 @@ document.querySelectorAll("a").forEach((link) => {
 
 });
 
-
-/* ==========================================================
-   ONLINE / OFFLINE MESSAGE
-========================================================== */
-
 window.addEventListener("online", () => {
 
     console.log("🟢 Internet Connected");
@@ -1899,11 +1501,6 @@ window.addEventListener("offline", () => {
     console.log("🔴 Internet Disconnected");
 
 });
-
-
-/* ==========================================================
-   ERROR HANDLER
-========================================================== */
 
 window.addEventListener("error", (event) => {
 
@@ -1917,11 +1514,6 @@ window.addEventListener("error", (event) => {
 
 });
 
-
-/* ==========================================================
-   COPYRIGHT YEAR
-========================================================== */
-
 const footerYear = document.getElementById("footerYear");
 
 if (footerYear) {
@@ -1932,42 +1524,24 @@ if (footerYear) {
 
 }
 
-
 /* ==========================================================
-   FINAL CONSOLE
+   FINAL CONSOLE MESSAGE
 ========================================================== */
 
-console.log(
-"%c==============================================",
-"color:#2563eb;font-size:14px;font-weight:bold;"
-);
+console.log("%c==============================================",
+"color:#2563eb;font-size:14px;font-weight:bold;");
 
-console.log(
-"%cMuhammad Jamil Uddin",
-"color:#2563eb;font-size:22px;font-weight:bold;"
-);
+console.log("%cMuhammad Jamil Uddin",
+"color:#2563eb;font-size:22px;font-weight:bold;");
 
-console.log(
-"%cOfficial Portfolio Website",
-"color:#0ea5e9;font-size:16px;"
-);
+console.log("%cOfficial Portfolio Website",
+"color:#0ea5e9;font-size:16px;");
 
-console.log(
-"%cVersion 7.0 Final",
-"color:#16a34a;font-size:18px;font-weight:bold;"
-);
+console.log("%cVersion 8.0 Ultimate Edition",
+"color:#16a34a;font-size:18px;font-weight:bold;");
 
-console.log(
-"%cGitHub Pages Ready",
-"color:#f59e0b;font-size:14px;"
-);
+console.log("%cAll Features Loaded Successfully",
+"color:#f59e0b;font-size:14px;");
 
-console.log(
-"%cAll JavaScript Modules Loaded Successfully",
-"color:#9333ea;font-size:14px;"
-);
-
-console.log(
-"%c==============================================",
-"color:#2563eb;font-size:14px;font-weight:bold;"
-);
+console.log("%c==============================================",
+"color:#2563eb;font-size:14px;font-weight:bold;");
