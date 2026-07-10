@@ -1,7 +1,7 @@
 /* ==========================================
    MUHAMMAD JAMIL UDDIN
    OFFICIAL PORTFOLIO WEBSITE
-   VERSION 6.0
+   VERSION 8.0 ULTIMATE EDITION
 ========================================== */
 
 *{
@@ -139,39 +139,226 @@ ul{
 
 }
 
-/* ===========================
-   EDUCATION LOGO
-=========================== */
+/* ==========================================
+   VERSION 8.0
+   SIDEBAR MENU SYSTEM
+========================================== */
 
-.education-logo img{
+.sidebar{
 
-    width:80px;
-    height:80px;
+    position:fixed;
+    left:0;
+    top:0;
+    width:350px;
+    height:100vh;
+    background:#ffffff;
+    box-shadow:5px 0 15px rgba(0,0,0,.15);
+    z-index:1000;
+    overflow-y:auto;
+    transform:translateX(-100%);
+    transition:.4s ease;
+
+}
+
+.sidebar.active{
+
+    transform:translateX(0);
+
+}
+
+.sidebar-header{
+
+    padding:20px;
+    display:flex;
+    justify-content:flex-end;
+    border-bottom:1px solid #e2e8f0;
+
+}
+
+.sidebar-close{
+
+    background:none;
+    border:none;
+    font-size:28px;
+    cursor:pointer;
+    color:var(--primary);
+    transition:.3s;
+
+}
+
+.sidebar-close:hover{
+
+    color:var(--secondary);
+
+}
+
+.sidebar-content{
+
+    padding:20px;
+
+}
+
+.sidebar-profile{
+
+    text-align:center;
+    margin-bottom:30px;
+
+}
+
+.sidebar-profile img{
+
+    width:100px;
+    height:100px;
     border-radius:50%;
     object-fit:cover;
-    background:#fff;
-    padding:6px;
-    box-shadow:var(--shadow);
+    border:4px solid var(--secondary);
+    margin:0 auto 15px;
 
 }
 
-/* ===========================
-   CERTIFICATE LOGO
-=========================== */
+.sidebar-profile h3{
 
-.certificate-card img{
-
-    width:90px;
-    height:90px;
-    margin:auto;
-    margin-bottom:20px;
-
-    object-fit:contain;
+    color:var(--primary);
+    margin-bottom:8px;
+    font-size:18px;
 
 }
+
+.sidebar-profile p{
+
+    color:var(--gray);
+    font-size:14px;
+    margin-bottom:5px;
+
+}
+
+.sidebar-tagline{
+
+    color:var(--secondary);
+    font-weight:600;
+    font-size:13px;
+    margin-top:10px;
+
+}
+
+.sidebar-menu-item{
+
+    margin-bottom:15px;
+
+}
+
+.accordion-btn{
+
+    width:100%;
+    padding:12px 15px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    color:var(--primary);
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    text-align:left;
+    font-size:14px;
+
+}
+
+.accordion-btn:hover{
+
+    background:var(--secondary);
+    color:#ffffff;
+    border-color:var(--secondary);
+
+}
+
+.accordion-content{
+
+    display:none;
+    flex-direction:column;
+    gap:8px;
+    margin-top:8px;
+    padding:10px;
+    background:#f8fafc;
+    border-radius:8px;
+
+}
+
+.accordion-content.active{
+
+    display:flex;
+
+}
+
+.accordion-content a,
+.accordion-content button{
+
+    padding:10px 12px;
+    background:#ffffff;
+    border:1px solid #e2e8f0;
+    border-radius:6px;
+    color:var(--dark);
+    text-decoration:none;
+    cursor:pointer;
+    transition:.3s;
+    text-align:left;
+    font-size:13px;
+    font-weight:500;
+
+}
+
+.accordion-content a:hover,
+.accordion-content button:hover{
+
+    background:var(--primary);
+    color:#ffffff;
+    border-color:var(--primary);
+
+}
+
+.sidebar-footer{
+
+    text-align:center;
+    padding:20px;
+    border-top:1px solid #e2e8f0;
+    margin-top:20px;
+
+}
+
+.sidebar-footer p{
+
+    color:var(--gray);
+    font-size:13px;
+    margin-bottom:5px;
+
+}
+
+.sidebar-toggle{
+
+    position:fixed;
+    left:20px;
+    top:20px;
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:var(--primary);
+    color:#ffffff;
+    font-size:24px;
+    cursor:pointer;
+    z-index:999;
+    transition:.3s;
+    display:none;
+
+}
+
+.sidebar-toggle:hover{
+
+    background:var(--secondary);
+    transform:scale(1.1);
+
+}
+
 /* ==========================================
-   VERSION 6.0
-   PART 2.2
    NAVBAR & HERO
 ========================================== */
 
@@ -245,7 +432,8 @@ header{
 
 }
 
-#nav-links li a:hover{
+#nav-links li a:hover,
+#nav-links li a.active{
 
     color:#14b8a6;
 
@@ -362,9 +550,8 @@ header{
     transform:translateY(-3px);
 
 }
+
 /* ==========================================
-   VERSION 6.0
-   PART 2.3
    ABOUT & EDUCATION
 ========================================== */
 
@@ -474,74 +661,6 @@ header{
 
 }
 
-/* ===== Education ===== */
-
-.education{
-
-    background:#f8fafc;
-
-}
-
-.education-timeline{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:30px;
-
-}
-
-.education-card{
-
-    display:flex;
-
-    gap:25px;
-
-    align-items:center;
-
-    background:#ffffff;
-
-    padding:25px;
-
-    border-radius:16px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-
-    transition:.35s;
-
-}
-
-.education-card:hover{
-
-    transform:translateY(-6px);
-
-}
-
-.education-details h3{
-
-    color:#0f766e;
-
-    margin-bottom:8px;
-
-}
-
-.education-details h4{
-
-    color:#1e293b;
-
-    margin-bottom:10px;
-
-}
-
-.education-details p{
-
-    color:#64748b;
-
-    margin-bottom:6px;
-
-}
-
 /* ===== Mobile ===== */
 
 @media(max-width:768px){
@@ -549,7 +668,6 @@ header{
 .about-content{
 
 grid-template-columns:1fr;
-
 text-align:center;
 
 }
@@ -560,18 +678,9 @@ margin:auto;
 
 }
 
-.education-card{
-
-flex-direction:column;
-
-text-align:center;
-
 }
 
-}
 /* ==========================================
-   VERSION 6.0
-   PART 2.4
    SKILLS SECTION
 ========================================== */
 
@@ -716,9 +825,8 @@ font-size:22px;
 }
 
 }
+
 /* ==========================================
-   VERSION 6.0
-   PART 2.5
    GALLERY SECTION
 ========================================== */
 
@@ -916,9 +1024,8 @@ height:12px;
 }
 
 }
+
 /* ==========================================
-   VERSION 6.0
-   PART 2.6
    CERTIFICATES & EXPERIENCE
 ========================================== */
 
@@ -1137,9 +1244,8 @@ font-size:22px;
 }
 
 }
+
 /* ==========================================
-   VERSION 6.0
-   PART 2.7
    CONTACT & FOOTER
 ========================================== */
 
@@ -1284,46 +1390,6 @@ font-size:22px;
 .contact-form button:hover{
 
     background:#14b8a6;
-
-}
-
-/* ===== Social Links ===== */
-
-.social-links{
-
-    display:flex;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-    gap:15px;
-
-    margin-top:40px;
-
-}
-
-.social-links a{
-
-    background:#0f766e;
-
-    color:#ffffff;
-
-    padding:12px 20px;
-
-    border-radius:50px;
-
-    transition:.3s;
-
-    font-weight:600;
-
-}
-
-.social-links a:hover{
-
-    background:#14b8a6;
-
-    transform:translateY(-5px);
 
 }
 
@@ -1474,18 +1540,9 @@ text-align:center;
 
 }
 
-.social-links{
-
-flex-direction:column;
-
-align-items:center;
-
 }
 
-}
 /* ==========================================
-   VERSION 6.0
-   PART 2.8
    RESPONSIVE MENU & EXTRA FEATURES
 ========================================== */
 
@@ -1585,6 +1642,12 @@ color:#ffffff;
 
 }
 
+.sidebar-toggle{
+
+display:block;
+
+}
+
 }
 
 /* ===== Scroll To Top ===== */
@@ -1626,7 +1689,6 @@ z-index:999;
 #scrollTopBtn:hover{
 
 background:#14b8a6;
-
 transform:scale(1.1);
 
 }
@@ -1816,6 +1878,17 @@ z-index:2000;
 
     color:#666;
 
+    margin-bottom:10px;
+}
+
+.loader-tagline{
+
+    font-size:16px;
+
+    color:#0f766e;
+
+    font-weight:600;
+
     margin-bottom:30px;
 }
 
@@ -1898,9 +1971,8 @@ z-index:2000;
         max-width:280px;
     }
 }
+
 /* ==========================================
-   VERSION 6.0
-   PART 2.9
    DARK MODE & EXTRA COMPONENTS
 ========================================== */
 
@@ -1928,7 +2000,6 @@ body.dark-mode .contact{
 
 }
 
-body.dark-mode .education,
 body.dark-mode .gallery,
 body.dark-mode .experience{
 
@@ -1941,7 +2012,6 @@ body.dark-mode .certificate-card,
 body.dark-mode .experience-card,
 body.dark-mode .contact-card,
 body.dark-mode .contact-form,
-body.dark-mode .education-card,
 body.dark-mode .info-box{
 
     background:#334155;
@@ -1964,6 +2034,36 @@ body.dark-mode span,
 body.dark-mode a{
 
     color:#e2e8f0;
+
+}
+
+body.dark-mode .sidebar{
+
+    background:#1e293b;
+    color:#e2e8f0;
+
+}
+
+body.dark-mode .accordion-btn{
+
+    background:#334155;
+    color:#14b8a6;
+    border-color:#475569;
+
+}
+
+body.dark-mode .accordion-content{
+
+    background:#334155;
+
+}
+
+body.dark-mode .accordion-content a,
+body.dark-mode .accordion-content button{
+
+    background:#475569;
+    color:#e2e8f0;
+    border-color:#64748b;
 
 }
 
@@ -2168,9 +2268,9 @@ font-size:16px;
 }
 
 }
+
 /* ==========================================
-   VERSION 6.0
-   PART 2.10 (FINAL)
+   FINAL ANIMATIONS & RESPONSIVE
 ========================================== */
 
 /* ===== Fade Animation ===== */
@@ -2211,7 +2311,6 @@ img:hover{
 
 .skill-card,
 .certificate-card,
-.education-card,
 .experience-card,
 .contact-card{
 
@@ -2221,7 +2320,6 @@ img:hover{
 
 .skill-card:hover,
 .certificate-card:hover,
-.education-card:hover,
 .experience-card:hover,
 .contact-card:hover{
 
@@ -2232,16 +2330,14 @@ img:hover{
 /* ===== Button Animation ===== */
 
 .btn,
-.contact-form button,
-.social-links a{
+.contact-form button{
 
     transition:all .3s ease;
 
 }
 
 .btn:hover,
-.contact-form button:hover,
-.social-links a:hover{
+.contact-form button:hover{
 
     transform:translateY(-4px);
 
@@ -2404,7 +2500,7 @@ max-width:950px;
 }
 
 /* ==========================================
-   CSS COMPLETED
+   CSS COMPLETED - VERSION 8.0 ULTIMATE
    Designed for
    Muhammad Jamil Uddin
 ========================================== */
