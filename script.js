@@ -1496,90 +1496,127 @@ function typingEffect(){
         }
 
     }
+/* ==========================================================
+   PROJECT : Personal Portfolio Website
+   VERSION : 7.1
+   PART    : 3.6.3
+   SECTION : SAFE TYPING ANIMATION
+========================================================== */
 
-    else{
+const typingText = document.getElementById("typingText");
 
-        typingText.textContent =
+if (typingText) {
 
-        currentWord.substring(
+    const typingWords = [
 
-            0,
+        "Assalamu Alaikum",
 
-            charIndex - 1
+        "Welcome To My Official Portfolio",
 
-        );
+        "Muhammad Jamil Uddin",
 
-        charIndex--;
+        "Hafiz of the Holy Qur'an",
 
-        if(charIndex === 0){
+        "Qur'anic Sciences Student",
 
-            isDeleting = false;
+        "International Islamic University Chittagong",
 
-            wordIndex++;
+        "Islamic Researcher",
 
-            if(wordIndex >= typingWords.length){
+        "Future International Scholar",
 
-                wordIndex = 0;
+        "Web Developer",
+
+        "Graphic Designer",
+
+        "Public Speaker",
+
+        "Volunteer",
+
+        "Content Creator"
+
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typingEffect() {
+
+        const word = typingWords[wordIndex];
+
+        if (!deleting) {
+
+            typingText.textContent =
+            word.substring(0, charIndex + 1);
+
+            charIndex++;
+
+            if (charIndex > word.length) {
+
+                deleting = true;
+
+                setTimeout(typingEffect, 1800);
+
+                return;
+
+            }
+
+        } else {
+
+            typingText.textContent =
+            word.substring(0, charIndex - 1);
+
+            charIndex--;
+
+            if (charIndex === 0) {
+
+                deleting = false;
+
+                wordIndex++;
+
+                if (wordIndex >= typingWords.length) {
+
+                    wordIndex = 0;
+
+                }
 
             }
 
         }
 
+        setTimeout(
+
+            typingEffect,
+
+            deleting ? 45 : 90
+
+        );
+
     }
 
-    setTimeout(
+    typingEffect();
 
-        typingEffect,
+    setInterval(() => {
 
-        isDeleting
+        typingText.style.borderRight =
 
-        ? deletingSpeed
+        typingText.style.borderRight ===
+        "3px solid #0d6efd"
 
-        : typingSpeed
+        ?
 
-    );
+        "3px solid transparent"
+
+        :
+
+        "3px solid #0d6efd";
+
+    }, 500);
 
 }
 
-/* ==========================================================
-   START
-========================================================== */
-
-typingEffect();
-
-/* ==========================================================
-   CURSOR BLINK
-========================================================== */
-
-setInterval(()=>{
-
-    if(!typingText) return;
-
-    typingText.style.borderRight =
-
-    typingText.style.borderRight ===
-
-    "3px solid #0d6efd"
-
-    ?
-
-    "3px solid transparent"
-
-    :
-
-    "3px solid #0d6efd";
-
-},500);
-
-/* ==========================================================
-   CONSOLE
-========================================================== */
-
-console.log(
-
-"✅ Version 7.1 | Part 3.6.3 Loaded Successfully"
-
-);
+console.log("✅ Version 7.1 | Part 3.6.3 Loaded Successfully");
 /* ==========================================================
    PROJECT : Personal Portfolio Website
    VERSION : 7.0
