@@ -1,7 +1,7 @@
 /* ==========================================================
    MUHAMMAD JAMIL UDDIN
    OFFICIAL PORTFOLIO WEBSITE
-   VERSION 9.0 ULTIMATE
+   VERSION 9.1 ULTIMATE
    PART 3.1
    CORE INITIALIZATION
 ========================================================== */
