@@ -32,97 +32,119 @@ content="Muhammad Jamil Uddin">
 
 <body>
 
-<!-- ================= NAVIGATION ================= -->
+<!-- ================= NEW HEADER DESIGN ================= -->
 
-<header>
+<header class="header-v8">
 
-<nav class="navbar">
+<div class="header-container">
 
-<div class="logo">
+<!-- LEFT: Menu Button -->
 
-<img src="images/profile.jpg" alt="Jamil Photo">
+<div class="header-left">
 
-<span>Muhammad Jamil Uddin</span>
-
-</div>
-
-<div class="menu-btn" id="menu-btn">
+<button class="menu-toggle" id="menuToggle" title="Open Menu">
 
 ☰
 
+</button>
+
 </div>
 
-<ul id="nav-links">
+<!-- CENTER: Time & Date -->
 
-<li><a href="#home">Home</a></li>
+<div class="header-center">
 
-<li><a href="#about">About</a></li>
+<div class="header-time">
 
-<li><a href="#certificates">Certificates</a></li>
+<span id="headerBdTime" class="time-display">--:--:--</span>
 
-<li><a href="#skills">Skills</a></li>
+</div>
 
-<li><a href="#gallery">Gallery</a></li>
+<div class="header-date">
 
-<li><a href="#contact">Contact</a></li>
+<span id="headerEnglishDate" class="date-display">Loading...</span>
 
-</ul>
+</div>
 
-</nav>
+</div>
+
+<!-- RIGHT: Profile Card -->
+
+<div class="header-right">
+
+<div class="header-profile-card">
+
+<img src="images/profile.jpg" alt="Muhammad Jamil Uddin" class="header-profile-img">
+
+<div class="header-profile-info">
+
+<h4>Muhammad Jamil Uddin</h4>
+
+<p>Hafiz | IIUC Student</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </header>
 
-<!-- ================= VERSION 8.0 SIDEBAR MENU ================= -->
+<!-- ================= SIDEBAR MENU ================= -->
 
-<div id="sidebar" class="sidebar">
+<aside class="sidebar-v8" id="sidebarV8">
 
-<div class="sidebar-header">
+<div class="sidebar-header-v8">
 
 <button class="sidebar-close" id="sidebarClose">✕</button>
 
 </div>
 
-<div class="sidebar-content">
+<div class="sidebar-content-v8">
 
-<!-- Profile Info -->
+<!-- Profile Section -->
 
-<div class="sidebar-profile">
+<div class="sidebar-profile-section">
 
-<img src="images/profile.jpg" alt="Muhammad Jamil Uddin">
+<img src="images/profile.jpg" alt="Muhammad Jamil Uddin" class="sidebar-profile-img">
 
 <h3>Muhammad Jamil Uddin ✔️</h3>
 
-<p>Hafiz of the Holy Qur'an</p>
+<p class="sidebar-subtitle">Hafiz of the Holy Qur'an</p>
 
-<p>IIUC Student | CHFM Student</p>
+<p class="sidebar-subtitle">IIUC Student | CHFM Student</p>
 
 <p class="sidebar-tagline">Official Portfolio Website</p>
 
 </div>
 
-<hr>
+<hr class="sidebar-divider">
+
+<!-- Menu Items with Nested Accordions -->
+
+<div class="sidebar-menu">
 
 <!-- Follow Me -->
 
-<div class="sidebar-menu-item">
+<div class="menu-item">
 
-<button class="accordion-btn" onclick="toggleAccordion('followMe')">
+<button class="menu-btn" onclick="toggleNestedMenu(this)">
 
 🌐 Follow Me ▶
 
 </button>
 
-<div id="followMe" class="accordion-content">
+<div class="nested-menu">
 
-<a href="https://facebook.com" target="_blank">📘 Facebook</a>
+<a href="https://www.facebook.com/share/1Hx4ihgAEK/" target="_blank">📘 Facebook</a>
 
-<a href="https://youtube.com" target="_blank">▶️ YouTube</a>
+<a href="https://www.instagram.com/muhammadjamil252839?igsh=OXRzYXhscWF1djRv" target="_blank">📷 Instagram</a>
 
-<a href="https://t.me" target="_blank">💬 Telegram</a>
+<a href="https://x.com/Muhamma55679441" target="_blank">𝕏 Twitter/X</a>
 
-<a href="https://linkedin.com" target="_blank">💼 LinkedIn</a>
-
-<a href="https://instagram.com" target="_blank">📷 Instagram</a>
+<a href="https://t.me/Jamil191868" target="_blank">💬 Telegram</a>
 
 <a href="https://github.com/muhammadjamil252839-svg" target="_blank">💻 GitHub</a>
 
@@ -136,15 +158,15 @@ content="Muhammad Jamil Uddin">
 
 <!-- Main Menu -->
 
-<div class="sidebar-menu-item">
+<div class="menu-item">
 
-<button class="accordion-btn" onclick="toggleAccordion('mainMenu')">
+<button class="menu-btn" onclick="toggleNestedMenu(this)">
 
 🏠 Main Menu ▶
 
 </button>
 
-<div id="mainMenu" class="accordion-content">
+<div class="nested-menu">
 
 <a href="#home">🏠 Home</a>
 
@@ -164,27 +186,65 @@ content="Muhammad Jamil Uddin">
 
 <!-- Islamic Library -->
 
-<div class="sidebar-menu-item">
+<div class="menu-item">
 
-<button class="accordion-btn" onclick="toggleAccordion('islamicLibrary')">
+<button class="menu-btn" onclick="toggleNestedMenu(this)">
 
 🕌 Islamic Library ▶
 
 </button>
 
-<div id="islamicLibrary" class="accordion-content">
+<div class="nested-menu">
 
-<a href="pdf/quran.pdf" target="_blank">📖 Holy Qur'an (PDF)</a>
+<!-- Holy Qur'an -->
 
-<a href="pdf/hadith.pdf" target="_blank">📚 Hadith Collection (PDF)</a>
+<div class="nested-item">
 
-<a href="pdf/dua.pdf" target="_blank">📘 Dua Book</a>
+<button class="nested-btn" onclick="toggleNestedMenu(this)">
 
-<a href="pdf/hisnul-muslim.pdf" target="_blank">📙 Hisnul Muslim</a>
+📖 Holy Qur'an ▶
 
-<a href="pdf/articles.pdf" target="_blank">📕 Islamic Articles</a>
+</button>
 
-<a href="pdf/notes.pdf" target="_blank">📄 Islamic Notes</a>
+<div class="nested-menu-level2">
+
+<a href="pdf/quran-hafezi.pdf" target="_blank">📗 হাফেজী কুরআন মাজীদ</a>
+
+<a href="pdf/quran-with-meaning.pdf" target="_blank">📘 অর্থসহ কুরআন মাজীদ</a>
+
+</div>
+
+</div>
+
+<!-- Hadith -->
+
+<div class="nested-item">
+
+<button class="nested-btn" onclick="toggleNestedMenu(this)">
+
+📚 Hadith ▶
+
+</button>
+
+<div class="nested-menu-level2">
+
+<a href="pdf/mishkat-vol1.pdf" target="_blank">📕 মেশকাতুল মাসাবিহ খণ্ড ০১</a>
+
+<a href="pdf/mishkat-vol2.pdf" target="_blank">📕 মেশকাতুল মাসাবিহ খণ্ড ০२</a>
+
+<a href="pdf/mishkat-vol3.pdf" target="_blank">📕 মেশকাতুল মাসাবিহ খণ্ড ०३</a>
+
+<a href="pdf/mishkat-vol4.pdf" target="_blank">📕 মেশকাতুল মাসাবিহ খণ্ড ०४</a>
+
+<a href="pdf/mishkat-vol5.pdf" target="_blank">📕 মেশকাতুল মাসাবিহ খণ্ড ०५</a>
+
+<a href="pdf/mishkat-vol6.pdf" target="_blank">📕 মেশকাতুল মাসাবিহ খণ্ড ०६</a>
+
+<a href="pdf/mishkat-vol7.pdf" target="_blank">📕 মেশকাতুল মাসাবিহ খণ্ড ०७</a>
+
+</div>
+
+</div>
 
 </div>
 
@@ -192,41 +252,41 @@ content="Muhammad Jamil Uddin">
 
 <!-- Important Links -->
 
-<div class="sidebar-menu-item">
+<div class="menu-item">
 
-<button class="accordion-btn" onclick="toggleAccordion('importantLinks')">
+<button class="menu-btn" onclick="toggleNestedMenu(this)">
 
 🌐 Important Links ▶
 
 </button>
 
-<div id="importantLinks" class="accordion-content">
+<div class="nested-menu">
 
 <a href="https://www.iiuc.ac.bd" target="_blank">🎓 IIUC Official</a>
+
+<a href="https://help.islamibankbd.com/helpDeskCheckMaskDigit.do" target="_blank">🏦 Islami Bank Help</a>
+
+<a href="https://my.aibl.com.bd/index.php" target="_blank">🏦 AIBL Help Portal</a>
+
+<a href="https://pcc.police.gov.bd/ords/r/pcc/pcc/home" target="_blank">🚔 Police Clearance</a>
+
+<a href="https://gd.police.gov.bd/Auth/PublicUser" target="_blank">📋 GD Application</a>
+
+<a href="https://picresize.com/en/results#google_vignette" target="_blank">🖼 Pic Resize</a>
+
+<a href="https://estipend.pmeat.gov.bd/#/" target="_blank">🎓 Fazil Scholarship</a>
+
+<a href="https://services.nidw.gov.bd/nid-pub/;jsessionid=WQgEuPUjLWWRjCvc0MKYbDB2U1lKjwiWjJYfd8-n.slave1:PUB_MSRV021" target="_blank">🆔 NID Application</a>
+
+<a href="https://bdris.gov.bd/br/application" target="_blank">👶 Birth Certificate</a>
+
+<a href="https://www.epassport.gov.bd/landing" target="_blank">🛂 Passport Application</a>
 
 <a href="https://www.quran.com" target="_blank">📖 Quran.com</a>
 
 <a href="https://www.islamicfinder.org" target="_blank">🕌 Islamic Finder</a>
 
-<a href="https://www.alislam.org" target="_blank">📚 Al-Islam</a>
-
 <a href="https://www.wikipedia.org" target="_blank">📝 Wikipedia</a>
-
-<a href="https://www.google.com" target="_blank">🔍 Google</a>
-
-<a href="https://www.github.com" target="_blank">💻 GitHub</a>
-
-<a href="https://www.stackoverflow.com" target="_blank">❓ Stack Overflow</a>
-
-<a href="https://www.linkedin.com" target="_blank">💼 LinkedIn</a>
-
-<a href="https://www.twitter.com" target="_blank">🐦 Twitter</a>
-
-<a href="https://www.youtube.com" target="_blank">▶️ YouTube</a>
-
-<a href="https://www.medium.com" target="_blank">📰 Medium</a>
-
-<a href="https://www.dev.to" target="_blank">👨‍💻 Dev.to</a>
 
 </div>
 
@@ -234,15 +294,15 @@ content="Muhammad Jamil Uddin">
 
 <!-- CV Download -->
 
-<div class="sidebar-menu-item">
+<div class="menu-item">
 
-<button class="accordion-btn" onclick="toggleAccordion('cvDownload')">
+<button class="menu-btn" onclick="toggleNestedMenu(this)">
 
 📥 Jamil's CV Download ▶
 
 </button>
 
-<div id="cvDownload" class="accordion-content">
+<div class="nested-menu">
 
 <a href="pdf/cv.pdf" target="_blank">👁 View CV</a>
 
@@ -254,21 +314,21 @@ content="Muhammad Jamil Uddin">
 
 <!-- Theme -->
 
-<div class="sidebar-menu-item">
+<div class="menu-item">
 
-<button class="accordion-btn" onclick="toggleAccordion('theme')">
+<button class="menu-btn" onclick="toggleNestedMenu(this)">
 
 🌙 Theme ▶
 
 </button>
 
-<div id="theme" class="accordion-content">
+<div class="nested-menu">
 
-<button onclick="setTheme('light')">☀️ Light Mode</button>
+<button class="theme-btn" onclick="setTheme('light')">☀️ Light Mode</button>
 
-<button onclick="setTheme('dark')">🌙 Dark Mode</button>
+<button class="theme-btn" onclick="setTheme('dark')">🌙 Dark Mode</button>
 
-<button onclick="setTheme('system')">💻 System Default</button>
+<button class="theme-btn" onclick="setTheme('system')">💻 System Default</button>
 
 </div>
 
@@ -276,29 +336,31 @@ content="Muhammad Jamil Uddin">
 
 <!-- Language -->
 
-<div class="sidebar-menu-item">
+<div class="menu-item">
 
-<button class="accordion-btn" onclick="toggleAccordion('language')">
+<button class="menu-btn" onclick="toggleNestedMenu(this)">
 
 🌐 Language ▶
 
 </button>
 
-<div id="language" class="accordion-content">
+<div class="nested-menu">
 
-<button onclick="setLanguage('en')">🇬🇧 English</button>
+<button class="lang-btn" onclick="setLanguage('en')">🇬🇧 English</button>
 
-<button onclick="setLanguage('bn')">🇧🇩 বাংলা</button>
+<button class="lang-btn" onclick="setLanguage('bn')">🇧🇩 বাংলা</button>
 
-<button onclick="setLanguage('ar')">🇸🇦 العربية</button>
+<button class="lang-btn" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+
+</div>
 
 </div>
 
 </div>
 
-<!-- Version Info -->
+<!-- Sidebar Footer -->
 
-<div class="sidebar-footer">
+<div class="sidebar-footer-v8">
 
 <p>ℹ️ <strong>Version 8.0</strong></p>
 
@@ -306,9 +368,11 @@ content="Muhammad Jamil Uddin">
 
 </div>
 
-</div>
+</aside>
 
-</div>
+<!-- ================= OVERLAY ================= -->
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <!-- ================= HERO SECTION ================= -->
 
@@ -350,7 +414,7 @@ Explore My Profile
 
 </section>
 
-<!-- ================= ABOUT SECTION START ================= -->
+<!-- ================= ABOUT SECTION ================= -->
 
 <section id="about" class="about">
 
@@ -471,9 +535,7 @@ I am Muhammad Jamil Uddin, a Bangladeshi student, Hafiz of the Holy Qur'an, and 
 
 </section>
 
-<!-- ================= ABOUT SECTION END ================= -->
-
-<!-- ================= SKILLS SECTION START ================= -->
+<!-- ================= SKILLS SECTION ================= -->
 
 <section id="skills" class="skills">
 
@@ -527,9 +589,9 @@ My Professional, Technical and Personal Skills
 
 <li>✔ CSS</li>
 
-<li>✔ JavaScript (Learning)</li>
+<li>✔ JavaScript</li>
 
-<li>✔ Git & GitHub (Learning)</li>
+<li>✔ Git & GitHub</li>
 
 </ul>
 
@@ -609,9 +671,7 @@ My goal is to become an internationally recognized Islamic scholar, researcher, 
 
 </section>
 
-<!-- ================= SKILLS SECTION END ================= -->
-
-<!-- ================= GALLERY SECTION START ================= -->
+<!-- ================= GALLERY SECTION ================= -->
 
 <section id="gallery" class="gallery">
 
@@ -679,9 +739,7 @@ A Collection of My Personal, Academic and Memorable Moments
 
 </section>
 
-<!-- ================= GALLERY SECTION END ================= -->
-
-<!-- ================= CERTIFICATES SECTION START ================= -->
+<!-- ================= CERTIFICATES SECTION ================= -->
 
 <section id="certificates" class="certificates">
 
@@ -699,151 +757,85 @@ Academic Qualifications, Islamic Education and Personal Achievements
 
 <div class="certificate-container">
 
-<!-- HIFZ -->
-
 <div class="certificate-card">
 
-<img src="images/darul-arkam-logo.png"
-alt="Darul Arkam Logo">
+<img src="images/darul-arkam-logo.png" alt="Darul Arkam Logo">
 
 <h3>Hifz-ul-Qur'an</h3>
 
 <h4>Jamia Madania Darul Arkam Madrasa, Oskhali</h4>
 
-<p>
-
-Successfully completed memorization of the Holy Qur'an in 2017.
-
-</p>
+<p>Successfully completed memorization of the Holy Qur'an in 2017.</p>
 
 <span class="certificate-year">2017</span>
 
 </div>
 
-<!-- DAKHIL -->
-
 <div class="certificate-card">
 
-<img src="images/madrasa-logo.png"
-alt="Char Kailash Hadiya Fazil Madrasa">
+<img src="images/madrasa-logo.png" alt="Char Kailash Hadiya Fazil Madrasa">
 
 <h3>Dakhil Examination</h3>
 
 <h4>Char Kailash Hadiya Fazil Madrasa</h4>
 
-<p>
-
-Board: Bangladesh Madrasah Education Board
-
-</p>
-
-<p>
-
-Result: GPA 4.69
-
-</p>
+<p>Board: Bangladesh Madrasah Education Board | Result: GPA 4.69</p>
 
 <span class="certificate-year">2022</span>
 
 </div>
 
-<!-- ALIM -->
-
 <div class="certificate-card">
 
-<img src="images/madrasa-logo.png"
-alt="Char Kailash Hadiya Fazil Madrasa">
+<img src="images/madrasa-logo.png" alt="Char Kailash Hadiya Fazil Madrasa">
 
 <h3>Alim Examination</h3>
 
 <h4>Char Kailash Hadiya Fazil Madrasa</h4>
 
-<p>
-
-Board: Bangladesh Madrasah Education Board
-
-</p>
-
-<p>
-
-Result: GPA 4.50
-
-</p>
+<p>Board: Bangladesh Madrasah Education Board | Result: GPA 4.50</p>
 
 <span class="certificate-year">2024</span>
 
 </div>
 
-<!-- FAZIL -->
-
 <div class="certificate-card">
 
-<img src="images/madrasa-logo.png"
-alt="Char Kailash Hadiya Fazil Madrasa">
+<img src="images/madrasa-logo.png" alt="Char Kailash Hadiya Fazil Madrasa">
 
 <h3>Fazil Programme</h3>
 
 <h4>Char Kailash Hadiya Fazil Madrasa</h4>
 
-<p>
-
-Affiliated with Islamic Arabic University.
-
-</p>
-
-<p>
-
-Status: Currently Studying
-
-</p>
+<p>Affiliated with Islamic Arabic University. Status: Currently Studying</p>
 
 <span class="certificate-year">Running</span>
 
 </div>
 
-<!-- IIUC -->
-
 <div class="certificate-card">
 
-<img src="images/iiuc-logo.png"
-alt="IIUC Logo">
+<img src="images/iiuc-logo.png" alt="IIUC Logo">
 
 <h3>Bachelor (Honours)</h3>
 
 <h4>International Islamic University Chittagong</h4>
 
-<p>
-
-Department of Qur'anic Sciences and Islamic Studies
-
-</p>
-
-<p>
-
-Status: Running
-
-</p>
+<p>Department of Qur'anic Sciences and Islamic Studies | Status: Running</p>
 
 <span class="certificate-year">Present</span>
 
 </div>
 
-<!-- FUTURE -->
-
 <div class="certificate-card">
 
-<img src="images/iiuc-logo.png"
-alt="Achievement">
+<img src="images/iiuc-logo.png" alt="Achievement">
 
 <h3>Future Goal</h3>
 
 <h4>International Islamic Scholar & Researcher</h4>
 
-<p>
-
-Dedicated to serving Islam, education, research and humanity through knowledge and leadership.
-
-</p>
+<p>Dedicated to serving Islam, education, research and humanity through knowledge and leadership.</p>
 
 <span class="certificate-year">In Sha Allah</span>
 
@@ -855,9 +847,7 @@ Dedicated to serving Islam, education, research and humanity through knowledge a
 
 </section>
 
-<!-- ================= CERTIFICATES SECTION END ================= -->
-
-<!-- ================= EXPERIENCE SECTION START ================= -->
+<!-- ================= EXPERIENCE SECTION ================= -->
 
 <section id="experience" class="experience">
 
@@ -874,8 +864,6 @@ My Leadership Journey, Community Service and Future Aspirations
 </div>
 
 <div class="experience-container">
-
-<!-- Leadership -->
 
 <div class="experience-card">
 
@@ -895,8 +883,6 @@ My Leadership Journey, Community Service and Future Aspirations
 
 </div>
 
-<!-- Community -->
-
 <div class="experience-card">
 
 <h3>Community Service</h3>
@@ -914,8 +900,6 @@ My Leadership Journey, Community Service and Future Aspirations
 </ul>
 
 </div>
-
-<!-- Research -->
 
 <div class="experience-card">
 
@@ -937,8 +921,6 @@ My Leadership Journey, Community Service and Future Aspirations
 
 </div>
 
-<!-- Mission -->
-
 <div class="experience-card">
 
 <h3>Mission</h3>
@@ -951,8 +933,6 @@ To dedicate my knowledge, skills and efforts to the service of Islam, education 
 
 </div>
 
-<!-- Vision -->
-
 <div class="experience-card">
 
 <h3>Vision</h3>
@@ -964,8 +944,6 @@ To become an internationally recognized Islamic scholar, researcher and educator
 </p>
 
 </div>
-
-<!-- Future Plan -->
 
 <div class="experience-card">
 
@@ -993,9 +971,7 @@ To become an internationally recognized Islamic scholar, researcher and educator
 
 </section>
 
-<!-- ================= EXPERIENCE SECTION END ================= -->
-
-<!-- ================= CONTACT SECTION START ================= -->
+<!-- ================= CONTACT SECTION ================= -->
 
 <section id="contact" class="contact">
 
@@ -1012,8 +988,6 @@ Feel Free to Contact Me Anytime
 </div>
 
 <div class="contact-container">
-
-<!-- Contact Information -->
 
 <div class="contact-info">
 
@@ -1075,43 +1049,21 @@ Qur'anic Sciences and Islamic Studies
 
 </div>
 
-<!-- Contact Form -->
-
 <div class="contact-form">
 
 <h3>Send Me a Message</h3>
 
 <form id="contactForm" action="https://formspree.io/f/mgojbgyk" method="POST">
 
-<input
-type="text"
-name="name"
-placeholder="Your Name"
-required>
+<input type="text" name="name" placeholder="Your Name" required>
 
-<input
-type="email"
-name="email"
-placeholder="Your Email"
-required>
+<input type="email" name="email" placeholder="Your Email" required>
 
-<input
-type="text"
-name="subject"
-placeholder="Subject"
-required>
+<input type="text" name="subject" placeholder="Subject" required>
 
-<textarea
-name="message"
-rows="6"
-placeholder="Write Your Message..."
-required></textarea>
+<textarea name="message" rows="6" placeholder="Write Your Message..." required></textarea>
 
-<button type="submit">
-
-Send Message
-
-</button>
+<button type="submit">Send Message</button>
 
 </form>
 
@@ -1121,17 +1073,13 @@ Send Message
 
 </section>
 
-<!-- ================= CONTACT SECTION END ================= -->
-
-<!-- ================= FOOTER START ================= -->
+<!-- ================= FOOTER ================= -->
 
 <footer id="footer">
 
 <div class="container">
 
 <div class="footer-container">
-
-<!-- About -->
 
 <div class="footer-box">
 
@@ -1144,8 +1092,6 @@ Hafiz of the Holy Qur'an, Student of International Islamic University Chittagong
 </p>
 
 </div>
-
-<!-- Quick Links -->
 
 <div class="footer-box">
 
@@ -1171,8 +1117,6 @@ Hafiz of the Holy Qur'an, Student of International Islamic University Chittagong
 
 </div>
 
-<!-- Education -->
-
 <div class="footer-box">
 
 <h3>Education</h3>
@@ -1188,8 +1132,6 @@ Hafiz of the Holy Qur'an, Student of International Islamic University Chittagong
 <p>✔ Bachelor (Honours), IIUC (Running)</p>
 
 </div>
-
-<!-- Contact -->
 
 <div class="footer-box">
 
@@ -1209,33 +1151,15 @@ Hafiz of the Holy Qur'an, Student of International Islamic University Chittagong
 
 <hr>
 
-<!-- Social Icons -->
-
 <div class="footer-social">
 
-<a href="mailto:muhammadjamil252839@gmail.com">
+<a href="mailto:muhammadjamil252839@gmail.com">📧</a>
 
-📧
+<a href="tel:+8801826067398">📞</a>
 
-</a>
+<a href="https://wa.me/8801619085444">💬</a>
 
-<a href="tel:+8801826067398">
-
-📞
-
-</a>
-
-<a href="https://wa.me/8801619085444">
-
-💬
-
-</a>
-
-<a href="https://github.com/muhammadjamil252839-svg" target="_blank">
-
-💻
-
-</a>
+<a href="https://github.com/muhammadjamil252839-svg" target="_blank">💻</a>
 
 </div>
 
@@ -1243,147 +1167,45 @@ Hafiz of the Holy Qur'an, Student of International Islamic University Chittagong
 
 <div class="footer-info">
 
-    <!-- Greeting -->
+<div class="footer-dates">
 
-    <p>
+<div class="date-box">
 
-        👋 <strong>Greeting :</strong><br>
+<strong>Gregorian Date</strong>
 
-        <span id="greeting">
-
-            Loading...
-
-        </span>
-
-    </p>
-
-    <!-- Bangladesh Time -->
-
-    <p>
-
-        🕒 <strong>Bangladesh Time :</strong><br>
-
-        <span id="bdClock">
-
-            Loading...
-
-        </span>
-
-    </p>
-
-    <!-- UTC Time -->
-
-    <p>
-
-        🌍 <strong>International Time (UTC) :</strong><br>
-
-        <span id="utcClock">
-
-            Loading...
-
-        </span>
-
-    </p>
-
-    <!-- English Date -->
-
-    <p>
-
-        📅 <strong>English Date :</strong><br>
-
-        <span id="englishDate">
-
-            Loading...
-
-        </span>
-
-    </p>
-
-    <!-- Bangla Date -->
-
-    <p>
-
-        🇧🇩 <strong>বাংলা তারিখ :</strong><br>
-
-        <span id="banglaDate">
-
-            Loading...
-
-        </span>
-
-    </p>
-
-    <!-- Arabic Date -->
-
-    <p>
-
-        🌙 <strong>التاريخ العربي :</strong><br>
-
-        <span id="arabicDate">
-
-            Loading...
-
-        </span>
-
-    </p>
-
-    <!-- Hijri Date -->
-
-    <p>
-
-        🕌 <strong>Hijri Date :</strong><br>
-
-        <span id="hijriDate">
-
-            Loading...
-
-        </span>
-
-    </p>
-
-    <p>
-
-        📖 <strong>বাংলা বঙ্গাব্দ :</strong><br>
-
-         <span id="banglaCalendar">
-
-            Loading...
-
-         </span>
-
-    </p>
-
-    <!-- Network -->
-
-    <p>
-
-        📶 <strong>Network :</strong><br>
-
-        <span id="networkStatus">
-
-            Checking...
-
-        </span>
-
-    </p>
-
-    <!-- Visitors -->
-
-    <p>
-
-        👥 <strong>Visitors :</strong><br>
-
-        <span id="visitorCount">
-
-            0
-
-        </span>
-
-    </p>
+<span id="gregorianDate">Loading...</span>
 
 </div>
 
-<!-- Copyright -->
+<div class="date-box">
+
+<strong>Bengali Date</strong>
+
+<span id="bengaliDate">Loading...</span>
+
+</div>
+
+<div class="date-box">
+
+<strong>Hijri Date</strong>
+
+<span id="hijriDate">Loading...</span>
+
+</div>
+
+</div>
+
+<div class="footer-other-info">
+
+<p>👋 <strong>Greeting:</strong> <span id="footerGreeting">Loading...</span></p>
+
+<p>📶 <strong>Network:</strong> <span id="footerNetworkStatus">Checking...</span></p>
+
+<p>👥 <strong>Visitors:</strong> <span id="footerVisitorCount">0</span></p>
+
+</div>
+
+</div>
 
 <div class="copyright">
 
@@ -1395,41 +1217,25 @@ Hafiz of the Holy Qur'an, Student of International Islamic University Chittagong
 
 </div>
 
-</div>
-
 </footer>
 
-<!-- ================= FOOTER END ================= -->
-
-<!-- Scroll To Top -->
-
-<button id="scrollTopBtn">
-
-⬆
-
-</button>
-
-<!-- ================= EXTRA FEATURES START ================= -->
+<!-- ================= EXTRA FEATURES ================= -->
 
 <!-- Progress Bar -->
 
 <div id="progressBar"></div>
 
+<!-- Scroll To Top -->
+
+<button id="scrollTopBtn" class="scroll-top-btn">⬆</button>
+
 <!-- Dark Mode Button -->
 
-<button id="themeToggle" class="theme-toggle">
-
-🌙
-
-</button>
+<button id="themeToggle" class="theme-toggle">🌙</button>
 
 <!-- Music Button -->
 
-<button id="musicBtn" class="music-btn">
-
-🎵
-
-</button>
+<button id="musicBtn" class="music-btn">🎵</button>
 
 <!-- Background Music -->
 
@@ -1445,11 +1251,7 @@ Your browser does not support the audio element.
 
 <div class="weather-box">
 
-<h3 id="weatherCity">
-
-Loading...
-
-</h3>
+<h3 id="weatherCity">Loading...</h3>
 
 <p id="weatherTemp"></p>
 
@@ -1457,122 +1259,67 @@ Loading...
 
 </div>
 
-<!-- Daily Islamic Quote -->
+<!-- Daily Quote -->
 
 <section class="daily-quote">
 
 <div class="container">
 
-<h2>
+<h2>Quote of the Day</h2>
 
-Quote of the Day
-
-</h2>
-
-<p id="dailyQuote">
-
-Loading...
-
-</p>
+<p id="dailyQuote">Loading...</p>
 
 </div>
 
 </section>
 
-<!-- Typing Text -->
+<!-- Typing Section -->
 
 <section class="typing-section">
 
-<h2>
-
-I am
-
-<span id="typingText"></span>
-
-</h2>
+<h2>I am <span id="typingText"></span></h2>
 
 </section>
 
-<!-- ================ PREMIUM WELCOME SCREEN ================ -->
+<!-- Premium Welcome Screen -->
 
 <div id="loader">
 
-    <div class="loader-content">
+<div class="loader-content">
 
-        <img
-            src="images/profile.jpg"
-            alt="Muhammad Jamil Uddin"
-            class="loader-photo">
+<img src="images/profile.jpg" alt="Muhammad Jamil Uddin" class="loader-photo">
 
-        <h1 class="loader-title">
+<h1 class="loader-title">Welcome</h1>
 
-            Welcome
+<h2 class="loader-name">Muhammad Jamil Uddin</h2>
 
-        </h1>
+<p class="loader-text">Official Portfolio Website</p>
 
-        <h2 class="loader-name">
+<p class="loader-tagline">Knowledge • Faith • Leadership</p>
 
-            Muhammad Jamil Uddin
+<div class="loader-progress">
 
-        </h2>
-
-        <p class="loader-text">
-
-            Official Portfolio Website
-
-        </p>
-
-        <p class="loader-tagline">
-
-            Knowledge • Faith • Leadership
-
-        </p>
-
-        <div class="loader-progress">
-
-            <div class="loader-progress-bar"></div>
-
-        </div>
-
-    </div>
+<div class="loader-progress-bar"></div>
 
 </div>
 
-<!-- ================ END PREMIUM WELCOME SCREEN ================ -->
+</div>
+
+</div>
 
 <!-- Floating Buttons -->
 
 <div class="floating-buttons">
 
-<a href="tel:+8801826067398" title="Call">
+<a href="tel:+8801826067398" title="Call">📞</a>
 
-📞
+<a href="https://wa.me/8801619085444" title="WhatsApp">💬</a>
 
-</a>
-
-<a href="https://wa.me/8801619085444" title="WhatsApp">
-
-💬
-
-</a>
-
-<a href="mailto:muhammadjamil252839@gmail.com" title="Email">
-
-📧
-
-</a>
+<a href="mailto:muhammadjamil252839@gmail.com" title="Email">📧</a>
 
 </div>
 
-<!-- Sidebar Toggle Button -->
-
-<button id="sidebarToggle" class="sidebar-toggle">
-
-☰
-
-</button>
-
-<!-- ================= JAVASCRIPT ================= -->
+<!-- JavaScript -->
 
 <script src="script.js"></script>
 
