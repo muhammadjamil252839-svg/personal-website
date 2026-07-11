@@ -1,257 +1,1500 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Jamil Uddin | Official Portfolio</title>
-    <meta name="description" content="Official Portfolio Website of Muhammad Jamil Uddin - Hafiz of the Holy Qur'an, IIUC Student">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/profile.jpg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- PDF.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-</head>
-<body>
+<!-- ================================
+VERSION 9.0
+PART 1.1
+PREMIUM HERO SECTION
+Responsive for Mobile • Tablet • Desktop
+================================ -->
 
-<!-- ================= HEADER V8 ================= -->
-<header class="header-v8">
-    <div class="header-container">
-        <!-- LEFT: Menu Button -->
-        <div class="header-left">
-            <button class="menu-toggle" id="menuToggle" title="Open Menu">☰</button>
-        </div>
+<section id="hero" class="hero-v9">
 
-        <!-- CENTER: Time & Date (Designed) -->
-        <div class="header-center">
-            <div class="header-time-display">
-                <div class="time-wrapper">
-                    <span id="headerBdTime" class="time-display">--:--:--</span>
-                </div>
-                <div class="date-wrapper">
-                    <span id="headerEnglishDate" class="date-display">Loading...</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- RIGHT: Profile Card -->
-        <div class="header-right">
-            <div class="header-profile-card">
-                <img src="images/profile.jpg" alt="Muhammad Jamil Uddin" class="header-profile-img">
-                <div class="header-profile-info">
-                    <h4>Muhammad Jamil Uddin</h4>
-                    <p>Hafiz | IIUC Student</p>
-                </div>
-            </div>
-        </div>
+    <div class="hero-background">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+        <div class="bg-circle circle-3"></div>
     </div>
+
+    <div class="hero-container">
+
+        <div class="profile-card">
+
+            <div class="profile-image-box">
+
+                <img src="images/profile.jpg"
+                     alt="Muhammad Jamil Uddin"
+                     class="profile-image">
+
+                <span class="online-badge">
+                    🟢 Online
+                </span>
+
+            </div>
+
+            <div class="verified-name">
+
+                <h1>
+                    Muhammad Jamil Uddin
+                    <span class="verified">
+                        ✔
+                    </span>
+                </h1>
+
+            </div>
+
+            <div class="typing-box">
+
+                <span id="typingText"></span>
+
+            </div>
+
+            <p class="hero-description">
+
+                Hafiz of the Holy Qur'an •
+                IIUC Student •
+                Qur'anic Sciences &
+                Islamic Studies
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#about"
+                   class="btn-primary">
+
+                    Explore Portfolio
+
+                </a>
+
+                <a href="#contact"
+                   class="btn-secondary">
+
+                    Contact Me
+
+                </a>
+
+            </div>
+
+            <div class="social-icons">
+
+                <a href="#" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="#" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+
+                <a href="#" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+
+                <a href="#" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-down">
+
+        <span>Scroll Down</span>
+
+        <i class="fas fa-angle-down"></i>
+
+    </div>
+
+</section>
+<!-- ======================================================
+VERSION 9.0
+PART 1.2
+PREMIUM GLASS HEADER
+Responsive Mobile • Tablet • Desktop
+====================================================== -->
+
+<header class="header-v9" id="header">
+
+    <!-- Left -->
+
+    <div class="header-left">
+
+        <button id="menuToggle" class="menu-btn">
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
+        <div class="brand-area">
+
+            <img
+                src="images/logo.png"
+                alt="Logo"
+                class="site-logo">
+
+            <div class="brand-text">
+
+                <h3>Jamil Portfolio</h3>
+
+                <span>Official Website</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Center -->
+
+    <div class="header-center">
+
+        <div class="live-clock">
+
+            <i class="far fa-clock"></i>
+
+            <span id="headerBdTime">
+
+                00:00:00
+
+            </span>
+
+        </div>
+
+        <div class="live-date">
+
+            <i class="far fa-calendar-alt"></i>
+
+            <span id="headerEnglishDate">
+
+                Loading...
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- Right -->
+
+    <div class="header-right">
+
+        <button
+            id="themeToggle"
+            class="header-icon">
+
+            🌙
+
+        </button>
+
+        <button
+            id="languageBtn"
+            class="header-icon">
+
+            🌐
+
+        </button>
+
+        <a
+            href="#contact"
+            class="contact-pill">
+
+            Contact
+
+        </a>
+
+    </div>
+
 </header>
 
-<!-- ================= SIDEBAR MENU ================= -->
-<aside class="sidebar-v8" id="sidebarV8">
-    <div class="sidebar-header-v8">
-        <button class="sidebar-close" id="sidebarClose">✕</button>
+<!-- Scroll Progress -->
+
+<div id="progressBar" class="progress-bar"></div>
+
+<!-- Overlay -->
+
+<div
+id="sidebarOverlay"
+class="sidebar-overlay">
+
+</div>
+<!-- =====================================================
+VERSION 9.0
+PART 1.3
+PREMIUM SIDEBAR
+Responsive • Glass UI • Digital Design
+====================================================== -->
+
+<aside id="sidebarV8" class="sidebar-v9">
+
+    <!-- Sidebar Header -->
+
+    <div class="sidebar-header">
+
+        <button id="sidebarClose" class="close-btn">
+
+            <i class="fas fa-times"></i>
+
+        </button>
+
+        <img
+            src="images/profile.jpg"
+            alt="Muhammad Jamil Uddin"
+            class="sidebar-profile">
+
+        <h2>
+
+            Muhammad Jamil Uddin
+
+            <span class="verified-badge">
+
+                ✔
+
+            </span>
+
+        </h2>
+
+        <p>
+
+            Hafiz of the Holy Qur'an
+
+        </p>
+
+        <small>
+
+            International Islamic University Chittagong
+
+        </small>
+
     </div>
 
-    <div class="sidebar-content-v8">
-        <!-- Profile Section -->
-        <div class="sidebar-profile-section">
-            <img src="images/profile.jpg" alt="Muhammad Jamil Uddin" class="sidebar-profile-img">
-            <h3>Muhammad Jamil Uddin ✔️</h3>
-            <p class="sidebar-subtitle">Hafiz of the Holy Qur'an</p>
-            <p class="sidebar-subtitle">IIUC Student</p>
-            <p class="sidebar-tagline">Official Portfolio Website</p>
-        </div>
+    <!-- Navigation -->
 
-        <hr class="sidebar-divider">
+    <nav class="sidebar-nav">
 
-        <!-- Menu Items -->
-        <div class="sidebar-menu">
-            <!-- Holy Qur'an PDFs -->
-            <div class="menu-item">
-                <button class="menu-btn" onclick="toggleNestedMenu(this)">📖 Holy Qur'an ▶</button>
-                <div class="nested-menu">
-                    <a href="#" onclick="openPDFViewer('pdf/quran-hafezi.pdf'); return false;">📗 হাফেজী কুরআন মাজীদ</a>
-                    <a href="#" onclick="openPDFViewer('pdf/quran-with-meaning.pdf'); return false;">📘 অর্থসহ কুরআন মাজীদ</a>
-                    <a href="pdf/quran-hafezi.pdf" download>⬇ Download Hafezi</a>
-                </div>
-            </div>
+        <a href="#hero">
 
-            <!-- Hadith PDFs -->
-            <div class="menu-item">
-                <button class="menu-btn" onclick="toggleNestedMenu(this)">📚 Hadith ▶</button>
-                <div class="nested-menu">
-                    <a href="#" onclick="openPDFViewer('pdf/mishkat-vol1.pdf'); return false;">📕 মেশকাতুল মাসাবিহ ০१</a>
-                    <a href="#" onclick="openPDFViewer('pdf/mishkat-vol2.pdf'); return false;">📕 মেশকাতুল মাসাবিহ ०२</a>
-                    <a href="pdf/mishkat-vol1.pdf" download>⬇ Download Vol 1</a>
-                </div>
-            </div>
+            <i class="fas fa-house"></i>
 
-            <!-- CV Section -->
-            <div class="menu-item">
-                <button class="menu-btn" onclick="toggleNestedMenu(this)">📥 Jamil's CV ▶</button>
-                <div class="nested-menu">
-                    <a href="#" onclick="openPDFViewer('pdf/cv.pdf'); return false;">👁 View CV</a>
-                    <a href="pdf/cv.pdf" download>⬇ Download CV</a>
-                </div>
-            </div>
+            Home
 
-            <!-- Main Menu -->
-            <div class="menu-item">
-                <button class="menu-btn" onclick="toggleNestedMenu(this)">🏠 Main Menu ▶</button>
-                <div class="nested-menu">
-                    <a href="#home">🏠 Home</a>
-                    <a href="#about">👤 About</a>
-                    <a href="#contact">📞 Contact</a>
-                </div>
-            </div>
-        </div>
+        </a>
 
-        <!-- Sidebar Footer -->
-        <div class="sidebar-footer-v8">
-            <p>ℹ️ <strong>Version 8.0</strong></p>
-            <p>Ultimate Edition</p>
-        </div>
+        <a href="#about">
+
+            <i class="fas fa-user"></i>
+
+            About
+
+        </a>
+
+        <a href="#education">
+
+            <i class="fas fa-graduation-cap"></i>
+
+            Education
+
+        </a>
+
+        <a href="#skills">
+
+            <i class="fas fa-laptop-code"></i>
+
+            Skills
+
+        </a>
+
+        <a href="#experience">
+
+            <i class="fas fa-briefcase"></i>
+
+            Experience
+
+        </a>
+
+        <a href="#certificates">
+
+            <i class="fas fa-award"></i>
+
+            Certificates
+
+        </a>
+
+        <a href="#gallery">
+
+            <i class="fas fa-image"></i>
+
+            Gallery
+
+        </a>
+
+        <a href="#projects">
+
+            <i class="fas fa-layer-group"></i>
+
+            Projects
+
+        </a>
+
+        <a href="#contact">
+
+            <i class="fas fa-envelope"></i>
+
+            Contact
+
+        </a>
+
+    </nav>
+
+    <!-- Quick Actions -->
+
+    <div class="sidebar-section">
+
+        <h4>
+
+            Quick Actions
+
+        </h4>
+
+        <a href="cv/Muhammad_Jamil_Uddin_CV.pdf" download>
+
+            <i class="fas fa-download"></i>
+
+            Download CV
+
+        </a>
+
+        <a href="#">
+
+            <i class="fas fa-share-alt"></i>
+
+            Share Portfolio
+
+        </a>
+
     </div>
+
+    <!-- Social Links -->
+
+    <div class="sidebar-social">
+
+        <a href="#" title="Facebook">
+
+            <i class="fab fa-facebook-f"></i>
+
+        </a>
+
+        <a href="#" title="GitHub">
+
+            <i class="fab fa-github"></i>
+
+        </a>
+
+        <a href="#" title="LinkedIn">
+
+            <i class="fab fa-linkedin-in"></i>
+
+        </a>
+
+        <a href="#" title="YouTube">
+
+            <i class="fab fa-youtube"></i>
+
+        </a>
+
+        <a href="mailto:muhammadjamil252839@gmail.com">
+
+            <i class="fas fa-envelope"></i>
+
+        </a>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="sidebar-footer">
+
+        <span>
+
+            Version 9.0 Ultimate
+
+        </span>
+
+        <small>
+
+            © 2026 Muhammad Jamil Uddin
+
+        </small>
+
+    </div>
+
 </aside>
+<!-- =====================================================
+VERSION 9.0
+PART 1.4
+PREMIUM ABOUT SECTION
+Responsive • Modern • Digital Profile
+====================================================== -->
 
-<!-- ================= OVERLAY ================= -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<section id="about" class="about-v9">
 
-<!-- ================= PDF VIEWER MODAL ================= -->
-<div id="pdfModal" class="pdf-modal">
-    <div class="pdf-modal-content">
-        <button class="pdf-close-btn" onclick="closePDFViewer()">✕</button>
-        <div id="pdfContainer" class="pdf-container">
-            <canvas id="pdfCanvas"></canvas>
-        </div>
-        <div class="pdf-controls">
-            <button onclick="previousPage()">← Previous</button>
-            <span id="pageInfo">Page 1</span>
-            <button onclick="nextPage()">Next →</button>
-        </div>
+    <div class="section-heading">
+
+        <span class="section-tag">
+            About Me
+        </span>
+
+        <h2>
+            Welcome To My Digital Portfolio
+        </h2>
+
+        <p>
+            Learn more about my education, achievements,
+            Islamic studies, leadership and future goals.
+        </p>
+
     </div>
+
+    <div class="about-grid">
+
+        <!-- Left Card -->
+
+        <div class="about-card glass-card">
+
+            <img
+                src="images/profile.jpg"
+                alt="Muhammad Jamil Uddin"
+                class="about-image">
+
+            <h3>
+                Muhammad Jamil Uddin
+            </h3>
+
+            <span class="profile-status">
+
+                🟢 Available for Scholarship &
+                International Collaboration
+
+            </span>
+
+            <p>
+
+                Hafiz of the Holy Qur'an, student of
+                Qur'anic Sciences & Islamic Studies at
+                International Islamic University Chittagong
+                (IIUC). Passionate about Islamic research,
+                education, leadership and technology.
+
+            </p>
+
+        </div>
+
+        <!-- Right Information -->
+
+        <div class="about-info">
+
+            <div class="info-card">
+
+                <i class="fas fa-user"></i>
+
+                <div>
+
+                    <h4>Full Name</h4>
+
+                    <span>Muhammad Jamil Uddin</span>
+
+                </div>
+
+            </div>
+
+            <div class="info-card">
+
+                <i class="fas fa-location-dot"></i>
+
+                <div>
+
+                    <h4>Location</h4>
+
+                    <span>Hatiya, Noakhali, Bangladesh</span>
+
+                </div>
+
+            </div>
+
+            <div class="info-card">
+
+                <i class="fas fa-graduation-cap"></i>
+
+                <div>
+
+                    <h4>University</h4>
+
+                    <span>
+                        International Islamic University
+                        Chittagong (IIUC)
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="info-card">
+
+                <i class="fas fa-book-open"></i>
+
+                <div>
+
+                    <h4>Department</h4>
+
+                    <span>
+                        Qur'anic Sciences &
+                        Islamic Studies
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="stats-grid">
+
+        <div class="stat-box">
+
+            <h2>10+</h2>
+
+            <span>Certificates</span>
+
+        </div>
+
+        <div class="stat-box">
+
+            <h2>5+</h2>
+
+            <span>Leadership Roles</span>
+
+        </div>
+
+        <div class="stat-box">
+
+            <h2>3+</h2>
+
+            <span>Languages</span>
+
+        </div>
+
+        <div class="stat-box">
+
+            <h2>100%</h2>
+
+            <span>Learning Passion</span>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================================
+VERSION 9.0
+PART 1.5
+PREMIUM EDUCATION TIMELINE
+Responsive • Glass UI • Modern Timeline
+====================================================== -->
+
+<section id="education" class="education-v9">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            Education
+        </span>
+
+        <h2>
+            My Educational Journey
+        </h2>
+
+        <p>
+            A timeline of my academic and Islamic educational journey.
+        </p>
+
+    </div>
+
+    <div class="timeline-v9">
+
+        <!-- Hafiz -->
+
+        <div class="timeline-card">
+
+            <div class="timeline-year">
+
+                2017
+
+            </div>
+
+            <div class="timeline-content">
+
+                <i class="fas fa-book-quran timeline-icon"></i>
+
+                <h3>
+
+                    Hifzul Qur'an
+
+                </h3>
+
+                <h4>
+
+                    Jamia Madania Darul Arkam Madrasa
+
+                </h4>
+
+                <p>
+
+                    Successfully completed memorization of the Holy Qur'an.
+
+                </p>
+
+                <span class="timeline-badge">
+
+                    Hafiz
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Dakhil -->
+
+        <div class="timeline-card">
+
+            <div class="timeline-year">
+
+                2022
+
+            </div>
+
+            <div class="timeline-content">
+
+                <i class="fas fa-school timeline-icon"></i>
+
+                <h3>
+
+                    Dakhil (SSC Equivalent)
+
+                </h3>
+
+                <h4>
+
+                    Char Kailash Hadiya Fazil Madrasa
+
+                </h4>
+
+                <p>
+
+                    Successfully completed Dakhil Examination.
+
+                </p>
+
+                <span class="timeline-badge">
+
+                    GPA 4.69
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Alim -->
+
+        <div class="timeline-card">
+
+            <div class="timeline-year">
+
+                2024
+
+            </div>
+
+            <div class="timeline-content">
+
+                <i class="fas fa-user-graduate timeline-icon"></i>
+
+                <h3>
+
+                    Alim (HSC Equivalent)
+
+                </h3>
+
+                <h4>
+
+                    Char Kailash Hadiya Fazil Madrasa
+
+                </h4>
+
+                <p>
+
+                    Successfully completed Alim Examination.
+
+                </p>
+
+                <span class="timeline-badge">
+
+                    GPA 4.50
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- IIUC -->
+
+        <div class="timeline-card active">
+
+            <div class="timeline-year">
+
+                2026
+
+            </div>
+
+            <div class="timeline-content">
+
+                <i class="fas fa-university timeline-icon"></i>
+
+                <h3>
+
+                    Bachelor's Degree
+
+                </h3>
+
+                <h4>
+
+                    International Islamic University Chittagong
+
+                </h4>
+
+                <p>
+
+                    Department of Qur'anic Sciences &
+                    Islamic Studies.
+
+                </p>
+
+                <span class="timeline-badge current">
+
+                    Currently Studying
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Future -->
+
+        <div class="timeline-card future">
+
+            <div class="timeline-year">
+
+                Future
+
+            </div>
+
+            <div class="timeline-content">
+
+                <i class="fas fa-globe timeline-icon"></i>
+
+                <h3>
+
+                    International Scholarship
+
+                </h3>
+
+                <h4>
+
+                    Master's & Higher Studies
+
+                </h4>
+
+                <p>
+
+                    My goal is to pursue higher education abroad
+                    through a fully funded scholarship.
+
+                </p>
+
+                <span class="timeline-badge future">
+
+                    Dream Goal
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================================
+VERSION 9.0
+PART 1.6
+PREMIUM SKILLS DASHBOARD
+Responsive • Glass UI • Digital Design
+====================================================== -->
+
+<section id="skills" class="skills-v9">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            Skills
+        </span>
+
+        <h2>
+            Professional Skills Dashboard
+        </h2>
+
+        <p>
+            My academic, technical and professional competencies.
+        </p>
+
+    </div>
+
+    <div class="skills-grid">
+
+        <!-- Skill Card -->
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                <i class="fas fa-book-quran"></i>
+            </div>
+
+            <h3>Qur'anic Studies</h3>
+
+            <div class="skill-progress">
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         data-progress="98"></div>
+
+                </div>
+
+                <span>98%</span>
+
+            </div>
+
+        </div>
+
+        <!-- Skill Card -->
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                <i class="fas fa-language"></i>
+            </div>
+
+            <h3>Arabic Language</h3>
+
+            <div class="skill-progress">
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         data-progress="90"></div>
+
+                </div>
+
+                <span>90%</span>
+
+            </div>
+
+        </div>
+
+        <!-- Skill Card -->
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                <i class="fas fa-globe"></i>
+            </div>
+
+            <h3>English Communication</h3>
+
+            <div class="skill-progress">
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         data-progress="75"></div>
+
+                </div>
+
+                <span>75%</span>
+
+            </div>
+
+        </div>
+
+        <!-- Skill Card -->
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                <i class="fas fa-code"></i>
+            </div>
+
+            <h3>HTML • CSS • JavaScript</h3>
+
+            <div class="skill-progress">
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         data-progress="85"></div>
+
+                </div>
+
+                <span>85%</span>
+
+            </div>
+
+        </div>
+
+        <!-- Skill Card -->
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+
+            <h3>Graphic Design</h3>
+
+            <div class="skill-progress">
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         data-progress="80"></div>
+
+                </div>
+
+                <span>80%</span>
+
+            </div>
+
+        </div>
+
+        <!-- Skill Card -->
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                <i class="fas fa-users"></i>
+            </div>
+
+            <h3>Leadership</h3>
+
+            <div class="skill-progress">
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         data-progress="92"></div>
+
+                </div>
+
+                <span>92%</span>
+
+            </div>
+
+        </div>
+
+        <!-- Skill Card -->
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+
+            <h3>Public Speaking</h3>
+
+            <div class="skill-progress">
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         data-progress="88"></div>
+
+                </div>
+
+                <span>88%</span>
+
+            </div>
+
+        </div>
+
+        <!-- Skill Card -->
+
+        <div class="skill-card">
+
+            <div class="skill-icon">
+                <i class="fas fa-laptop"></i>
+            </div>
+
+            <h3>Microsoft Office</h3>
+
+            <div class="skill-progress">
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"
+                         data-progress="86"></div>
+
+                </div>
+
+                <span>86%</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================================
+VERSION 9.0
+PART 1.7
+EXPERIENCE • LEADERSHIP • ACHIEVEMENTS
+Responsive • Glass UI • Modern Timeline
+====================================================== -->
+
+<section id="experience" class="experience-v9">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            Experience
+        </span>
+
+        <h2>
+            Leadership & Professional Journey
+        </h2>
+
+        <p>
+            My leadership, volunteering, academic and organizational experiences.
+        </p>
+
+    </div>
+
+    <div class="experience-grid">
+
+        <!-- Leadership -->
+
+        <article class="experience-card featured">
+
+            <div class="experience-icon">
+                <i class="fas fa-users"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <span class="experience-type">
+                    Leadership
+                </span>
+
+                <h3>
+                    Bangladesh Islami Chhatra Shibir
+                </h3>
+
+                <p class="experience-role">
+
+                    Student Leader & Organizer
+
+                </p>
+
+                <p>
+
+                    Participated in leadership development,
+                    educational programs, event management,
+                    organizational planning and social welfare
+                    activities.
+
+                </p>
+
+                <div class="experience-tags">
+
+                    <span>Leadership</span>
+                    <span>Management</span>
+                    <span>Teamwork</span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- Teaching -->
+
+        <article class="experience-card">
+
+            <div class="experience-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <span class="experience-type">
+                    Teaching
+                </span>
+
+                <h3>
+                    Islamic Education
+                </h3>
+
+                <p>
+
+                    Teaching Qur'an recitation, Tajweed and
+                    Islamic studies to students while improving
+                    communication and mentoring skills.
+
+                </p>
+
+                <div class="experience-tags">
+
+                    <span>Teaching</span>
+                    <span>Tajweed</span>
+                    <span>Mentoring</span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- Volunteer -->
+
+        <article class="experience-card">
+
+            <div class="experience-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <span class="experience-type">
+                    Volunteer
+                </span>
+
+                <h3>
+                    Community Service
+                </h3>
+
+                <p>
+
+                    Actively involved in educational,
+                    humanitarian and community development
+                    initiatives.
+
+                </p>
+
+                <div class="experience-tags">
+
+                    <span>Volunteer</span>
+                    <span>Social Work</span>
+                    <span>Community</span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- Digital -->
+
+        <article class="experience-card">
+
+            <div class="experience-icon">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+
+            <div class="experience-content">
+
+                <span class="experience-type">
+                    Digital Skills
+                </span>
+
+                <h3>
+                    Portfolio & Web Development
+                </h3>
+
+                <p>
+
+                    Developing a modern personal portfolio
+                    website using HTML, CSS and JavaScript with
+                    responsive UI and interactive features.
+
+                </p>
+
+                <div class="experience-tags">
+
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+    <!-- Achievement Numbers -->
+
+    <div class="achievement-grid">
+
+        <div class="achievement-box">
+
+            <h3 class="counter" data-target="10">
+                0
+            </h3>
+
+            <p>
+                Certificates
+            </p>
+
+        </div>
+
+        <div class="achievement-box">
+
+            <h3 class="counter" data-target="5">
+                0
+            </h3>
+
+            <p>
+                Leadership Roles
+            </p>
+
+        </div>
+
+        <div class="achievement-box">
+
+            <h3 class="counter" data-target="100">
+                0
+            </h3>
+
+            <p>
+                Completed Projects
+            </p>
+
+        </div>
+
+        <div class="achievement-box">
+
+            <h3 class="counter" data-target="2026">
+                0
+            </h3>
+
+            <p>
+                Current Journey
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+VERSION 9.0
+PART 1.8
+PREMIUM DIGITAL FOOTER
+========================================== -->
+
+<footer class="footer-v9">
+
+<div class="footer-container">
+
+<div class="footer-grid">
+
+<!-- ===================== -->
+<!-- ABOUT -->
+<!-- ===================== -->
+
+<div class="footer-card">
+
+<h2>
+Muhammad Jamil Uddin
+</h2>
+
+<p>
+
+Official Personal Portfolio Website.
+
+Built with modern web technologies to present my education, achievements, skills, certificates, research and professional activities.
+
+</p>
+
 </div>
 
-<!-- ================= HERO SECTION ================= -->
-<section class="hero" id="home">
-    <div class="hero-content">
-        <div class="profile-box">
-            <img src="images/gallery5.jpg" alt="Muhammad Jamil Uddin" class="profile-image">
-        </div>
+<!-- ===================== -->
+<!-- QUICK LINKS -->
+<!-- ===================== -->
 
-        <!-- Name in one line with better styling -->
-        <h1 class="hero-name">Muhammad Jamil Uddin</h1>
+<div class="footer-card">
 
-        <h2>Hafiz of the Holy Qur'an</h2>
+<h3>
+Quick Links
+</h3>
 
-        <!-- Greeting System -->
-        <div class="greeting-box">
-            <p id="heroGreeting" class="hero-greeting">🌅 Good Morning</p>
-            <p class="greeting-subtitle">Welcome to my portfolio</p>
-        </div>
+<ul>
 
-        <h3>Student of International Islamic University Chittagong (IIUC)</h3>
+<li><a href="#home">Home</a></li>
 
-        <p>Department of Qur'anic Sciences and Islamic Studies</p>
+<li><a href="#about">About</a></li>
 
-        <p>Completed Hifz of the Holy Qur'an in 2017 from Jamia Madania Darul Arkam Madrasa, Oskhali, Hatiya, Noakhali.</p>
+<li><a href="#education">Education</a></li>
 
-        <a href="#about" class="btn">Explore My Profile</a>
-    </div>
-</section>
+<li><a href="#skills">Skills</a></li>
 
-<!-- ================= ABOUT SECTION ================= -->
-<section id="about" class="about">
-    <div class="container">
-        <div class="section-title">
-            <h2>About Me</h2>
-            <p>Know More About Muhammad Jamil Uddin</p>
-        </div>
+<li><a href="#gallery">Gallery</a></li>
 
-        <div class="about-content">
-            <div class="about-image">
-                <img src="images/profile.jpg" alt="Muhammad Jamil Uddin">
-            </div>
+<li><a href="#certificates">Certificates</a></li>
 
-            <div class="about-text">
-                <h3>Muhammad Jamil Uddin</h3>
-                <p>I am Muhammad Jamil Uddin, a Bangladeshi student, Hafiz of the Holy Qur'an, and an Islamic Studies learner. I completed Hifz of the Holy Qur'an in 2017 from Jamia Madania Darul Arkam Madrasa, Oskhali. Currently, I am pursuing my Bachelor (Honours) degree in the Department of Qur'anic Sciences and Islamic Studies at the International Islamic University Chittagong (IIUC).</p>
+<li><a href="#contact">Contact</a></li>
 
-                <div class="about-info">
-                    <div class="info-box">
-                        <strong>Full Name</strong>
-                        <span>Muhammad Jamil Uddin</span>
-                    </div>
-                    <div class="info-box">
-                        <strong>Nationality</strong>
-                        <span>Bangladeshi</span>
-                    </div>
-                    <div class="info-box">
-                        <strong>Date of Birth</strong>
-                        <span>31 December 2006</span>
-                    </div>
-                    <div class="info-box">
-                        <strong>Profession</strong>
-                        <span>Student & Hafiz of the Holy Qur'an</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+</ul>
 
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-box">
-            <h3>Muhammad Jamil Uddin</h3>
-            <p>Official Portfolio Website</p>
-        </div>
+</div>
 
-        <!-- Three Dates Section -->
-        <div class="footer-info">
-            <h4>Today's Date</h4>
-            <div class="footer-dates">
-                <div class="date-box">
-                    <strong>Gregorian</strong>
-                    <span id="gregorianDate">Loading...</span>
-                </div>
-                <div class="date-box">
-                    <strong>Bengali</strong>
-                    <span id="bengaliDate">Loading...</span>
-                </div>
-                <div class="date-box">
-                    <strong>Hijri</strong>
-                    <span id="hijriDate">Loading...</span>
-                </div>
-            </div>
+<!-- ===================== -->
+<!-- CONTACT -->
+<!-- ===================== -->
 
-            <!-- Other Info -->
-            <div class="footer-other-info">
-                <p id="footerGreeting">🌅 Good Morning</p>
-                <p id="footerNetworkStatus">🟢 Online</p>
-                <p id="footerVisitorCount">Visitors: 0</p>
-            </div>
-        </div>
-    </div>
+<div class="footer-card">
 
-    <div class="copyright">
-        <p>&copy; <span id="footerYear">2026</span> Muhammad Jamil Uddin. All Rights Reserved.</p>
-    </div>
+<h3>
+
+Contact
+
+</h3>
+
+<p>
+
+📍 Hatiya, Noakhali, Bangladesh
+
+</p>
+
+<p>
+
+📧 muhammadjamil252839@gmail.com
+
+</p>
+
+<p>
+
+📞 +8801826067398
+
+</p>
+
+<p>
+
+🌐 www.muhammadjamil.com
+
+</p>
+
+</div>
+
+<!-- ===================== -->
+<!-- SOCIAL -->
+<!-- ===================== -->
+
+<div class="footer-card">
+
+<h3>
+
+Connect
+
+</h3>
+
+<div class="footer-social">
+
+<a href="#">
+<i class="fab fa-facebook-f"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-github"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-linkedin-in"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-youtube"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-instagram"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<hr class="footer-line">
+
+<div class="footer-bottom">
+
+<p>
+
+© <span id="footerYear"></span>
+
+Muhammad Jamil Uddin
+
+All Rights Reserved.
+
+</p>
+
+<p>
+
+Version 9.0 Ultimate Edition
+
+</p>
+
+</div>
+
+</div>
+
 </footer>
 
-<!-- ================= SCROLL TOP BUTTON ================= -->
-<button id="scrollTopBtn" class="scroll-top-btn">↑</button>
+<!-- ==========================================
+BACK TO TOP
+========================================== -->
 
-<!-- ================= PROGRESS BAR ================= -->
-<div id="progressBar"></div>
+<button
+id="scrollTopBtn"
+class="scroll-top-btn"
+title="Back to Top">
 
-<!-- Scripts -->
-<script src="script.js"></script>
-<script src="pdf-viewer.js"></script>
+<i class="fas fa-arrow-up"></i>
+
+</button>
+
+<!-- ==========================================
+END OF WEBSITE
+========================================== -->
 
 </body>
+
 </html>
