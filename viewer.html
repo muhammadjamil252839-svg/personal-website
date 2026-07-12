@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@ padding:0;
 width:100%;
 height:100%;
 overflow:hidden;
+background:#f5f5f5;
 }
 
 iframe{
@@ -31,7 +32,16 @@ border:none;
 const params = new URLSearchParams(window.location.search);
 const file = params.get("file");
 
-document.getElementById("pdfViewer").src = file;
+if(file){
+
+const fullUrl =
+"https://muhammadjamil252839-svg.github.io/personal-website/" + file;
+
+document.getElementById("pdfViewer").src =
+"https://docs.google.com/gview?embedded=1&url=" +
+encodeURIComponent(fullUrl);
+
+}
 </script>
 
 </body>
