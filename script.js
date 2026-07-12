@@ -1,1394 +1,428 @@
 /* ==========================================================
    MUHAMMAD JAMIL UDDIN
    OFFICIAL PORTFOLIO WEBSITE
-   VERSION 9.1 ULTIMATE
+   VERSION 9.0
    PART 3.1
-   CORE INITIALIZATION
+   INITIALIZATION + LOADER + DATE + TIME
 ========================================================== */
 
 "use strict";
 
-/* ==========================================================
-   VERSION INFORMATION
-========================================================== */
-
-const WEBSITE = {
-
-    name: "Muhammad Jamil Uddin",
-
-    version: "9.0 Ultimate",
-
-    developer: "Muhammad Jamil Uddin",
-
-    environment: "Production"
-
-};
-
-/* ==========================================================
-   GLOBAL SELECTORS
-========================================================== */
-
-const $ = (selector) => document.querySelector(selector);
-
-const $$ = (selector) => document.querySelectorAll(selector);
-
-/* ==========================================================
-   GLOBAL ELEMENTS
-========================================================== */
-
-const body = document.body;
-
-const html = document.documentElement;
-
-/* ==========================================================
-   DEVICE DETECTION
-========================================================== */
-
-const DEVICE = {
-
-    touch: window.matchMedia("(pointer:coarse)").matches,
-
-    mobile: window.innerWidth <= 768,
-
-    tablet: window.innerWidth > 768 && window.innerWidth <= 1024,
-
-    desktop: window.innerWidth > 1024
-
-};
-
-/* ==========================================================
-   WEBSITE STATUS
-========================================================== */
-
-const WEBSITE_STATUS = {
-
-    online: navigator.onLine,
-
-    loaded: false,
-
-    darkMode: false
-
-};
-
-/* ==========================================================
-   LOADER
-========================================================== */
-
-window.addEventListener("load", () => {
-
-    WEBSITE_STATUS.loaded = true;
-
-    body.classList.add("loaded");
-
-    const loader = $("#loader");
-
-    if (loader) {
-
-        setTimeout(() => {
-
-            loader.classList.add("hide");
-
-        }, 800);
-
-        setTimeout(() => {
-
-            loader.remove();
-
-        }, 1500);
-
-    }
-
-});
-
-/* ==========================================================
-   NETWORK STATUS
-========================================================== */
-
-window.addEventListener("online", () => {
-
-    WEBSITE_STATUS.online = true;
-
-    console.log("🟢 Internet Connected");
-
-});
-
-window.addEventListener("offline", () => {
-
-    WEBSITE_STATUS.online = false;
-
-    console.log("🔴 Internet Disconnected");
-
-});
-
-/* ==========================================================
-   DISABLE IMAGE DRAG
-========================================================== */
+/* ==========================
+   DOM READY
+========================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    $$("img").forEach((img) => {
-
-        img.draggable = false;
-
-        img.addEventListener("dragstart", (event) => {
-
-            event.preventDefault();
-
-        });
-
-    });
+    initializeWebsite();
 
 });
 
-/* ==========================================================
-   SMOOTH INTERNAL LINK
-========================================================== */
+/* ==========================
+   INITIALIZE WEBSITE
+========================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+function initializeWebsite(){
 
-    $$('a[href^="#"]').forEach((anchor) => {
+    startLoader();
 
-        anchor.addEventListener("click", function (event) {
+    startBangladeshClock();
 
-            const target = document.querySelector(
+    updateFooterYear();
 
-                this.getAttribute("href")
-
-            );
-
-            if (!target) return;
-
-            event.preventDefault();
-
-            target.scrollIntoView({
-
-                behavior: "smooth",
-
-                block: "start"
-
-            });
-
-        });
-
-    });
-
-});
-
-/* ==========================================================
-   EXTERNAL LINK SECURITY
-========================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    $$("a").forEach((link) => {
-
-        if (
-
-            link.hostname &&
-
-            link.hostname !== location.hostname
-
-        ) {
-
-            link.target = "_blank";
-
-            link.rel = "noopener noreferrer";
-
-        }
-
-    });
-
-});
-
-/* ==========================================================
-   RESPONSIVE CHECK
-========================================================== */
-
-window.addEventListener("resize", () => {
-
-    body.classList.toggle(
-
-        "mobile-view",
-
-        window.innerWidth <= 768
-
-    );
-
-});
-
-/* ==========================================================
-   START MESSAGE
-========================================================== */
-
-console.log("%c=======================================",
-
-"color:#2563eb;font-size:14px;font-weight:bold;");
-
-console.log("%cMuhammad Jamil Uddin",
-
-"color:#2563eb;font-size:22px;font-weight:bold;");
-
-console.log("%cOfficial Portfolio Website",
-
-"color:#0ea5e9;font-size:16px;");
-
-console.log("%cVersion 9.0 Ultimate",
-
-"color:#16a34a;font-size:18px;font-weight:bold;");
-
-console.log("%cPart 3.1 Loaded Successfully",
-
-"color:#f59e0b;font-size:15px;");
-
-console.log("%c=======================================",
-
-"color:#2563eb;font-size:14px;font-weight:bold;");
-/* ==========================================================
-   VERSION 9.0
-   PART 3.2
-   SMART SIDEBAR & NAVIGATION
-========================================================== */
-
-"use strict";
-
-/* ==========================================================
-   ELEMENTS
-========================================================== */
-
-const menuToggle = document.getElementById("menuToggle");
-const sidebar = document.getElementById("sidebarV9") ||
-                document.getElementById("sidebarV8");
-
-const sidebarClose = document.getElementById("sidebarClose");
-const sidebarOverlay = document.getElementById("sidebarOverlay");
-
-const navLinks = document.querySelectorAll(".sidebar-menu a");
-
-/* ==========================================================
-   OPEN SIDEBAR
-========================================================== */
-
-function openSidebar(){
-
-    if(!sidebar) return;
-
-    sidebar.classList.add("active");
-
-    sidebarOverlay?.classList.add("active");
-
-    document.body.style.overflow="hidden";
+    detectNetwork();
 
 }
 
-/* ==========================================================
-   CLOSE SIDEBAR
-========================================================== */
+/* ==========================
+   WELCOME LOADER
+========================== */
 
-function closeSidebar(){
+function startLoader(){
 
-    if(!sidebar) return;
+    const loader = document.getElementById("loader");
 
-    sidebar.classList.remove("active");
+    if(!loader) return;
 
-    sidebarOverlay?.classList.remove("active");
+    setTimeout(()=>{
 
-    document.body.style.overflow="";
+        loader.classList.add("hide");
 
-}
+        setTimeout(()=>{
 
-/* ==========================================================
-   EVENTS
-========================================================== */
+            loader.style.display="none";
 
-menuToggle?.addEventListener("click",openSidebar);
+        },800);
 
-sidebarClose?.addEventListener("click",closeSidebar);
-
-sidebarOverlay?.addEventListener("click",closeSidebar);
-
-/* ==========================================================
-   ESC KEY
-========================================================== */
-
-document.addEventListener("keydown",(event)=>{
-
-    if(event.key==="Escape"){
-
-        closeSidebar();
-
-    }
-
-});
-
-/* ==========================================================
-   AUTO CLOSE AFTER CLICK
-========================================================== */
-
-navLinks.forEach((link)=>{
-
-    link.addEventListener("click",()=>{
-
-        closeSidebar();
-
-    });
-
-});
-
-/* ==========================================================
-   ACTIVE MENU SYSTEM
-========================================================== */
-
-const sections=document.querySelectorAll("section[id]");
-
-function updateActiveMenu(){
-
-    const scrollY=window.scrollY+120;
-
-    sections.forEach((section)=>{
-
-        const top=section.offsetTop;
-
-        const height=section.offsetHeight;
-
-        const id=section.getAttribute("id");
-
-        if(scrollY>=top && scrollY<top+height){
-
-            navLinks.forEach((link)=>{
-
-                link.classList.remove("active");
-
-                if(link.getAttribute("href")==="#"+id){
-
-                    link.classList.add("active");
-
-                }
-
-            });
-
-        }
-
-    });
+    },2500);
 
 }
 
-window.addEventListener("scroll",updateActiveMenu);
+/* ==========================
+   FOOTER YEAR
+========================== */
 
-/* ==========================================================
-   HEADER SHADOW
-========================================================== */
+function updateFooterYear(){
 
-const header=document.querySelector("header");
+    const year=document.getElementById("footerYear");
 
-window.addEventListener("scroll",()=>{
+    if(year){
 
-    if(!header) return;
-
-    if(window.scrollY>30){
-
-        header.classList.add("scrolled");
-
-    }else{
-
-        header.classList.remove("scrolled");
-
-    }
-
-});
-
-/* ==========================================================
-   NESTED MENU
-========================================================== */
-
-function toggleNestedMenu(button){
-
-    const menu=button.nextElementSibling;
-
-    if(!menu) return;
-
-    menu.classList.toggle("active");
-
-    button.classList.toggle("active");
-
-}
-
-window.toggleNestedMenu=toggleNestedMenu;
-
-/* ==========================================================
-   START
-========================================================== */
-
-updateActiveMenu();
-
-console.log("✅ Version 9 | Part 3.2 Smart Navigation Loaded");
-/* ==========================================================
-   VERSION 9.0
-   PART 3.3
-   THEME & LANGUAGE MANAGER
-========================================================== */
-
-"use strict";
-
-/* ==========================================================
-   ELEMENTS
-========================================================== */
-
-const themeToggle = document.getElementById("themeToggle");
-
-const languageSelect = document.getElementById("languageSelect");
-
-/* ==========================================================
-   STORAGE KEY
-========================================================== */
-
-const STORAGE = {
-
-    theme: "portfolio-theme",
-
-    language: "portfolio-language"
-
-};
-
-/* ==========================================================
-   APPLY THEME
-========================================================== */
-
-function applyTheme(theme){
-
-    document.body.classList.remove("dark-mode");
-
-    if(theme==="dark"){
-
-        document.body.classList.add("dark-mode");
-
-    }
-
-    if(theme==="system"){
-
-        const dark = window.matchMedia(
-
-            "(prefers-color-scheme: dark)"
-
-        ).matches;
-
-        if(dark){
-
-            document.body.classList.add("dark-mode");
-
-        }
-
-    }
-
-    localStorage.setItem(
-
-        STORAGE.theme,
-
-        theme
-
-    );
-
-    updateThemeButton(theme);
-
-}
-
-/* ==========================================================
-   THEME BUTTON
-========================================================== */
-
-function updateThemeButton(theme){
-
-    if(!themeToggle) return;
-
-    const dark =
-
-        document.body.classList.contains("dark-mode");
-
-    if(theme==="system"){
-
-        themeToggle.innerHTML="💻";
-
-        return;
-
-    }
-
-    themeToggle.innerHTML=
-
-        dark ? "☀️" : "🌙";
-
-}
-
-/* ==========================================================
-   TOGGLE
-========================================================== */
-
-function toggleTheme(){
-
-    const dark=
-
-        document.body.classList.contains("dark-mode");
-
-    applyTheme(
-
-        dark ? "light" : "dark"
-
-    );
-
-}
-
-themeToggle?.addEventListener(
-
-    "click",
-
-    toggleTheme
-
-);
-
-/* ==========================================================
-   LOAD SAVED THEME
-========================================================== */
-
-const savedTheme=
-
-localStorage.getItem(STORAGE.theme)
-
-||"light";
-
-applyTheme(savedTheme);
-
-/* ==========================================================
-   SYSTEM THEME CHANGE
-========================================================== */
-
-window.matchMedia(
-
-"(prefers-color-scheme: dark)"
-
-).addEventListener(
-
-"change",
-
-()=>{
-
-    const current=
-
-    localStorage.getItem(
-
-        STORAGE.theme
-
-    );
-
-    if(current==="system"){
-
-        applyTheme("system");
+        year.textContent=new Date().getFullYear();
 
     }
 
 }
 
-);
-
-/* ==========================================================
-   LANGUAGE
-========================================================== */
-
-function applyLanguage(lang){
-
-    document.documentElement.lang=lang;
-
-    localStorage.setItem(
-
-        STORAGE.language,
-
-        lang
-
-    );
-
-    console.log(
-
-        "Language:",
-
-        lang
-
-    );
-
-}
-
-/* ==========================================================
-   LANGUAGE CHANGE
-========================================================== */
-
-languageSelect?.addEventListener(
-
-"change",
-
-(event)=>{
-
-    applyLanguage(
-
-        event.target.value
-
-    );
-
-}
-
-/* ==========================================================
-   LOAD LANGUAGE
-========================================================== */
-
-const savedLanguage=
-
-localStorage.getItem(
-
-STORAGE.language
-
-)||"en";
-
-applyLanguage(savedLanguage);
-
-if(languageSelect){
-
-    languageSelect.value=savedLanguage;
-
-}
-
-/* ==========================================================
-   RESET SETTINGS
-========================================================== */
-
-function resetWebsiteSettings(){
-
-    localStorage.removeItem(
-
-        STORAGE.theme
-
-    );
-
-    localStorage.removeItem(
-
-        STORAGE.language
-
-    );
-
-    applyTheme("light");
-
-    applyLanguage("en");
-
-    if(languageSelect){
-
-        languageSelect.value="en";
-
-    }
-
-    console.log(
-
-        "Settings Reset"
-
-    );
-
-}
-
-window.resetWebsiteSettings=
-
-resetWebsiteSettings;
-
-/* ==========================================================
-   STATUS
-========================================================== */
-
-console.log(
-
-"✅ Version 9 | Part 3.3 Theme & Language Loaded"
-
-);
-/* ==========================================================
-   VERSION 9.0
-   PART 3.4
-   SMART DATE • TIME • GREETING SYSTEM
-========================================================== */
-
-"use strict";
-
-/* ==========================================================
-   ELEMENTS
-========================================================== */
-
-const bdClock = document.getElementById("headerBdTime");
-const englishDate = document.getElementById("headerEnglishDate");
-
-const footerGregorian = document.getElementById("gregorianDate");
-const footerBangla = document.getElementById("bengaliDate");
-const footerHijri = document.getElementById("hijriDate");
-const footerGreeting = document.getElementById("footerGreeting");
-
-/* ==========================================================
-   LIVE BANGLADESH TIME
-========================================================== */
-
-function updateClock(){
-
-    const now = new Date();
-
-    if(bdClock){
-
-        bdClock.textContent = now.toLocaleTimeString("en-US",{
-
-            timeZone:"Asia/Dhaka",
-
-            hour:"2-digit",
-
-            minute:"2-digit",
-
-            second:"2-digit",
-
-            hour12:true
-
-        });
-
-    }
-
-}
-
-/* ==========================================================
-   ENGLISH DATE
-========================================================== */
-
-function updateEnglishDate(){
-
-    if(!englishDate) return;
-
-    const now = new Date();
-
-    englishDate.textContent = now.toLocaleDateString(
-
-        "en-US",
-
-        {
-
-            weekday:"long",
-
-            day:"numeric",
-
-            month:"long",
-
-            year:"numeric"
-
-        }
-
-    );
-
-}
-
-/* ==========================================================
-   FOOTER DATES
-========================================================== */
-
-function updateFooterDates(){
-
-    const today = new Date();
-
-    if(footerGregorian){
-
-        footerGregorian.textContent =
-
-        today.toLocaleDateString(
-
-            "en-GB",
-
-            {
-
-                day:"numeric",
-
-                month:"long",
-
-                year:"numeric"
-
-            }
-
-        );
-
-    }
-
-    if(footerBangla){
-
-        footerBangla.textContent =
-
-        new Intl.DateTimeFormat(
-
-            "bn-BD-u-ca-beng",
-
-            {
-
-                day:"numeric",
-
-                month:"long",
-
-                year:"numeric"
-
-            }
-
-        ).format(today);
-
-    }
-
-    if(footerHijri){
-
-        footerHijri.textContent =
-
-        new Intl.DateTimeFormat(
-
-            "en-TN-u-ca-islamic",
-
-            {
-
-                day:"numeric",
-
-                month:"long",
-
-                year:"numeric"
-
-            }
-
-        ).format(today);
-
-    }
-
-}
-
-/* ==========================================================
-   GREETING
-========================================================== */
-
-function updateGreeting(){
-
-    if(!footerGreeting) return;
-
-    const hour = Number(
-
-        new Date().toLocaleString(
-
-            "en-US",
-
-            {
-
-                timeZone:"Asia/Dhaka",
-
-                hour:"numeric",
-
-                hour12:false
-
-            }
-
-        )
-
-    );
-
-    let greeting="";
-
-    if(hour>=5 && hour<12){
-
-        greeting="🌅 Good Morning";
-
-    }
-
-    else if(hour>=12 && hour<17){
-
-        greeting="☀️ Good Afternoon";
-
-    }
-
-    else if(hour>=17 && hour<20){
-
-        greeting="🌇 Good Evening";
-
-    }
-
-    else{
-
-        greeting="🌙 Good Night";
-
-    }
-
-    footerGreeting.textContent = greeting;
-
-}
-
-/* ==========================================================
-   INITIALIZE
-========================================================== */
-
-function initializeDateTime(){
+/* ==========================
+   BANGLADESH LIVE CLOCK
+========================== */
+
+function startBangladeshClock(){
 
     updateClock();
 
-    updateEnglishDate();
-
-    updateFooterDates();
-
-    updateGreeting();
+    setInterval(updateClock,1000);
 
 }
 
-initializeDateTime();
+function updateClock(){
 
-/* ==========================================================
-   AUTO UPDATE
-========================================================== */
+    const now=new Date();
 
-setInterval(updateClock,1000);
+    const optionsTime={
 
-setInterval(updateGreeting,60000);
+        timeZone:"Asia/Dhaka",
 
-setInterval(updateFooterDates,60000);
+        hour:"2-digit",
 
-setInterval(updateEnglishDate,60000);
+        minute:"2-digit",
 
-/* ==========================================================
-   FOOTER YEAR
-========================================================== */
+        second:"2-digit",
 
-const footerYear=document.getElementById("footerYear");
+        hour12:true
 
-if(footerYear){
+    };
 
-    footerYear.textContent=
+    const optionsDate={
 
-    new Date().getFullYear();
+        timeZone:"Asia/Dhaka",
 
-}
+        weekday:"long",
 
-/* ==========================================================
-   STATUS
-========================================================== */
+        year:"numeric",
 
-console.log(
+        month:"long",
 
-"✅ Version 9 | Part 3.4 Smart Date & Time Loaded"
+        day:"numeric"
 
-);
-/* ==========================================================
-   VERSION 9.0
-   PART 3.5
-   SMART SCROLL ENGINE
-   PROGRESS • REVEAL • COUNTER
-========================================================== */
+    };
 
-"use strict";
+    const time=document.getElementById("headerBdTime");
 
-/* ==========================================================
-   ELEMENTS
-========================================================== */
+    const date=document.getElementById("headerEnglishDate");
 
-const progressBar = document.getElementById("progressBar");
+    const footer=document.getElementById("gregorianDate");
 
-const scrollTopBtn = document.getElementById("scrollTopBtn");
+    const timeString=now.toLocaleTimeString("en-US",optionsTime);
 
-/* ==========================================================
-   READING PROGRESS
-========================================================== */
+    const dateString=now.toLocaleDateString("en-US",optionsDate);
 
-function updateReadingProgress(){
+    if(time){
 
-    const scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop;
+        time.textContent=timeString;
 
-    const documentHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+    }
 
-    const progress =
-        (scrollTop / documentHeight) * 100;
+    if(date){
 
-    if(progressBar){
+        date.textContent=dateString;
 
-        progressBar.style.width =
-            progress + "%";
+    }
+
+    if(footer){
+
+        footer.textContent=dateString;
 
     }
 
 }
 
-window.addEventListener(
+/* ==========================
+   NETWORK STATUS
+========================== */
 
-    "scroll",
+function detectNetwork(){
 
-    updateReadingProgress,
+    const status=document.getElementById("footerNetworkStatus");
 
-    {passive:true}
+    if(!status) return;
 
-);
+    function update(){
 
-/* ==========================================================
-   SCROLL TO TOP
-========================================================== */
+        if(navigator.onLine){
 
-function toggleScrollButton(){
-
-    if(!scrollTopBtn) return;
-
-    if(window.scrollY > 350){
-
-        scrollTopBtn.classList.add("show");
-
-    }else{
-
-        scrollTopBtn.classList.remove("show");
-
-    }
-
-}
-
-window.addEventListener(
-
-    "scroll",
-
-    toggleScrollButton,
-
-    {passive:true}
-
-);
-
-scrollTopBtn?.addEventListener(
-
-    "click",
-
-    ()=>{
-
-        window.scrollTo({
-
-            top:0,
-
-            behavior:"smooth"
-
-        });
-
-    }
-
-);
-
-/* ==========================================================
-   REVEAL ANIMATION
-========================================================== */
-
-const revealItems = document.querySelectorAll(
-
-    ".fade-in,.reveal,.card,.glass-card,.section"
-
-);
-
-const revealObserver =
-
-new IntersectionObserver(
-
-(entries)=>{
-
-    entries.forEach((entry)=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add(
-
-                "visible"
-
-            );
-
-            revealObserver.unobserve(
-
-                entry.target
-
-            );
-
-        }
-
-    });
-
-},
-
-{
-
-    threshold:0.15,
-
-    rootMargin:"0px 0px -60px 0px"
-
-}
-
-);
-
-revealItems.forEach((item)=>{
-
-    revealObserver.observe(item);
-
-});
-
-/* ==========================================================
-   NUMBER COUNTER
-========================================================== */
-
-const counters =
-
-document.querySelectorAll(
-
-"[data-counter]"
-
-);
-
-function animateCounter(counter){
-
-    const target =
-
-    Number(
-
-        counter.dataset.counter
-
-    );
-
-    const speed = 30;
-
-    let current = 0;
-
-    const increase =
-
-        target / 100;
-
-    const timer = setInterval(()=>{
-
-        current += increase;
-
-        if(current >= target){
-
-            counter.textContent =
-
-            target.toLocaleString();
-
-            clearInterval(timer);
+            status.textContent="Online 🟢";
 
         }else{
 
-            counter.textContent =
-
-            Math.floor(current)
-
-            .toLocaleString();
+            status.textContent="Offline 🔴";
 
         }
 
-    },speed);
+    }
+
+    update();
+
+    window.addEventListener("online",update);
+
+    window.addEventListener("offline",update);
 
 }
 
-const counterObserver =
+/* ==========================================================
+   END OF PART 3.1
+========================================================== */
+/* ==========================================================
+   VERSION 9
+   PART 3.2
+   SIDEBAR MENU + NESTED MENU
+========================================================== */
 
-new IntersectionObserver(
+/* ==========================
+   SIDEBAR
+========================== */
 
-(entries)=>{
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebarV8");
+const sidebarClose = document.getElementById("sidebarClose");
+const overlay = document.getElementById("sidebarOverlay");
 
-    entries.forEach((entry)=>{
+/* ---------- Open Sidebar ---------- */
 
-        if(entry.isIntersecting){
+function openSidebar() {
 
-            animateCounter(
+    if (!sidebar) return;
 
-                entry.target
+    sidebar.classList.add("active");
 
-            );
+    if (overlay) {
+        overlay.classList.add("active");
+    }
 
-            counterObserver.unobserve(
+    document.body.style.overflow = "hidden";
 
-                entry.target
+}
 
-            );
+/* ---------- Close Sidebar ---------- */
+
+function closeSidebar() {
+
+    if (!sidebar) return;
+
+    sidebar.classList.remove("active");
+
+    if (overlay) {
+        overlay.classList.remove("active");
+    }
+
+    document.body.style.overflow = "";
+
+}
+
+/* ---------- Button Events ---------- */
+
+if (menuToggle) {
+    menuToggle.addEventListener("click", openSidebar);
+}
+
+if (sidebarClose) {
+    sidebarClose.addEventListener("click", closeSidebar);
+}
+
+if (overlay) {
+    overlay.addEventListener("click", closeSidebar);
+}
+
+/* ---------- ESC Key ---------- */
+
+document.addEventListener("keydown", function (e) {
+
+    if (e.key === "Escape") {
+
+        closeSidebar();
+
+    }
+
+});
+
+/* ==========================
+   NESTED MENU
+========================== */
+
+function toggleNestedMenu(button) {
+
+    const menu = button.nextElementSibling;
+
+    if (!menu) return;
+
+    const opened = menu.classList.contains("active");
+
+    const parent = menu.parentElement.parentElement;
+
+    parent.querySelectorAll(".nested-menu").forEach(item => {
+
+        if (item !== menu) {
+
+            item.classList.remove("active");
 
         }
 
     });
 
-},
+    parent.querySelectorAll(".nested-menu-level2").forEach(item => {
 
-{
+        item.classList.remove("active");
 
-    threshold:0.6
+    });
+
+    parent.querySelectorAll(".menu-btn").forEach(btn => {
+
+        if (btn !== button) {
+
+            btn.classList.remove("active");
+
+        }
+
+    });
+
+    parent.querySelectorAll(".nested-btn").forEach(btn => {
+
+        if (btn !== button) {
+
+            btn.classList.remove("active");
+
+        }
+
+    });
+
+    if (opened) {
+
+        menu.classList.remove("active");
+
+        button.classList.remove("active");
+
+    } else {
+
+        menu.classList.add("active");
+
+        button.classList.add("active");
+
+    }
 
 }
 
-);
+/* ==========================
+   AUTO CLOSE WHEN LINK CLICKED
+========================== */
 
-counters.forEach((counter)=>{
+document.querySelectorAll(".sidebar-v8 a").forEach(link => {
 
-    counterObserver.observe(counter);
+    link.addEventListener("click", () => {
+
+        closeSidebar();
+
+    });
+
+});
+
+/* ==========================
+   MOBILE SWIPE SUPPORT
+========================== */
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener("touchstart", e => {
+
+    touchStartX = e.changedTouches[0].screenX;
+
+});
+
+document.addEventListener("touchend", e => {
+
+    touchEndX = e.changedTouches[0].screenX;
+
+    /* Swipe Right = Open */
+
+    if (touchEndX - touchStartX > 120) {
+
+        openSidebar();
+
+    }
+
+    /* Swipe Left = Close */
+
+    if (touchStartX - touchEndX > 120) {
+
+        closeSidebar();
+
+    }
 
 });
 
 /* ==========================================================
-   PARALLAX EFFECT
+   END OF PART 3.2
 ========================================================== */
-
-const hero =
-
-document.querySelector(".hero");
-
-window.addEventListener(
-
-"scroll",
-
-()=>{
-
-    if(hero){
-
-        hero.style.backgroundPositionY =
-
-        window.scrollY * 0.35 + "px";
-
-    }
-
-},
-
-{passive:true}
-
-);
-
 /* ==========================================================
-   SCROLL DIRECTION
-========================================================== */
-
-let lastScroll = 0;
-
-window.addEventListener(
-
-"scroll",
-
-()=>{
-
-    const current =
-
-    window.pageYOffset;
-
-    if(current > lastScroll){
-
-        document.body.classList.add(
-
-            "scroll-down"
-
-        );
-
-        document.body.classList.remove(
-
-            "scroll-up"
-
-        );
-
-    }else{
-
-        document.body.classList.add(
-
-            "scroll-up"
-
-        );
-
-        document.body.classList.remove(
-
-            "scroll-down"
-
-        );
-
-    }
-
-    lastScroll = current;
-
-},
-
-{passive:true}
-
-);
-
-/* ==========================================================
-   INITIALIZE
-========================================================== */
-
-updateReadingProgress();
-
-toggleScrollButton();
-
-/* ==========================================================
-   STATUS
-========================================================== */
-
-console.log(
-
-"✅ Version 9 | Part 3.5 Smart Scroll Engine Loaded"
-
-);
-/* ==========================================================
-   VERSION 9.0
-   PART 3.6
-   ULTRA IMAGE SLIDER & GALLERY
-========================================================== */
-
-"use strict";
-
-/* ==========================================================
-   ELEMENTS
+   VERSION 9
+   PART 3.3
+   GALLERY SLIDER
 ========================================================== */
 
 const slides = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
-
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
 
 let currentSlide = 0;
-let autoSlider = null;
+let sliderInterval = null;
 
-/* ==========================================================
+/* ==========================
    SHOW SLIDE
-========================================================== */
+========================== */
 
 function showSlide(index){
 
     if(slides.length===0) return;
 
-    if(index >= slides.length){
-
-        currentSlide = 0;
-
-    }else if(index < 0){
-
-        currentSlide = slides.length-1;
-
+    if(index>=slides.length){
+        currentSlide=0;
+    }else if(index<0){
+        currentSlide=slides.length-1;
     }else{
-
-        currentSlide = index;
-
+        currentSlide=index;
     }
 
-    slides.forEach((slide,i)=>{
-
-        slide.classList.toggle(
-
-            "active",
-
-            i===currentSlide
-
-        );
-
+    slides.forEach((slide)=>{
+        slide.classList.remove("active");
     });
 
-    dots.forEach((dot,i)=>{
-
-        dot.classList.toggle(
-
-            "active",
-
-            i===currentSlide
-
-        );
-
+    dots.forEach((dot)=>{
+        dot.classList.remove("active");
     });
+
+    slides[currentSlide].classList.add("active");
+
+    if(dots[currentSlide]){
+        dots[currentSlide].classList.add("active");
+    }
 
 }
 
-/* ==========================================================
-   NEXT & PREVIOUS
-========================================================== */
+/* ==========================
+   NEXT / PREVIOUS
+========================== */
 
 function nextSlide(){
 
@@ -1402,1592 +436,1111 @@ function previousSlide(){
 
 }
 
-/* ==========================================================
+/* ==========================
    AUTO PLAY
-========================================================== */
+========================== */
 
 function startSlider(){
 
     stopSlider();
 
-    autoSlider=setInterval(
+    sliderInterval=setInterval(()=>{
 
-        nextSlide,
+        nextSlide();
 
-        4500
-
-    );
+    },4000);
 
 }
 
 function stopSlider(){
 
-    clearInterval(autoSlider);
+    if(sliderInterval){
+
+        clearInterval(sliderInterval);
+
+    }
 
 }
 
-/* ==========================================================
+/* ==========================
    BUTTON EVENTS
-========================================================== */
+========================== */
 
-nextBtn?.addEventListener(
+if(nextBtn){
 
-"click",
+    nextBtn.addEventListener("click",()=>{
 
-()=>{
+        nextSlide();
 
-    nextSlide();
+        startSlider();
 
-    startSlider();
-
-}
-
-);
-
-prevBtn?.addEventListener(
-
-"click",
-
-()=>{
-
-    previousSlide();
-
-    startSlider();
+    });
 
 }
 
-);
+if(prevBtn){
 
-/* ==========================================================
+    prevBtn.addEventListener("click",()=>{
+
+        previousSlide();
+
+        startSlider();
+
+    });
+
+}
+
+/* ==========================
    DOT EVENTS
-========================================================== */
+========================== */
 
 dots.forEach((dot,index)=>{
 
-    dot.addEventListener(
+    dot.addEventListener("click",()=>{
 
-        "click",
+        showSlide(index);
 
-        ()=>{
+        startSlider();
 
-            showSlide(index);
-
-            startSlider();
-
-        }
-
-    );
+    });
 
 });
 
-/* ==========================================================
-   KEYBOARD SUPPORT
-========================================================== */
-
-document.addEventListener(
-
-"keydown",
-
-(event)=>{
-
-    if(event.key==="ArrowRight"){
-
-        nextSlide();
-
-    }
-
-    if(event.key==="ArrowLeft"){
-
-        previousSlide();
-
-    }
-
-}
-
-);
-
-/* ==========================================================
-   TOUCH SWIPE
-========================================================== */
-
-let startX = 0;
-
-const slider =
-
-document.querySelector(".slider");
-
-slider?.addEventListener(
-
-"touchstart",
-
-(event)=>{
-
-    startX =
-
-    event.touches[0].clientX;
-
-},
-
-{passive:true}
-
-);
-
-slider?.addEventListener(
-
-"touchend",
-
-(event)=>{
-
-    const endX =
-
-    event.changedTouches[0].clientX;
-
-    const distance =
-
-    startX-endX;
-
-    if(distance>50){
-
-        nextSlide();
-
-    }
-
-    if(distance<-50){
-
-        previousSlide();
-
-    }
-
-}
-
-);
-
-/* ==========================================================
+/* ==========================
    PAUSE ON HOVER
-========================================================== */
+========================== */
 
-slider?.addEventListener(
+const slider=document.querySelector(".slider-container");
 
-"mouseenter",
+if(slider){
 
-stopSlider
+    slider.addEventListener("mouseenter",stopSlider);
 
-);
-
-slider?.addEventListener(
-
-"mouseleave",
-
-startSlider
-
-);
-
-/* ==========================================================
-   LAZY IMAGE
-========================================================== */
-
-const lazyImages =
-
-document.querySelectorAll(
-
-"img[data-src]"
-
-);
-
-const lazyObserver=
-
-new IntersectionObserver(
-
-(entries)=>{
-
-entries.forEach((entry)=>{
-
-if(entry.isIntersecting){
-
-const img=
-
-entry.target;
-
-img.src=
-
-img.dataset.src;
-
-img.removeAttribute(
-
-"data-src"
-
-);
-
-lazyObserver.unobserve(
-
-img
-
-);
+    slider.addEventListener("mouseleave",startSlider);
 
 }
+
+/* ==========================
+   TOUCH SWIPE
+========================== */
+
+let startX=0;
+let endX=0;
+
+if(slider){
+
+slider.addEventListener("touchstart",(e)=>{
+
+startX=e.changedTouches[0].clientX;
 
 });
 
-},
+slider.addEventListener("touchend",(e)=>{
 
-{
+endX=e.changedTouches[0].clientX;
 
-threshold:0.1
+if(startX-endX>50){
 
-}
-
-);
-
-lazyImages.forEach((img)=>{
-
-lazyObserver.observe(img);
-
-});
-
-/* ==========================================================
-   LIGHTBOX
-========================================================== */
-
-const galleryImages =
-
-document.querySelectorAll(
-
-".gallery img"
-
-);
-
-galleryImages.forEach((image)=>{
-
-image.addEventListener(
-
-"click",
-
-()=>{
-
-const overlay=
-
-document.createElement("div");
-
-overlay.className=
-
-"lightbox";
-
-overlay.innerHTML=`
-
-<img src="${image.src}" alt="Gallery">
-
-`;
-
-document.body.appendChild(
-
-overlay
-
-);
-
-overlay.addEventListener(
-
-"click",
-
-()=>{
-
-overlay.remove();
+nextSlide();
 
 }
 
-);
+if(endX-startX>50){
+
+previousSlide();
 
 }
-
-);
-
-});
-
-/* ==========================================================
-   INITIALIZE
-========================================================== */
-
-showSlide(0);
 
 startSlider();
 
+});
+
+}
+
+/* ==========================
+   START
+========================== */
+
+if(slides.length){
+
+    showSlide(0);
+
+    startSlider();
+
+}
+
 /* ==========================================================
-   STATUS
+   END OF PART 3.3
+========================================================== */
+/* ==========================================================
+   VERSION 9
+   PART 3.4
+   THEME SYSTEM (LIGHT / DARK / SYSTEM)
 ========================================================== */
 
-console.log(
+const themeToggle = document.getElementById("themeToggle");
 
-"✅ Version 9 | Part 3.6 Ultra Slider Loaded"
+/* ==========================
+   APPLY THEME
+========================== */
+
+function applyTheme(theme) {
+
+    if (theme === "dark") {
+
+        document.body.classList.add("dark-mode");
+        if (themeToggle) themeToggle.textContent = "☀️";
+
+    } else {
+
+        document.body.classList.remove("dark-mode");
+        if (themeToggle) themeToggle.textContent = "🌙";
+
+    }
+
+}
+
+/* ==========================
+   SET THEME
+========================== */
+
+function setTheme(mode) {
+
+    if (mode === "system") {
+
+        localStorage.setItem("theme", "system");
+
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        applyTheme(prefersDark ? "dark" : "light");
+
+        return;
+
+    }
+
+    localStorage.setItem("theme", mode);
+
+    applyTheme(mode);
+
+}
+
+/* ==========================
+   LOAD SAVED THEME
+========================== */
+
+function loadTheme() {
+
+    let savedTheme = localStorage.getItem("theme");
+
+    if (!savedTheme) {
+
+        savedTheme = "system";
+
+    }
+
+    if (savedTheme === "system") {
+
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        applyTheme(prefersDark ? "dark" : "light");
+
+    } else {
+
+        applyTheme(savedTheme);
+
+    }
+
+}
+
+/* ==========================
+   TOGGLE BUTTON
+========================== */
+
+if (themeToggle) {
+
+    themeToggle.addEventListener("click", () => {
+
+        if (document.body.classList.contains("dark-mode")) {
+
+            setTheme("light");
+
+        } else {
+
+            setTheme("dark");
+
+        }
+
+    });
+
+}
+
+/* ==========================
+   SYSTEM THEME CHANGE
+========================== */
+
+window.matchMedia("(prefers-color-scheme: dark)")
+.addEventListener("change", () => {
+
+    if (localStorage.getItem("theme") === "system") {
+
+        loadTheme();
+
+    }
+
+});
+
+/* ==========================
+   INITIALIZE
+========================== */
+
+loadTheme();
+
+/* ==========================================================
+   END OF PART 3.4
+========================================================== */
+/* ==========================================================
+   VERSION 9
+   PART 3.5
+   SCROLL FEATURES
+   (Progress Bar + Scroll Top + Smooth Animation)
+========================================================== */
+
+const progressBar = document.getElementById("progressBar");
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+/* ==========================
+   UPDATE SCROLL
+========================== */
+
+function updateScrollProgress() {
+
+    const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+
+    const scrollHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+    const progress = (scrollTop / scrollHeight) * 100;
+
+    if (progressBar) {
+
+        progressBar.style.width = progress + "%";
+
+    }
+
+    if (scrollTopBtn) {
+
+        if (scrollTop > 300) {
+
+            scrollTopBtn.style.display = "flex";
+
+        } else {
+
+            scrollTopBtn.style.display = "none";
+
+        }
+
+    }
+
+}
+
+window.addEventListener("scroll", updateScrollProgress);
+
+/* ==========================
+   SCROLL TO TOP
+========================== */
+
+if (scrollTopBtn) {
+
+    scrollTopBtn.addEventListener("click", () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
+
+}
+
+/* ==========================
+   SMOOTH MENU SCROLL
+========================== */
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+    link.addEventListener("click", function (e) {
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        if (!target) return;
+
+        e.preventDefault();
+
+        target.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+        });
+
+    });
+
+});
+
+/* ==========================
+   FADE IN ANIMATION
+========================== */
+
+const revealItems = document.querySelectorAll(
+
+    "section,.skill-card,.certificate-card,.experience-card,.contact-card,.info-box"
 
 );
+
+function revealOnScroll() {
+
+    const trigger = window.innerHeight * 0.88;
+
+    revealItems.forEach(item => {
+
+        const top = item.getBoundingClientRect().top;
+
+        if (top < trigger) {
+
+            item.style.opacity = "1";
+
+            item.style.transform = "translateY(0)";
+
+        }
+
+    });
+
+}
+
+/* Initial Style */
+
+revealItems.forEach(item => {
+
+    item.style.opacity = "0";
+
+    item.style.transform = "translateY(40px)";
+
+    item.style.transition = "all .8s ease";
+
+});
+
+window.addEventListener("scroll", revealOnScroll);
+
+window.addEventListener("load", revealOnScroll);
+
 /* ==========================================================
-   VERSION 9.0
+   END OF PART 3.5
+========================================================== */
+/* ==========================================================
+   VERSION 9
+   PART 3.6
+   ENGLISH + BANGLA + HIJRI DATE
+========================================================== */
+
+/* ==========================
+   DATE SYSTEM
+========================== */
+
+function updateAllDates() {
+
+    const now = new Date();
+
+    /* ---------- English Date ---------- */
+
+    const englishDate = now.toLocaleDateString("en-GB", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+
+    const gregorian = document.getElementById("gregorianDate");
+
+    if (gregorian) {
+
+        gregorian.textContent = englishDate;
+
+    }
+
+    /* ---------- Bangla Date ---------- */
+
+    const banglaDate = new Intl.DateTimeFormat("bn-BD-u-ca-beng", {
+
+        weekday: "long",
+
+        day: "numeric",
+
+        month: "long",
+
+        year: "numeric"
+
+    }).format(now);
+
+    const bengali = document.getElementById("bengaliDate");
+
+    if (bengali) {
+
+        bengali.textContent = banglaDate;
+
+    }
+
+    /* ---------- Hijri Date ---------- */
+
+    const hijriDate = new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
+
+        weekday: "long",
+
+        day: "numeric",
+
+        month: "long",
+
+        year: "numeric"
+
+    }).format(now);
+
+    const hijri = document.getElementById("hijriDate");
+
+    if (hijri) {
+
+        hijri.textContent = hijriDate;
+
+    }
+
+}
+
+/* ==========================
+   UPDATE ON LOAD
+========================== */
+
+updateAllDates();
+
+/* ==========================
+   UPDATE EVERY 1 MINUTE
+========================== */
+
+setInterval(updateAllDates, 60000);
+
+/* ==========================================================
+   END OF PART 3.6
+========================================================== */
+/* ==========================================================
+   VERSION 9
    PART 3.7
-   SMART CONTACT • WEATHER • NETWORK
+   GREETING + VISITOR COUNTER + DAILY QUOTE
 ========================================================== */
 
-"use strict";
+/* ==========================
+   GREETING
+========================== */
 
-/* ==========================================================
-   ELEMENTS
-========================================================== */
+function updateGreeting() {
 
-const contactForm = document.getElementById("contactForm");
+    const hour = new Date().getHours();
 
-const networkStatus = document.getElementById("footerNetworkStatus");
+    let greeting = "";
 
-const visitorCounter = document.getElementById("footerVisitorCount");
+    if (hour >= 5 && hour < 12) {
 
-const weatherCity = document.getElementById("weatherCity");
-const weatherTemp = document.getElementById("weatherTemp");
-const weatherDesc = document.getElementById("weatherDesc");
+        greeting = "🌅 Good Morning";
 
-/* ==========================================================
-   CONTACT FORM
-========================================================== */
+    } else if (hour >= 12 && hour < 17) {
 
-if(contactForm){
+        greeting = "☀️ Good Afternoon";
 
-contactForm.addEventListener("submit",async(event)=>{
+    } else if (hour >= 17 && hour < 20) {
 
-event.preventDefault();
+        greeting = "🌇 Good Evening";
 
-const button=contactForm.querySelector("button");
+    } else {
 
-const original=button.innerHTML;
+        greeting = "🌙 Good Night";
 
-button.disabled=true;
+    }
 
-button.innerHTML="Sending...";
+    const greetingElement = document.getElementById("footerGreeting");
 
-try{
+    if (greetingElement) {
 
-const response=await fetch(contactForm.action,{
+        greetingElement.textContent = greeting;
 
-method:"POST",
-
-body:new FormData(contactForm),
-
-headers:{
-
-Accept:"application/json"
+    }
 
 }
 
-});
+updateGreeting();
 
-if(response.ok){
+setInterval(updateGreeting,60000);
 
-button.innerHTML="✅ Sent";
-
-contactForm.reset();
-
-setTimeout(()=>{
-
-button.innerHTML=original;
-
-button.disabled=false;
-
-},2500);
-
-}else{
-
-throw new Error();
-
-}
-
-}catch(error){
-
-button.innerHTML="❌ Failed";
-
-setTimeout(()=>{
-
-button.innerHTML=original;
-
-button.disabled=false;
-
-},2500);
-
-}
-
-});
-
-}
-
-/* ==========================================================
-   NETWORK STATUS
-========================================================== */
-
-function updateNetworkStatus(){
-
-if(!networkStatus) return;
-
-if(navigator.onLine){
-
-networkStatus.innerHTML="🟢 Online";
-
-}else{
-
-networkStatus.innerHTML="🔴 Offline";
-
-}
-
-}
-
-window.addEventListener("online",updateNetworkStatus);
-
-window.addEventListener("offline",updateNetworkStatus);
-
-updateNetworkStatus();
-
-/* ==========================================================
+/* ==========================
    VISITOR COUNTER
-========================================================== */
+========================== */
 
-function updateVisitorCounter(){
+function updateVisitorCounter() {
 
-if(!visitorCounter) return;
+    let count = localStorage.getItem("visitorCount");
 
-let visits=
+    if (!count) {
 
-Number(
+        count = 1;
 
-localStorage.getItem("visitorCount")
+    } else {
 
-||0
+        count = parseInt(count) + 1;
 
-);
+    }
 
-visits++;
+    localStorage.setItem("visitorCount", count);
 
-localStorage.setItem(
+    const visitor = document.getElementById("footerVisitorCount");
 
-"visitorCount",
+    if (visitor) {
 
-visits
+        visitor.textContent = count;
 
-);
-
-visitorCounter.textContent=
-
-visits.toLocaleString();
+    }
 
 }
 
 updateVisitorCounter();
 
+/* ==========================
+   DAILY QUOTES
+========================== */
+
+const quotes = [
+
+"Knowledge is power.",
+
+"Seek knowledge from cradle to grave.",
+
+"The best among you are those who learn the Qur'an and teach it.",
+
+"Hard work always brings success.",
+
+"Believe in Allah and trust His plan.",
+
+"Never stop learning.",
+
+"Small progress every day leads to big success.",
+
+"Patience is the key to victory.",
+
+"Education is the light of life.",
+
+"Always speak the truth."
+
+];
+
+function showDailyQuote() {
+
+    const quoteElement = document.getElementById("dailyQuote");
+
+    if (!quoteElement) return;
+
+    const day = new Date().getDate();
+
+    quoteElement.textContent = quotes[day % quotes.length];
+
+}
+
+showDailyQuote();
+
+/* ==========================
+   ONLINE / OFFLINE STATUS
+========================== */
+
+function updateNetworkStatus() {
+
+    const network = document.getElementById("footerNetworkStatus");
+
+    if (!network) return;
+
+    network.textContent = navigator.onLine
+        ? "🟢 Online"
+        : "🔴 Offline";
+
+}
+
+updateNetworkStatus();
+
+window.addEventListener("online", updateNetworkStatus);
+
+window.addEventListener("offline", updateNetworkStatus);
+
 /* ==========================================================
-   WEATHER ICON
+   END OF PART 3.7
 ========================================================== */
-
-function weatherText(code){
-
-const codes={
-
-0:"☀️ Clear",
-
-1:"🌤 Mostly Clear",
-
-2:"⛅ Partly Cloudy",
-
-3:"☁️ Cloudy",
-
-45:"🌫 Fog",
-
-61:"🌦 Rain",
-
-63:"🌧 Moderate Rain",
-
-65:"🌧 Heavy Rain",
-
-71:"❄️ Snow",
-
-80:"🌦 Shower",
-
-95:"⛈ Thunderstorm"
-
-};
-
-return codes[code]||
-
-"Weather";
-
-}
-
 /* ==========================================================
-   LOAD WEATHER
-========================================================== */
-
-async function loadWeather(lat,lon){
-
-try{
-
-const response=await fetch(
-
-`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`
-
-);
-
-const data=await response.json();
-
-weatherTemp.textContent=
-
-data.current.temperature_2m+"°C";
-
-weatherDesc.textContent=
-
-weatherText(
-
-data.current.weather_code
-
-);
-
-}catch{
-
-weatherTemp.textContent="--°";
-
-weatherDesc.textContent="Unavailable";
-
-}
-
-}
-
-/* ==========================================================
-   LOCATION
-========================================================== */
-
-if(navigator.geolocation){
-
-navigator.geolocation.getCurrentPosition(
-
-(position)=>{
-
-weatherCity.textContent=
-
-"📍 Current Location";
-
-loadWeather(
-
-position.coords.latitude,
-
-position.coords.longitude
-
-);
-
-},
-
-()=>{
-
-weatherCity.textContent=
-
-"📍 Dhaka";
-
-loadWeather(
-
-23.8103,
-
-90.4125
-
-);
-
-}
-
-);
-
-}else{
-
-weatherCity.textContent=
-
-"📍 Dhaka";
-
-loadWeather(
-
-23.8103,
-
-90.4125
-
-);
-
-}
-
-/* ==========================================================
-   CONNECTION SPEED
-========================================================== */
-
-const connection=
-
-navigator.connection||
-
-navigator.mozConnection||
-
-navigator.webkitConnection;
-
-if(connection){
-
-console.log(
-
-"Network:",
-
-connection.effectiveType
-
-);
-
-}
-
-/* ==========================================================
-   PAGE VISIBILITY
-========================================================== */
-
-document.addEventListener(
-
-"visibilitychange",
-
-()=>{
-
-if(document.hidden){
-
-console.log("Page Hidden");
-
-}else{
-
-console.log("Page Visible");
-
-}
-
-}
-
-/* ==========================================================
-   STATUS
-========================================================== */
-
-console.log(
-
-"✅ Version 9 | Part 3.7 Contact & Weather Loaded"
-
-);
-/* ==========================================================
-   VERSION 9.0
+   VERSION 9
    PART 3.8
-   PERFORMANCE • SECURITY • ACCESSIBILITY
+   LIVE WEATHER SYSTEM
 ========================================================== */
 
-"use strict";
+/* ==========================
+   WEATHER CODE TO TEXT
+========================== */
 
-/* ==========================================================
-   IMAGE PROTECTION
-========================================================== */
+function weatherDescription(code) {
 
-document.querySelectorAll("img").forEach((img)=>{
+    const weatherCodes = {
 
-    img.setAttribute("draggable","false");
+        0: "☀️ Clear Sky",
+        1: "🌤 Mainly Clear",
+        2: "⛅ Partly Cloudy",
+        3: "☁️ Cloudy",
 
-    img.addEventListener("dragstart",(e)=>{
+        45: "🌫 Fog",
+        48: "🌫 Dense Fog",
 
-        e.preventDefault();
+        51: "🌦 Light Drizzle",
+        53: "🌦 Moderate Drizzle",
+        55: "🌧 Heavy Drizzle",
 
-    });
+        61: "🌦 Light Rain",
+        63: "🌧 Moderate Rain",
+        65: "🌧 Heavy Rain",
 
-});
+        71: "❄ Light Snow",
+        73: "❄ Snow",
+        75: "🌨 Heavy Snow",
 
-/* ==========================================================
-   DISABLE RIGHT CLICK ON IMAGES
-========================================================== */
+        80: "🌦 Rain Shower",
+        81: "🌧 Heavy Shower",
+        82: "⛈ Violent Shower",
 
-document.addEventListener("contextmenu",(event)=>{
+        95: "⛈ Thunderstorm",
+        96: "⛈ Thunderstorm + Hail",
+        99: "⛈ Severe Storm"
 
-    if(event.target.tagName==="IMG"){
+    };
 
-        event.preventDefault();
-
-    }
-
-});
-
-/* ==========================================================
-   EXTERNAL LINK
-========================================================== */
-
-document.querySelectorAll("a").forEach((link)=>{
-
-    if(
-
-        link.hostname &&
-
-        link.hostname!==location.hostname
-
-    ){
-
-        link.target="_blank";
-
-        link.rel="noopener noreferrer";
-
-    }
-
-});
-
-/* ==========================================================
-   SMOOTH ANCHOR SCROLL
-========================================================== */
-
-document.querySelectorAll('a[href^="#"]').forEach((anchor)=>{
-
-    anchor.addEventListener("click",function(event){
-
-        const target=document.querySelector(
-
-            this.getAttribute("href")
-
-        );
-
-        if(!target) return;
-
-        event.preventDefault();
-
-        target.scrollIntoView({
-
-            behavior:"smooth",
-
-            block:"start"
-
-        });
-
-    });
-
-});
-
-/* ==========================================================
-   BUTTON RIPPLE EFFECT
-========================================================== */
-
-document.querySelectorAll(
-
-".btn,.button"
-
-).forEach((button)=>{
-
-button.addEventListener("click",(event)=>{
-
-const ripple=document.createElement("span");
-
-ripple.className="ripple";
-
-const rect=button.getBoundingClientRect();
-
-ripple.style.left=
-
-(event.clientX-rect.left)+"px";
-
-ripple.style.top=
-
-(event.clientY-rect.top)+"px";
-
-button.appendChild(ripple);
-
-setTimeout(()=>{
-
-ripple.remove();
-
-},600);
-
-});
-
-});
-
-/* ==========================================================
-   AUTO FOCUS INPUT
-========================================================== */
-
-const firstInput=
-
-document.querySelector(
-
-"input,textarea"
-
-);
-
-window.addEventListener("load",()=>{
-
-    firstInput?.blur();
-
-});
-
-/* ==========================================================
-   REDUCE MOTION
-========================================================== */
-
-const reduceMotion=
-
-window.matchMedia(
-
-"(prefers-reduced-motion: reduce)"
-
-);
-
-if(reduceMotion.matches){
-
-document.documentElement.classList.add(
-
-"reduce-motion"
-
-);
+    return weatherCodes[code] || "Weather Unknown";
 
 }
 
+/* ==========================
+   SHOW WEATHER
+========================== */
+
+async function loadWeather(lat, lon, city) {
+
+    try {
+
+        const url =
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`;
+
+        const response = await fetch(url);
+
+        const data = await response.json();
+
+        document.getElementById("weatherCity").textContent = city;
+
+        document.getElementById("weatherTemp").textContent =
+        "🌡 " + data.current.temperature_2m + " °C";
+
+        document.getElementById("weatherDesc").textContent =
+        weatherDescription(data.current.weather_code);
+
+    }
+
+    catch (error) {
+
+        document.getElementById("weatherCity").textContent =
+        "Weather Unavailable";
+
+        document.getElementById("weatherTemp").textContent = "";
+
+        document.getElementById("weatherDesc").textContent = "";
+
+    }
+
+}
+
+/* ==========================
+   GET USER LOCATION
+========================== */
+
+function detectWeatherLocation() {
+
+    if (!navigator.geolocation) {
+
+        loadWeather(23.6850,90.3563,"Bangladesh");
+
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            loadWeather(
+
+                position.coords.latitude,
+
+                position.coords.longitude,
+
+                "Your Location"
+
+            );
+
+        },
+
+        function(){
+
+            loadWeather(23.6850,90.3563,"Bangladesh");
+
+        }
+
+    );
+
+}
+
+/* ==========================
+   START WEATHER
+========================== */
+
+detectWeatherLocation();
+
+/* Auto Refresh Every 30 Minutes */
+
+setInterval(detectWeatherLocation,1800000);
+
 /* ==========================================================
-   COPY EMAIL
+   END OF PART 3.8
 ========================================================== */
-
-document.querySelectorAll(
-
-"[data-copy]"
-
-).forEach((item)=>{
-
-item.addEventListener("click",()=>{
-
-const text=item.dataset.copy;
-
-navigator.clipboard.writeText(text)
-
-.then(()=>{
-
-console.log("Copied:",text);
-
-});
-
-});
-
-});
-
 /* ==========================================================
-   PAGE LOAD TIME
-========================================================== */
-
-window.addEventListener("load",()=>{
-
-const timing=
-
-performance.now().toFixed(0);
-
-console.log(
-
-`⚡ Loaded in ${timing} ms`
-
-);
-
-});
-
-/* ==========================================================
-   MEMORY CLEANUP
-========================================================== */
-
-window.addEventListener(
-
-"beforeunload",
-
-()=>{
-
-console.log(
-
-"Cleaning Resources..."
-
-);
-
-});
-
-/* ==========================================================
-   FINAL STATUS
-========================================================== */
-
-console.log(
-
-"✅ Version 9 | Part 3.8 Performance & Security Loaded"
-
-);
-/* ==========================================================
-   VERSION 9.0
+   VERSION 9
    PART 3.9
-   LOADER • TYPING • QUOTE • MUSIC
+   BACKGROUND MUSIC SYSTEM
 ========================================================== */
 
-"use strict";
+const backgroundMusic = document.getElementById("backgroundMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+/* ==========================
+   LOAD SAVED STATE
+========================== */
+
+function loadMusicState() {
+
+    if (!backgroundMusic || !musicBtn) return;
+
+    const savedState = localStorage.getItem("musicState");
+
+    backgroundMusic.volume = 0.35;
+
+    if (savedState === "playing") {
+
+        backgroundMusic.play()
+            .then(() => {
+
+                musicBtn.textContent = "⏸";
+
+            })
+            .catch(() => {
+
+                musicBtn.textContent = "🎵";
+
+            });
+
+    } else {
+
+        backgroundMusic.pause();
+
+        musicBtn.textContent = "🎵";
+
+    }
+
+}
+
+/* ==========================
+   PLAY / PAUSE
+========================== */
+
+function toggleMusic() {
+
+    if (!backgroundMusic || !musicBtn) return;
+
+    if (backgroundMusic.paused) {
+
+        backgroundMusic.play();
+
+        musicBtn.textContent = "⏸";
+
+        localStorage.setItem("musicState", "playing");
+
+    } else {
+
+        backgroundMusic.pause();
+
+        musicBtn.textContent = "🎵";
+
+        localStorage.setItem("musicState", "paused");
+
+    }
+
+}
+
+if (musicBtn) {
+
+    musicBtn.addEventListener("click", toggleMusic);
+
+}
+
+/* ==========================
+   AUTO PLAY AFTER FIRST CLICK
+========================== */
+
+document.addEventListener("click", function autoPlayMusic() {
+
+    if (!backgroundMusic) return;
+
+    if (localStorage.getItem("musicState") === "playing") {
+
+        backgroundMusic.play().catch(() => {});
+
+    }
+
+    document.removeEventListener("click", autoPlayMusic);
+
+}, { once: true });
+
+/* ==========================
+   SAVE WHEN MUSIC ENDS
+========================== */
+
+if (backgroundMusic) {
+
+    backgroundMusic.addEventListener("play", () => {
+
+        localStorage.setItem("musicState", "playing");
+
+    });
+
+    backgroundMusic.addEventListener("pause", () => {
+
+        localStorage.setItem("musicState", "paused");
+
+    });
+
+}
+
+/* ==========================
+   INITIALIZE
+========================== */
+
+loadMusicState();
 
 /* ==========================================================
-   SMART LOADER
+   END OF PART 3.9
 ========================================================== */
+/* ==========================================================
+   VERSION 9
+   PART 3.10
+   FINAL INITIALIZATION
+   LOADER + TYPING + LIVE CLOCK + LANGUAGE
+========================================================== */
+
+/* ==========================
+   PREMIUM LOADER
+========================== */
 
 window.addEventListener("load", () => {
-
-    document.body.classList.add("loaded");
 
     const loader = document.getElementById("loader");
 
     if (!loader) return;
 
-    loader.classList.add("fade-out");
-
     setTimeout(() => {
 
-        loader.remove();
+        loader.classList.add("hide");
 
-    }, 1200);
+        setTimeout(() => {
+
+            loader.style.display = "none";
+
+        }, 800);
+
+    }, 3000);
 
 });
 
-/* ==========================================================
-   DAILY ISLAMIC QUOTE
-========================================================== */
+/* ==========================
+   LIVE HEADER TIME
+========================== */
 
-const dailyQuote = document.getElementById("dailyQuote");
+function updateHeaderClock() {
 
-const quotes = [
+    const now = new Date();
 
-"Indeed, Allah is with the patient. (2:153)",
+    const time = now.toLocaleTimeString("en-GB", {
 
-"Verily, with hardship comes ease. (94:6)",
+        hour: "2-digit",
 
-"So remember Me; I will remember you. (2:152)",
+        minute: "2-digit",
 
-"Allah does not burden a soul beyond its capacity. (2:286)",
+        second: "2-digit"
 
-"And whoever relies upon Allah, He is sufficient. (65:3)",
+    });
 
-"The best among you learn the Qur'an and teach it.",
+    const date = now.toLocaleDateString("en-GB", {
 
-"Prayer is the key to success.",
+        weekday: "long",
 
-"Knowledge is light.",
+        day: "numeric",
 
-"Trust Allah in every situation.",
+        month: "long",
 
-"Always be thankful to Allah.",
+        year: "numeric"
 
-"Patience opens every door.",
+    });
 
-"Good character is true wealth."
+    const timeBox = document.getElementById("headerBdTime");
+    const dateBox = document.getElementById("headerEnglishDate");
 
-];
+    if (timeBox) timeBox.textContent = time;
 
-function updateDailyQuote(){
-
-    if(!dailyQuote) return;
-
-    const index =
-
-    new Date().getDate() %
-
-    quotes.length;
-
-    dailyQuote.style.opacity="0";
-
-    setTimeout(()=>{
-
-        dailyQuote.textContent=
-
-        quotes[index];
-
-        dailyQuote.style.opacity="1";
-
-    },300);
+    if (dateBox) dateBox.textContent = date;
 
 }
 
-updateDailyQuote();
+updateHeaderClock();
 
-/* ==========================================================
-   SMART TYPING EFFECT
-========================================================== */
+setInterval(updateHeaderClock,1000);
 
-const typingText =
+/* ==========================
+   TYPING EFFECT
+========================== */
 
-document.getElementById("typingText");
-
-if(typingText){
-
-const words=[
-
-"Assalamu Alaikum",
-
-"Welcome To My Portfolio",
-
-"Muhammad Jamil Uddin",
+const typingWords = [
 
 "Hafiz of the Holy Qur'an",
 
-"Qur'anic Sciences Student",
-
-"Future International Scholar",
+"IIUC Student",
 
 "Web Developer",
 
-"Graphic Designer",
+"Islamic Researcher",
 
-"Content Creator",
+"Programmer",
 
-"Public Speaker"
+"Technology Enthusiast",
+
+"Future Islamic Scholar"
 
 ];
 
-let word=0;
+let typingIndex = 0;
+let letterIndex = 0;
+let deleting = false;
 
-let char=0;
+function typingEffect() {
 
-let deleting=false;
+    const text = document.getElementById("typingText");
 
-function typing(){
+    if (!text) return;
 
-const current=words[word];
+    const current = typingWords[typingIndex];
 
-if(!deleting){
+    if (!deleting) {
 
-typingText.textContent=
+        text.textContent = current.substring(0, letterIndex++);
 
-current.substring(
+        if (letterIndex > current.length) {
 
-0,
+            deleting = true;
 
-char++
+            setTimeout(typingEffect, 1800);
 
-);
+            return;
 
-if(char>
+        }
 
-current.length){
+    } else {
 
-deleting=true;
+        text.textContent = current.substring(0, letterIndex--);
 
-setTimeout(
+        if (letterIndex < 0) {
 
-typing,
+            deleting = false;
 
-1500
+            typingIndex++;
 
-);
+            if (typingIndex >= typingWords.length) {
 
-return;
+                typingIndex = 0;
 
-}
+            }
 
-}else{
-
-typingText.textContent=
-
-current.substring(
-
-0,
-
-char--
-
-);
-
-if(char===0){
-
-deleting=false;
-
-word++;
-
-if(word>=words.length){
-
-word=0;
-
-}
-
-}
-
-}
-
-setTimeout(
-
-typing,
-
-deleting?45:90
-
-);
-
-}
-
-typing();
-
-}
-
-/* ==========================================================
-   MUSIC BUTTON
-========================================================== */
-
-const music =
-
-document.getElementById(
-
-"backgroundMusic"
-
-);
-
-const musicBtn=
-
-document.getElementById(
-
-"musicBtn"
-
-);
-
-let playing=false;
-
-if(music && musicBtn){
-
-music.volume=0.4;
-
-musicBtn.addEventListener(
-
-"click",
-
-async()=>{
-
-try{
-
-if(!playing){
-
-await music.play();
-
-playing=true;
-
-musicBtn.innerHTML="⏸";
-
-}else{
-
-music.pause();
-
-playing=false;
-
-musicBtn.innerHTML="🎵";
-
-}
-
-}catch(e){
-
-console.log(
-
-"Autoplay blocked."
-
-);
-
-}
-
-}
-
-);
-
-music.addEventListener(
-
-"ended",
-
-()=>{
-
-playing=false;
-
-musicBtn.innerHTML="🎵";
-
-}
-
-);
-
-}
-
-/* ==========================================================
-   PAGE TITLE BLINK
-========================================================== */
-
-const originalTitle=document.title;
-
-let titleTimer=null;
-
-window.addEventListener(
-
-"blur",
-
-()=>{
-
-titleTimer=setInterval(()=>{
-
-document.title=
-
-document.title===originalTitle
-
-?
-
-"👋 Come Back!"
-
-:
-
-originalTitle;
-
-},2000);
-
-}
-
-);
-
-window.addEventListener(
-
-"focus",
-
-()=>{
-
-clearInterval(titleTimer);
-
-document.title=
-
-originalTitle;
-
-}
-
-);
-
-/* ==========================================================
-   FINAL INITIALIZATION
-========================================================== */
-
-document.addEventListener(
-
-"DOMContentLoaded",
-
-()=>{
-
-console.clear();
-
-console.log(
-
-"%cMuhammad Jamil Uddin",
-
-"color:#2563eb;font-size:22px;font-weight:bold;"
-
-);
-
-console.log(
-
-"%cOfficial Portfolio Website",
-
-"color:#0ea5e9;font-size:16px;"
-
-);
-
-console.log(
-
-"%cVersion 9.0 Successfully Loaded",
-
-"color:#22c55e;font-size:18px;font-weight:bold;"
-
-);
-
-console.log(
-
-"%cAll Systems Running Perfectly",
-
-"color:#f59e0b;font-size:15px;"
-
-);
-
-});
-
-/* ==========================================================
-   STATUS
-========================================================== */
-
-console.log(
-
-"✅ Version 9 | Part 3.9 Loader & Typing Loaded"
-
-);
-/* ==========================================================
-   VERSION 9.0
-   PART 3.10
-   FINAL CORE ENGINE
-========================================================== */
-
-"use strict";
-
-/* ==========================================================
-   GLOBAL ERROR HANDLER
-========================================================== */
-
-window.addEventListener("error", (event) => {
-
-    console.error(
-        "JavaScript Error:",
-        event.message,
-        "@",
-        event.filename,
-        "Line:",
-        event.lineno
-    );
-
-});
-
-window.addEventListener("unhandledrejection", (event) => {
-
-    console.error(
-        "Unhandled Promise:",
-        event.reason
-    );
-
-});
-
-/* ==========================================================
-   PERFORMANCE MONITOR
-========================================================== */
-
-window.addEventListener("load", () => {
-
-    const loadTime = performance.now();
-
-    console.log(
-        `⚡ Website Loaded in ${loadTime.toFixed(0)} ms`
-    );
-
-});
-
-/* ==========================================================
-   FPS MONITOR
-========================================================== */
-
-let frame = 0;
-let lastTime = performance.now();
-
-function monitorFPS(now){
-
-    frame++;
-
-    if(now - lastTime >= 1000){
-
-        console.log(`🎮 FPS : ${frame}`);
-
-        frame = 0;
-
-        lastTime = now;
+        }
 
     }
 
-    requestAnimationFrame(monitorFPS);
+    setTimeout(typingEffect, deleting ? 45 : 110);
 
 }
 
-requestAnimationFrame(monitorFPS);
+typingEffect();
 
-/* ==========================================================
-   AUTO PAGE REFRESH AFTER LONG IDLE
-========================================================== */
+/* ==========================
+   LANGUAGE SYSTEM
+========================== */
 
-let idleTimer;
+function setLanguage(lang){
 
-function resetIdle(){
+    localStorage.setItem("language",lang);
 
-    clearTimeout(idleTimer);
-
-    idleTimer = setTimeout(()=>{
-
-        console.log("♻ Refresh Recommended");
-
-    },30*60*1000);
+    alert("Language changed to : " + lang +
+    "\n(Full multilingual support will be available in Version 10)");
 
 }
 
-["mousemove","keydown","scroll","touchstart","click"]
+const savedLanguage = localStorage.getItem("language");
 
-.forEach(eventName=>{
+if(savedLanguage){
 
-window.addEventListener(
-
-eventName,
-
-resetIdle,
-
-{passive:true}
-
-);
-
-});
-
-resetIdle();
-
-/* ==========================================================
-   SHORTCUT KEYS
-========================================================== */
-
-document.addEventListener("keydown",(event)=>{
-
-    if(event.ctrlKey && event.key==="Home"){
-
-        window.scrollTo({
-
-            top:0,
-
-            behavior:"smooth"
-
-        });
-
-    }
-
-});
-
-/* ==========================================================
-   CACHE VERSION
-========================================================== */
-
-const currentVersion="9.0";
-
-const previousVersion=
-
-localStorage.getItem("portfolioVersion");
-
-if(previousVersion!==currentVersion){
-
-localStorage.setItem(
-
-"portfolioVersion",
-
-currentVersion
-
-);
-
-console.log(
-
-"✨ Version Updated:",
-
-currentVersion
-
-);
+    setLanguage(savedLanguage);
 
 }
 
-/* ==========================================================
-   OFFLINE / ONLINE NOTIFICATION
-========================================================== */
+/* ==========================
+   COPYRIGHT YEAR
+========================== */
 
-function networkNotice(){
+const footerYear = document.getElementById("footerYear");
 
-    if(navigator.onLine){
+if(footerYear){
 
-        console.log("🟢 Internet Connected");
-
-    }else{
-
-        console.log("🔴 Internet Disconnected");
-
-    }
+    footerYear.textContent = new Date().getFullYear();
 
 }
 
-window.addEventListener(
+/* ==========================
+   VERSION INFORMATION
+========================== */
 
-"online",
+console.log("====================================");
 
-networkNotice
+console.log("Muhammad Jamil Uddin Portfolio");
 
-);
+console.log("Version 9.0 Ultimate Edition");
 
-window.addEventListener(
+console.log("All Systems Loaded Successfully.");
 
-"offline",
-
-networkNotice
-
-);
-
-networkNotice();
+console.log("====================================");
 
 /* ==========================================================
-   DEVICE INFORMATION
+   VERSION 9 COMPLETED
 ========================================================== */
-
-console.table({
-
-Browser:navigator.userAgent,
-
-Language:navigator.language,
-
-Platform:navigator.platform,
-
-Online:navigator.onLine,
-
-Cookies:navigator.cookieEnabled
-
-});
-
-/* ==========================================================
-   MEMORY INFORMATION
-========================================================== */
-
-if(performance.memory){
-
-console.table({
-
-Used:
-
-Math.round(
-
-performance.memory.usedJSHeapSize/
-
-1048576
-
-)+" MB",
-
-Limit:
-
-Math.round(
-
-performance.memory.jsHeapSizeLimit/
-
-1048576
-
-)+" MB"
-
-});
-
-}
-
-/* ==========================================================
-   FINAL STARTUP
-========================================================== */
-
-document.addEventListener(
-
-"DOMContentLoaded",
-
-()=>{
-
-document.documentElement.classList.add(
-
-"app-ready"
-
-);
-
-console.log(
-
-"🚀 Portfolio Ready"
-
-);
-
-});
-
-/* ==========================================================
-   FINAL CONSOLE BANNER
-========================================================== */
-
-console.log("%c===================================================",
-"color:#2563eb;font-size:14px;font-weight:bold");
-
-console.log("%c MUHAMMAD JAMIL UDDIN",
-"color:#0ea5e9;font-size:22px;font-weight:bold");
-
-console.log("%c Official Portfolio Website",
-"color:#22c55e;font-size:16px");
-
-console.log("%c VERSION 9.0 FINAL",
-"color:#f59e0b;font-size:18px;font-weight:bold");
-
-console.log("%c HTML • CSS • JavaScript • Responsive",
-"color:#8b5cf6;font-size:15px");
-
-console.log("%c Mobile ✔ Tablet ✔ Desktop ✔",
-"color:#10b981;font-size:15px");
-
-console.log("%c===================================================",
-"color:#2563eb;font-size:14px;font-weight:bold");
