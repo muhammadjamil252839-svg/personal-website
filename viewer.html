@@ -1,48 +1,20 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF Reader</title>
-
-<style>
-html,body{
-margin:0;
-padding:0;
-width:100%;
-height:100%;
-overflow:hidden;
-background:#f5f5f5;
-}
-
-iframe{
-width:100%;
-height:100%;
-border:none;
-}
-</style>
-
-</head>
-
-<body>
-
-<iframe id="pdfViewer"></iframe>
+<title>PDF Viewer</title>
 
 <script>
 const params = new URLSearchParams(window.location.search);
 const file = params.get("file");
 
 if(file){
-
-const fullUrl =
-"https://muhammadjamil252839-svg.github.io/personal-website/" + file;
-
-document.getElementById("pdfViewer").src =
-"https://docs.google.com/gview?embedded=1&url=" +
-encodeURIComponent(fullUrl);
-
+    window.location.href = "pdfjs/viewer.html?file=" + encodeURIComponent(file);
 }
 </script>
 
+</head>
+<body>
+Loading PDF...
 </body>
 </html>
